@@ -1,3 +1,6 @@
 *.aux
 *.log
 *.gz
+/.idea
+*.pdf
+/out
