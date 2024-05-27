@@ -1,13 +1,15 @@
-\documentclass{article}
+\documentclass[12pt]{report}
+\input{styles/main-style}
 
 \begin{document}
+    \input{chapters/title-page}
+    \maketitle
 
-\title{Simple Document}
-\author{Author Name}
-\date{\today}
+    \renewcommand*\contentsname{Spis treści}
+    \tableofcontents
 
-\maketitle
-
-Here will be my engineering work.
+    \doublespacing
+    \input{chapters/introduction}
+    \input{chapters/theory}
 
 \end{document}
