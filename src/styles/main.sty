@@ -1,0 +1,27 @@
+\usepackage{styles/pkgs}
+\usepackage{styles/code-snipets}
+
+\setmainfont{Times New Roman}
+\onehalfspacing
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% BEGIN: Table of contents styling
+\renewcommand*\contentsname{Spis treści}
+\setlength{\cftaftertoctitleskip}{16pt}
+%\setlength{\cftbeforetoctitleskip}{0pt}
+
+\cftsetindents{section}{0em}{3em}
+\cftsetindents{subsection}{0em}{3em}
+\cftsetindents{subsubsection}{0em}{3em}
+
+\renewcommand\cfttoctitlefont{\hfill\Large\bfseries}
+\renewcommand\cftaftertoctitle{\hfill\mbox{}}
+% END
+
+% prevents Underfull \hbox warnings
+\setlength{\emergencystretch}{5em}

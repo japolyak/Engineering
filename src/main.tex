@@ -1,15 +1,16 @@
 \documentclass[12pt]{report}
-\input{styles/main-style}
+\usepackage{styles/main}
 
 \begin{document}
     \input{chapters/title-page}
     \maketitle
 
-    \renewcommand*\contentsname{Spis treści}
     \tableofcontents
 
-    \doublespacing
     \input{chapters/introduction}
     \input{chapters/theory}
+    \input{chapters/tools}
+    \input{chapters/frames}
+    \input{chapters/analysis}
 
 \end{document}
