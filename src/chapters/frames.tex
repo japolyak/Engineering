@@ -1,17 +1,64 @@
 \newpage
 \section{Modelowanie obliczeniowe konstrukcji}
 
-    \subsection{Modelowanie układów ramowych}
+\subsection{Modelowanie układów ramowych}
 
-    \subsection{Implementacja obliczeń}
-        \subsubsection{Konfiguracja środowiska}
-        \subsubsection{Instalacja bibliotek}
-        \subsubsection{Import modułów}
-        \subsubsection{Tworzenie modelu obliczeniowego i definiowanie parametrów}
-        \subsubsection{Tworzenie węzłów, podpór i elementów}
-        \subsubsection{Definicja i przyłożenie obciążeń}
-        \subsubsection{Parametryzacja modelu}
-        \subsubsection{Przeprowadzenie obliczeń}
-        \subsubsection{Prezentacja wyników}
+\subsection{Implementacja obliczeń}
+\subsubsection{Konfiguracja środowiska}
 
-    \subsection{Optymalizacja kodu obliczeniowego}
+Aby móc zacząć pracę z silnikiem obliczeniowym niezbędne jest prawidłowe skonfigurowanie środowiska programistycznego.
+%TODO - add hiperlinks
+Ze względu na to, iż komputery nie mają wbudowanego języka Python, ów należy pobrać z oficjalnej strony[1].
+Postanowiono pobrać Python wersji 3.11, ponieważ biblioteka \textbf{OpenSeesPy} w wersji 3.5.1.12 akurat tego wymaga,
+oraz darmowy edytor kodu źródłowego – \textbf{Visual Studio Code}[2], dla wygody napisana kodu.
+
+Po udanej instalacji Pythona stworzono katalog projektu.
+Następnie, korzystając z wiersza poleceń, wybrano wcześniej stworzony katalog i wykonano następne polecenia:
+
+\begin{lstlisting}
+python3 -m venv venv
+source venv/bin/activate
+\end{lstlisting}
+
+W wyniku w wybranym katalogu powstało wirtualne środowisko o nazwie \textbf{venv} w celu odizolować zależności projektu.
+Następnie dodano pliki o rozszerzeniu \textbf{.py} dla każdej konstrukcji oraz jeden plik pomocniczy, zawierający wspólny
+dla każdego procesu obliczeniowego kod.
+Na tym etapie kończy się konfiguracja środowiska.
+
+\subsubsection{Instalacja i import modułów}
+
+Korzystając z wiersza poleceń i komendy \inlinecode{pip install <module name>} zainstalowano następujące biblioteki:
+
+\begin{itemize}
+    \item OpenSeesPy
+    \item OpsVis
+    \item SciPy
+    \item NumPy
+    \item MatPlotLib
+\end{itemize}
+
+Po udanej instalacji przy pomocy komendy \textbf{import} zaimportowano moduły do każdego pliku:
+
+\begin{lstlisting}
+# Plik shared.py
+import numpy as np
+import matplotlib.pyplot as plt
+\end{lstlisting}
+
+\begin{lstlisting}
+# Pliki obliczeniowe
+import numpy as np
+import opsvis as opsv
+from scipy.stats import norm
+import openseespy.opensees as ops
+from shared import show_results
+\end{lstlisting}
+
+\subsubsection{Tworzenie modelu obliczeniowego i definiowanie parametrów}
+\subsubsection{Tworzenie węzłów, podpór i elementów}
+\subsubsection{Definicja i przyłożenie obciążeń}
+\subsubsection{Parametryzacja modelu}
+\subsubsection{Przeprowadzenie obliczeń}
+\subsubsection{Prezentacja wyników}
+
+\subsection{Optymalizacja kodu obliczeniowego}
