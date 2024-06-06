@@ -46,7 +46,7 @@ import matplotlib.pyplot as plt
 \end{lstlisting}
 
 \begin{lstlisting}
-# Pliki obliczeniowe
+# Pliki belka.py, kratownica.py, rama.py, konstrukcja_pretowa.py
 import numpy as np
 import opsvis as opsv
 from scipy.stats import norm
@@ -54,7 +54,89 @@ import openseespy.opensees as ops
 from shared import show_results
 \end{lstlisting}
 
-\subsubsection{Tworzenie modelu obliczeniowego i definiowanie parametrów}
+\subsubsection{Tworzenie modelu obliczeniowego}
+
+Definicję modelu obliczeniowego wykonano poprzez wywołanie komendy
+\inlinecode{model('basic', '-ndm', ndm, '-ndf', ndf)}, w którą po kolei przekazano następujące parametry:
+
+\begin{itemize}
+    \item liczbę wymiarów modelu \textbf{ndm} (1, 2, 3)
+    \item liczbę stopni swobody na węźle \textbf{ndf}
+\end{itemize}
+
+Ponieważ analizowano układy dwuwymiarowe, wartość parametru \textbf{ndm} została ustawiona na 2.
+Natomiast wartość \textbf{ndf} różniła się w zależności od typu konstrukcji:
+\begin{itemize}
+    \item kratownica i konstrukcja prętowa – ustawiono na 2 (dwa stopnie translacyjne)
+    \item belka i rama przestrzenna – ustawiono na 3 (dwa stopnie translacyjne oraz 1 stopień rotacyjny)
+\end{itemize}
+Modele kratownicy i konstrukcji prętowej zdefiniowano jako:
+\begin{lstlisting}
+ops.model('basic', '-ndm', 2, '-ndf', 2)
+\end{lstlisting}
+Modele belki i ramy przestrzennej zdefiniowano jako:
+\begin{lstlisting}
+ops.model('basic', '-ndm', 2, '-ndf', 3)
+\end{lstlisting}
+
+\subsubsection{Definiowanie parametrów}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $a$ & $b$ & $c$ & $E_1$ & $E_2$ & $E_3$ & $A_1$ & $A_2$ & $A_3$ & $P_x$ & $P_y$ \\
+        \hline
+        \multicolumn{3}{|c|}{$m$} & \multicolumn{3}{|c|}{$X$} & \multicolumn{3}{|c|}{$m^2$} & \multicolumn{2}{|c|}{$kN$} \\
+        \hline
+        3 & 4 & 5 & $30*10^6$ & $40*10^6$ & $50*10^6$ & 0.3 & 0.2 & 0.1 & 15 & -5 \\
+        \hline
+    \end{tabular}
+    \caption{Parametry konstrukcji prętowej}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $L$ & $H$ & $b$ & $d$ & $A$ & $I_z$ & $E$ & $P_1$ & $P_2$ \\
+        \hline
+        \multicolumn{4}{|c|}{$m$} & $m^2$ & $m^4$ & $X$ & \multicolumn{2}{|c|}{$kN$} \\
+        \hline
+        3 & 4 & 0.3 & 0.6 & 0.18 & $145.8*10^-6$ & $30*10^6$ & 150 & -50 \\
+        \hline
+    \end{tabular}
+    \caption{Parametry ramy}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        $L$ & $b$ & $d$ & $A$ & $I_z$ & $E$ & $P$ & $q$ \\
+        \hline
+        \multicolumn{3}{|c|}{$m$} & $m^2$ & $m^4$ & $X$ & $kN$ & $kN/m$ \\
+        \hline
+        3 & 0.3 & 0.6 & 0.18 & $145.8*10^-6$ & $30*10^6$ & -10 & -5 \\
+        \hline
+    \end{tabular}
+    \caption{Parametry belki}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $a$ & $b$ & $A$ & $E$ & $P_x$ & $P_y$ \\
+        \hline
+        \multicolumn{2}{|c|}{$m$} & $m^2$ & $X$ & \multicolumn{2}{|c|}{$kN$} \\
+        \hline
+        3 & 3 & 0.2 & $30*10^6$ & 5 & -10 \\
+        \hline
+    \end{tabular}
+    \caption{Paramtery kratownicy}
+\end{table}
+
 \subsubsection{Tworzenie węzłów, podpór i elementów}
 \subsubsection{Definicja i przyłożenie obciążeń}
 \subsubsection{Parametryzacja modelu}
