@@ -334,7 +334,35 @@ Przekazywane parametry to:
     \item \textbf{patternArgs} – lista argumentów – dla siły skupionej wystarczy przekazać numer szeregu czasowego
 \end{itemize}
 
+Ostatnią komendą, która odpowiada za przypisanie obciążenia do węzła, jest \inlinecode{load(nodeTag, *loadValues)},
+której parametrami są:
+
+\begin{itemize}
+    \item \textbf{nodeTag} – numer węzła, do którego przypisane jest obciążenie (liczba całkowita)
+    \item \textbf{loadValues} – lista wartości rzutów obciążenia na kierunkach X, Y oraz Z (lista liczb zmiennoprzecinkowych). Ilość wartości zależna jest od wcześniej zdefiniowanego parametru \textbf{ndf}
+\end{itemize}
+
+Przykład definicji obciążenia siłą skupioną w 4 węźle dla konsoli prętowej:
+\begin{lstlisting}
+ops.timeSeries('Constant', 1)
+ops.pattern('Plain', 1, 1)
+ops.load(4, P_x, P_y)
+\end{lstlisting}
+
 \subsubsection*{Siła rozłożona}
+
+Mówiąc o sile rozłożonej, proces definiowania jest znacznie prostszy i mieści się w uproszczonej komendzie
+\inlinecode{eleLoad('-ele', *eleTags, '-type', '-beamUniform', Wy)}, której należy przekazać:
+
+\begin{itemize}
+    \item \textbf{eleTags} – listę numerów elementów, dla których zostanie przypisane obciążenie (lista liczb całkowitych)
+    \item \textbf{Wy} – wartość obciążenia w kierunku Y (liczba zmiennoprzecinkowa)
+\end{itemize}
+
+Przykład definicji obciążenia siłą rozłożoną w 1 elemencie belki:
+\begin{lstlisting}
+ops.eleLoad('-ele', 1, '-type', '-beamUniform', q)
+\end{lstlisting}
 
 \subsubsection{Parametryzacja modelu}
 
