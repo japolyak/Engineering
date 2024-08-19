@@ -1,5 +1,5 @@
 \newpage
-\section{Modelowanie obliczeniowe konstrukcji}
+\section{Przykłady}
 
 \subsection{Modelowanie układów ramowych}
 
@@ -365,6 +365,11 @@ ops.eleLoad('-ele', 1, '-type', '-beamUniform', q)
 \end{lstlisting}
 
 \subsubsection{Parametryzacja modelu}
+
+Proces parametryzacji zaczyna się od definicji zmiennej, która reprezentuje procentowe odchylenie od wartości nominalnej.
+W ramach projektu przyjęto 10 \% odchylenie - \inlinecode{cov = 0.1}.
+
+Następnie wywołanie komendy \inlinecode{ops.analysis('Static')} tworzy obiekt analityczny, który odpowiada za przeprowadzenie analizy statycznej.
 
 \subsubsection{Przeprowadzenie obliczeń}
 
