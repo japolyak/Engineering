@@ -95,11 +95,7 @@ Do tworzenia podpór użyto komendy \inlinecode{fix(nodeTag, *constrValues)}, gd
 
 \begin{itemize}
     \item \textbf{nodeTag} – numer węzła danego modelu, którego dotyczy podpora (liczba całkowita)
-    \item \textbf{constrValues} – lista wartości określających stany stopni swobody. Ilość wartości zależna jest od wcześniej zdefiniowanego parametru \textbf{ndf}. Możliwe wartości:
-    \begin{itemize}
-        \item 0 – brak zablokowania
-        \item 1 – zablokowanie
-    \end{itemize}
+    \item \textbf{constrValues} – lista wartości określających stany stopni swobody. Ilość wartości zależna jest odwcześniej zdefiniowanego parametru \textbf{ndf}, gdzie 1 oznaczna blokadę, a 0 brak blokady.
 \end{itemize}
 
 Dla listy \inlinecode{constrValues} jest ważna kolejność elementów, ponieważ położenie wartości w liście odpowiada stopniu swobody węzła:
@@ -115,23 +111,24 @@ W celu utrzymania jednolitości z dokumentacją \textbf{OpenSeesPy}, zdecydowano
 Przykładowa definicja węzłów i podpór dla ramy przestrzennej jest przedstawiona jako:
 
 \begin{lstlisting}
+ops.fix(1, *(1, 1, 0))
+ops.fix(2, *(1, 1, 1))
+
 ops.node(1, *(0.0, 0.0))
 ops.node(2, *(L, 0.0))
 ops.node(3, *(0, H))
 ops.node(4, *(L, H))
-
-ops.fix(1, *(1, 1, 0))
-ops.fix(2, *(1, 1, 1))
 \end{lstlisting}
 
 \subsubsection{Definiowanie elementów}
 
 Proces definiowania elementów konstrukcji zaczyna się wywołaniem odpowiedniej komendy, ustalającej właściwości elementów konstrukcyjnych.
 
-\subsubsection*{Belka i rama przestrzenna}
+\subsubsection*{Układy belkowe}
 
-Wychodząc z założeń dotyczących badanych konstrukcji, dla belki i ramy przestrzennej \inlinecode{geomTransf(transfType, transfTag)} (definicja skrócona).
-Ta komenda służy do transformacji sztywności elementu belki i siły oporu z układu podstawowego do globalnego układu współrzędnych[https://openseespydoc.readthedocs.io/en/latest/src/geomTransf.html].
+W układach belkowych proces definiowania elementów zaczyna sięwywołaniem komendy \inlinecode{geomTransf(transfType, transfTag)} (definicja skrócona),
+która służy do definiowania transformacji geometrycznych elementów belek i kolumn, które pozwalają na uwzględnienie wpływu
+deformacji na zachowanie struktury w analizach nieliniowych. Transformacja ta przekształca lokalny układ współrzędnych elementu na globalny układ współrzędnych, co jest kluczowe w przypadku analizy statycznej i dynamicznej struktur.
 Przekazywanymi parametrami są:
 
 \begin{itemize}
@@ -145,12 +142,11 @@ Wywołanie komendy dla konstrukcji ma następującą postać:
 ops.geomTransf('Linear', 1)
 \end{lstlisting}
 
-\subsubsection*{Kratownica i konstrukcja prętowa}
+\subsubsection*{Układy prętowe}
 
-Inaczej wygląda sytuacja dla kratownicy i konstrukcji prętowej.
-Zakłada się, iż to są konstrukcje prętowe, dla których jest analizowane zachowanie w zależności od wartości materiałowych.
-Wychodząc z tego założenia, dla tych konstrukcji wywołano komendę \inlinecode{uniaxialMaterial(matType, matTag, *matArgs)},
-tworzy obiekt reprezentujący jednoosiowe zależności naprężenie-odkształcenie (lub siła odkształcenie).
+W analizach układów prętowych, kluczowym aspektem jest ocena zachowania konstrukcji w zależności od właściwości materiałowych.
+W tym kontekście, komenda  \inlinecode{uniaxialMaterial(matType, matTag, *matArgs)} służy do tworzenia obiektów reprezentujących
+jednoosiowe zależności między naprężeniem a odkształceniem lub między siłą a odkształceniem.
 Przekazywane parametry to:
 
 \begin{itemize}
@@ -159,23 +155,15 @@ Przekazywane parametry to:
     \item \textbf{matArgs} – lista argumentów materiału. Ponieważ materiał jest elastyczny, wystarczy przekazać tylko moduł Younga \textbf{E} (liczba zmiennoprzecinkowa)
 \end{itemize}
 
-Założono, że elementy kratownicy są wykonane z jednorodnego materiału o takim samym przekroju, dlatego został zdefiniowany jeden materiał
-
-\begin{lstlisting}
-ops.uniaxialMaterial('Elastic', 1, E)
-\end{lstlisting}
-
-Konstrukcja prętowa składa się z trzech prętów o różnych przekrojach i materiałach, dlatego zdefiniowano trzy materiały:
+Przykładowa definicja materiału elementu konstrukcji prętowej
 
 \begin{lstlisting}
 ops.uniaxialMaterial('Elastic', 1, E_1)
-ops.uniaxialMaterial('Elastic', 2, E_2)
-ops.uniaxialMaterial('Elastic', 3, E_3)
 \end{lstlisting}
 
 \subsubsection*{Elementy konstrukcyjne}
 
-Komendą odpowiadającą za tworzenie elementów konstrukcyjnych jest \inlinecode{element(eleType, eleTag, *eleNodes, *eleArgs)}, której parametry to:
+Komenda \inlinecode{element(eleType, eleTag, *eleNodes, *eleArgs)} odpowiada za tworzenie elementów konstrukcyjnych, parametrami której są:
 
 \begin{itemize}
     \item \textbf{eleType} – typ elementu (wartość tekstowa)
@@ -184,14 +172,13 @@ Komendą odpowiadającą za tworzenie elementów konstrukcyjnych jest \inlinecod
     \item \textbf{eleArgs} – lista argumentów
 \end{itemize}
 
-Ponieważ silnik obliczeniowy \textbf{OpenSeesPy} uwzględnia różne typy elementów, każdemu typu odpowiada inna lista argumentów.
-Belka oraz rama przestrzenna składają się z elementów belkowych, dlatego jako typ elementu przyjęto \inlinecode{'elasticBeamColumn'}, a
-w dwuwymiarowym układzie współrzędnych skrócona definicja elementów ma postać:
+Ponieważ silnik obliczeniowy \textbf{OpenSeesPy} uwzględnia różne typy elementów, każdemu typowi odpowiada inna lista argumentów.
+
+Dla układów belkowych jako typ elementu przyjęto \inlinecode{'elasticBeamColumn'},dla którego skrócona definicja elementów w układzie dwuwymiarowym ma postać:
 
 \begin{lstlisting}
 element('elasticBeamColumn', eleTag, *eleNodes, Area, Emod, Iz, transfTag)
 \end{lstlisting}
-
 gdzie argumentami są:
 \begin{itemize}
     \item \textbf{Area} – pole przekroju elementu (liczba zmiennoprzecinkowa)
@@ -199,44 +186,35 @@ gdzie argumentami są:
     \item \textbf{Iz} – moment bezwładności przekroju elementu (liczba zmiennoprzecinkowa)
     \item \textbf{transfTag} – numer transformacji (liczba całkowita)
 \end{itemize}
-
-Przykład definicji elementów dla ramy przestrzennej:
+Przykład definicji elementu ramy przestrzennej:
 
 \begin{lstlisting}
 ops.element('elasticBeamColumn', 1, 1, 3, A, E, I_z, 1)
-ops.element('elasticBeamColumn', 2, 3, 4, A, E, I_z, 1)
-ops.element('elasticBeamColumn', 3, 4, 2, A, E, I_z, 1)
 \end{lstlisting}
-
-Ponieważ kratownica i konstrukcja prętowa składają się z prętów, jako typ elementu przyjęto \inlinecode{'truss'}, a skrócona definicja elementów ma postać:
+W układach prętowych jako typ elementu przyjmuje się \inlinecode{'truss'}, a skrócona definicja elementu ma postać:
 
 \begin{lstlisting}
 element('truss', eleTag, *eleNodes, A, matTag)
 \end{lstlisting}
-
 gdzie argumentami są:
 \begin{itemize}
     \item \textbf{A} – pole przekroju elementu (liczba zmiennoprzecinkowa)
     \item \textbf{matTag} – numer wcześniej zdefiniowanego materiału (liczba całkowita)
 \end{itemize}
-
-Przykład definicji elementów dla konstrukcji prętowej:
+Przykład definicji elementu konstrukcji prętowej:
 
 \begin{lstlisting}
 ops.element('truss', 1, 1, 4, A_1, 1)
-ops.element('truss', 2, 2, 4, A_2, 2)
-ops.element('truss', 3, 3, 4, A_3, 3)
 \end{lstlisting}
 
 \subsubsection{Definiowanie obciążeń}
 
-W ramach analizy wrażliwości konstrukcji będą rozpatrywane dwa rodzaje obciążeń – obciążenie siłą skupioną oraz siłą rozłożoną.
+W ramach analizy wrażliwości konstrukcji są rozpatrywane dwa rodzaje obciążeń – obciążenie siłą skupioną oraz siłą rozłożoną.
 
-\subsubsection*{Siła skupiona}
+\subsubsection*{Obciążenie siłą skupioną}
 
-Definiowanie siły skupionej zaczyna się od wywołania komendy \inlinecode{timeSeries(tsType, tsTag, *tsArgs)}, która
-tworzy obiekt reprezentujący zależność pomiędzy czasem a współczynnikiem obciążenia zastosowanym do jednego ze zdefiniowanych
-w schemacie obciążeń, z którym ten obiekt jest powiązany $\lambda=F(t)$.
+Definiowanie siły skupionej zaczyna się od wywołania komendy, która tworzy obiekt reprezentujący zależność $\lambda=F(t)$ pomiędzy czasem
+a współczynnikiem obciążenia zastosowanym do jednego ze zdefiniowanych w schemacie obciążeń, z którym ten obiekt jest powiązany – \inlinecode{timeSeries(tsType, tsTag, *tsArgs)}.
 Przekazywane parametry to:
 
 \begin{itemize}
@@ -244,17 +222,14 @@ Przekazywane parametry to:
     \item \textbf{tsTag} – unikalny numer szeregu czasowego (liczba całkowita)
     \item \textbf{tsArgs} – lista argumentów – opcjonalna, tak jak dla siły stałej współczynnik obciążenia równa się 1
 \end{itemize}
-
-Kolejną metodą, która tym razem odpowiada za tworzenie szablonu obciążenia, jest \inlinecode{pattern(patternType, patternTag, *patternArgs)}.
-Każdy szablon powinien być powiązany z jednym zdefiniowanym wcześniej szeregiem czasowym.
-Przekazywane parametry to:
+Komenda \inlinecode{pattern(patternType, patternTag, *patternArgs)} jest odpowiedzialna za tworzenie szablonu obciążenia.
+Każdy szablon powinien być powiązany z jednym zdefiniowanym wcześniej szeregiem czasowym. Parametrami przekazywanymi są:
 
 \begin{itemize}
     \item \textbf{patternType} – typ szablonu obciążenia – dla siły skupionej przyjęto wartość \inlinecode{'Plain'}
     \item \textbf{patternTag} – unikalny numer szablonu obciążenia (liczba całkowita)
     \item \textbf{patternArgs} – lista argumentów – dla siły skupionej wystarczy przekazać numer szeregu czasowego
 \end{itemize}
-
 Ostatnią komendą, która odpowiada za przypisanie obciążenia do węzła, jest \inlinecode{load(nodeTag, *loadValues)},
 której parametrami są:
 
@@ -262,18 +237,17 @@ której parametrami są:
     \item \textbf{nodeTag} – numer węzła, do którego przypisane jest obciążenie (liczba całkowita)
     \item \textbf{loadValues} – lista wartości rzutów obciążenia na kierunkach X, Y oraz Z (lista liczb zmiennoprzecinkowych). Ilość wartości zależna jest od wcześniej zdefiniowanego parametru \textbf{ndf}
 \end{itemize}
-
-Przykład definicji obciążenia siłą skupioną w 4 węźle dla konsoli prętowej:
+Przykład definicji obciążenia siłą skupioną działającego na konstrukcję prętowej:
 \begin{lstlisting}
 ops.timeSeries('Constant', 1)
 ops.pattern('Plain', 1, 1)
 ops.load(4, P_x, P_y)
 \end{lstlisting}
 
-\subsubsection*{Siła rozłożona}
+\subsubsection*{Obciązenie siłą rozłożoną}
 
-Mówiąc o sile rozłożonej, proces definiowania jest znacznie prostszy i mieści się w uproszczonej komendzie
-\inlinecode{eleLoad('-ele', *eleTags, '-type', '-beamUniform', Wy)}, której należy przekazać:
+Mówiąc o sile rozłożonej, proces definiowania jest znacznie prostszy i mieści się w jednej komendzie
+\inlinecode{eleLoad('-ele', *eleTags, '-type', '-beamUniform', Wy)} (definicja skrócona), której należy przekazać:
 
 \begin{itemize}
     \item \textbf{eleTags} – listę numerów elementów, dla których zostanie przypisane obciążenie (lista liczb całkowitych)
@@ -287,10 +261,11 @@ ops.eleLoad('-ele', 1, '-type', '-beamUniform', q)
 
 \subsubsection{Parametryzacja modelu}
 
-Proces parametryzacji zaczyna się od definicji zmiennej, która reprezentuje procentowe odchylenie od wartości nominalnej.
-W ramach projektu przyjęto 10 \% odchylenie - \inlinecode{cov = 0.1}.
+Proces parametryzacji w analizie konstrukcji zaczyna się od zdefiniowania zmiennej, która reprezentuje procentowe odchylenie
+od wartości nominalnej. W ramach projektu przyjęto odchylenie wynoszące 10 \% – \inlinecode{cov = 0.1}.
 
-Następnie wywołanie komendy \inlinecode{ops.analysis('Static')} tworzy obiekt analityczny, który odpowiada za przeprowadzenie analizy statycznej.
+Następnie, zprzy pomocy komendy \inlinecode{ops.analysis('Static')} tworzy się obiekt analityczny odpowiedzialny za przeprowadzenie
+analizy statycznej. Komenda ta inicjalizuje analizator, który będzie stosował metody analizy statycznej do ocenienia zachowania konstrukcji w odpowiedzi na przyłożone obciążenia.
 
 \subsubsection{Przeprowadzenie obliczeń}
 
