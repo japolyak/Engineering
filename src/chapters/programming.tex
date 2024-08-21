@@ -264,13 +264,84 @@ ops.eleLoad('-ele', 1, '-type', '-beamUniform', q)
 Proces parametryzacji w analizie konstrukcji zaczyna się od zdefiniowania zmiennej, która reprezentuje procentowe odchylenie
 od wartości nominalnej. W ramach projektu przyjęto odchylenie wynoszące 10 \% – \inlinecode{cov = 0.1}.
 
-Następnie, zprzy pomocy komendy \inlinecode{ops.analysis('Static')} tworzy się obiekt analityczny odpowiedzialny za przeprowadzenie
+Następnie, przy pomocy komendy \inlinecode{ops.analysis('Static')} tworzy się obiekt analityczny odpowiedzialny za przeprowadzenie
 analizy statycznej. Komenda ta inicjalizuje analizator, który będzie stosował metody analizy statycznej do ocenienia zachowania konstrukcji w odpowiedzi na przyłożone obciążenia.
+
+Aby uwzględnić losowość parametrów modelu, stosuje się komendę w wersji skróconej \inlinecode{randomVariable(tag, dist, '-mean', mean, '-stdv', stdv)}. Komenda ta tworzy zmienne losowe, które umożliwiają wprowadzenie niepewności w parametrach modelu
+poprzez zastosowanie podejścia statystycznego w analizie. Parametry tej komendy są następujące:
+
+\begin{itemize}
+    \item \textbf{tag} – unikalny numer zmiennej losowej (liczba całkowita)
+    \item \textbf{dist} – typ rozkładu prawdopodobieństwa (tekst), opisujący sposób, w jaki zmienna losowa jest rozłożona; w ramach analizy wykorzystuje się rozkład log-normalny.
+    \item \textbf{mean} – średnia wartość parametru (liczba zmiennoprzecinkowa), wokół której koncentruje się rozkład zmiennej losowej.
+    \item \textbf{stdv} – odchylenie standardowe (liczba zmiennoprzecinkowa), określające rozproszenie wartości wokół średniej.
+\end{itemize}
+
+Parametry w modelu są kluczowe dla przeprowadzania analiz probabilistycznych. Dzięki nim można dynamicznie zmieniać wartości określonych właściwości elementów lub obciążeń.
+Aby zdefiniować parametry modelu, które można później modyfikować w trakcie analizy, stosuje się komendę \inlinecode{parameter(tag, <specific parameter args>)}.
+
+\subsubsection*{Parametr materiałowy}
+
+\begin{lstlisting}
+parameter(tag, 'element', elementTag, property)
+\end{lstlisting}
+Parameter używany do kontrolowania właściwości materiałowych lub geometrycznych konkretnego elementu w modelu, gdzie:
+
+\begin{itemize}
+    \item \textbf{tag} – unikalny numer paramentru (liczba całkowita)
+    \item \textbf{elementTag} – numer modyfikowanego elementu (liczba całkowita)
+    \item \textbf{property} – kontrolowana właściwość elementu (tekst) – \inlinecode{'E'} albo \inlinecode{'Z'}
+\end{itemize}
+
+\subsubsection*{Parametr siły skupionej}
+
+\begin{lstlisting}
+parameter(tag, 'loadPattern', loadTag, 'loadAtNode', nodeTag, direction)
+\end{lstlisting}
+Parametr używany do kontrolowania siły skupinoej działającej w określonym węźle, gdzie:
+
+\begin{itemize}
+    \item \textbf{tag} – unikalny numer paramentru (liczba całkowita)
+    \item \textbf{loadTag} – numer szablonu obciążenia (liczba całkowita)
+    \item \textbf{nodeTag} – numer obciążonego węzła (liczba całkowita)
+    \item \textbf{direction} – kierunek przyłożenia siły – 1 dla osi \textbf{X}, 2 dla osi \textbf{Y}
+\end{itemize}
+
+\subsubsection*{Parametr siły rozłożonej}
+
+\begin{lstlisting}
+parameter(tag, 'loadPattern', loadTag, 'elementLoad', eleTag, direction)
+\end{lstlisting}
+Parametr używany do kontrolowania obciążeń rozłożonych, które działają na określony element modelu, gdzie:
+
+\begin{itemize}
+    \item \textbf{tag} – unikalny numer paramentru (liczba całkowita)
+    \item \textbf{loadTag} – numer szablonu obciążenia (liczba całkowita)
+    \item \textbf{eleTag} – numer obciążonego elementu (liczba całkowita)
+    \item \textbf{direction} – kierunek przyłożenia siły – \inlinecode{'wx'} albo \inlinecode{'wy'}
+\end{itemize}
+
+Aby rozszerzyć zakres wcześniej stworzonego parametru na wiele elementów/węzłów używa się komendy
+\inlinecode{addToParameter(tag, <specific parameter args>)}. Jest to przydatne, gdyż w analizowanych konstrukcjach
+parametry materiałowe kontrolują właściwości więcej niż jednego elementu modelu.
+
+\begin{lstlisting}
+addToParameter(paramTag, 'element', eleTag, property)
+\end{lstlisting}
+Przekazywane parametry to:
+\begin{itemize}
+    \item \textbf{paramTag} – numer paramentru (liczba całkowita)
+    \item \textbf{eleTag} – numer elementu (liczba całkowita)
+    \item \textbf{property} – kontrolowana właściwość elementu (tekst) – jak dla parametru
+\end{itemize}
+Ostatnim krokiem parametryzacji modelu jest ustawienie transformacji prawdopodobieństwa na metodę Natafa \inlinecode{probabilityTransformation('Nataf', '-print', 0)}.
+Owa metoda jest stosowana do przekształcania skorelowanych zmiennych losowych w niezależne zmienne o określonych rozkładach, co ułatwia obliczenia i modelowanie niepewności.
+Wartość zerowa oznacza, iż szczegółowe informacje dotyczące transformacji nie będą wyświetlane w wynikach.
 
 \subsubsection{Przeprowadzenie obliczeń}
 
 dfgdgdfg
 
-\subsubsection{Prezentacja wyników}
+\subsection{Prezentacja wyników}
 
 dgdgdgdgd
