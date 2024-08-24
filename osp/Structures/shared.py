@@ -21,7 +21,7 @@ def calculate(n_trials, node_tag, dof, u_sims):
         u_sims[i] = ops.nodeDisp(node_tag, dof)
 
 
-def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_name: str):
+def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
     m_cpf = n_fail / n_trials
 
     u_max = np.max(u_sims)

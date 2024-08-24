@@ -78,7 +78,7 @@ u_sims = np.zeros(nTrials)
 
 calculate(nTrials, 4, 2, u_sims)
 
-save_results(nFail, nTrials, u_sims, 'Ugięcie środka belki', 'Rama')
+save_results(nFail, nTrials, u_sims, 'Rama')
 # endregion
 
 exit()

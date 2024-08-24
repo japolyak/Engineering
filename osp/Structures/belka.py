@@ -79,7 +79,7 @@ u_sims = np.zeros(nTrials)
 
 calculate(nTrials, 4, 2, u_sims)
 
-save_results(nFail, nTrials, u_sims, 'Ugięcie na końcu belki', 'Belka')
+save_results(nFail, nTrials, u_sims, 'Belka')
 # endregion
 
 exit()
