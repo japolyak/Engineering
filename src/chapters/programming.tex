@@ -23,7 +23,7 @@ Na tym etapie kończy się konfiguracja środowiska.
 
 \subsubsection{Instalacja i import modułów}
 
-Korzystając z wiersza poleceń i komendy \inlinecode{pip install <module name>} zainstalowano następujące biblioteki –
+Korzystając z wiersza poleceń i komendy \ilc{pip install <module name>} zainstalowano następujące biblioteki –
 \textbf{OpenSeesPy}, \textbf{OpsVis}, \textbf{SciPy}, \textbf{NumPy} oraz \textbf{MatPlotLib}.
 
 Po udanej instalacji przy pomocy komendy \textbf{import} zaimportowano moduły do każdego pliku:
@@ -47,7 +47,7 @@ import openseespy.opensees as ops
 \subsubsection{Tworzenie modelu obliczeniowego}
 
 Definicję modelu obliczeniowego wykonano poprzez wywołanie komendy
-\inlinecode{model('basic', '-ndm', ndm, '-ndf', ndf)}, w którą po kolei przekazano następujące parametry:
+\ilc{model('basic', '-ndm', ndm, '-ndf', ndf)}, w którą po kolei przekazano następujące parametry:
 
 \begin{itemize}
     \item liczbę wymiarów modelu \textbf{ndm} (1, 2, 3)
@@ -77,37 +77,37 @@ E = 30.0e6
 \end{lstlisting}
 
 Definicje niektórych parametrów są zależne od innych, np. pole przekroju \textbf{A} albo moment bezwładności \textbf{$I_z$}.
-Także definiując niektóre parametry została użyta specyficzna składnia języka Python, np. zapis \inlinecode{e6} oznacza mnożenie
-przez \textbf{$10^6$}, a zapis \inlinecode{**} oznacza potęgowanie.
+Także definiując niektóre parametry została użyta specyficzna składnia języka Python, np. zapis \ilc{e6} oznacza mnożenie
+przez \textbf{$10^6$}, a zapis \ilc{**} oznacza potęgowanie.
 
 \subsubsection{Definiowanie węzłów i podpór}
 
 Ze względu na to, że silnik obliczeniowy \textbf{OpenSeesPy} nie posiada wbudowanych narzędzi graficznych do rysowania
 modelu konstrukcji oraz jej elementów, proces definiowania odbywał się w sposób manualny.
-Aby stworzyć węzły, wywołano komendę \inlinecode{node(nodeTag, *crds)} (definicja skrócona), gdzie:
+Aby stworzyć węzły, wywołano komendę \ilc{node(nodeTag, *crds)} (definicja skrócona), gdzie:
 
 \begin{itemize}
     \item \textbf{nodeTag} – unikalny numer węzła w obrębie modelu (liczba całkowita)
     \item \textbf{crds} – lista współrzędnych węzła (lista liczb zmiennoprzecinkowych). Ilość współrzędnych zależna jest od wcześniej zdefiniowanego parametru \textbf{ndm}.
 \end{itemize}
 
-Do tworzenia podpór użyto komendy \inlinecode{fix(nodeTag, *constrValues)}, gdzie:
+Do tworzenia podpór użyto komendy \ilc{fix(nodeTag, *constrValues)}, gdzie:
 
 \begin{itemize}
     \item \textbf{nodeTag} – numer węzła danego modelu, którego dotyczy podpora (liczba całkowita)
     \item \textbf{constrValues} – lista wartości określających stany stopni swobody. Ilość wartości zależna jest odwcześniej zdefiniowanego parametru \textbf{ndf}, gdzie 1 oznaczna blokadę, a 0 brak blokady.
 \end{itemize}
 
-Dla listy \inlinecode{constrValues} jest ważna kolejność elementów, ponieważ położenie wartości w liście odpowiada stopniu swobody węzła:
+Dla listy \ilc{constrValues} jest ważna kolejność elementów, ponieważ położenie wartości w liście odpowiada stopniu swobody węzła:
 \begin{itemize}
     \item pierwszy element – stopień swobody w kierunku osi X
     \item drugi element – stopień swobody w kierunku osi Y
     \item trzeci element – obrót wokół osi Z
 \end{itemize}
 
-W języku Python użycie operatora \inlinecode{*} przed listą elementów służy do przekazywania elementów tej listy jako argumentów funkcji.
-Dla węzła o numerze 1 w punkcie (0.0, 0.0) definicja \inlinecode{ops.node(1, *(0.0, 0.0))} jest równoznaczna \inlinecode{ops.node(1, 0.0, 0.0)}.
-W celu utrzymania jednolitości z dokumentacją \textbf{OpenSeesPy}, zdecydowano się na użycie operatora \inlinecode{*} w całym projekcie.
+W języku Python użycie operatora \ilc{*} przed listą elementów służy do przekazywania elementów tej listy jako argumentów funkcji.
+Dla węzła o numerze 1 w punkcie (0.0, 0.0) definicja \ilc{ops.node(1, *(0.0, 0.0))} jest równoznaczna \ilc{ops.node(1, 0.0, 0.0)}.
+W celu utrzymania jednolitości z dokumentacją \textbf{OpenSeesPy}, zdecydowano się na użycie operatora \ilc{*} w całym projekcie.
 Przykładowa definicja węzłów i podpór dla ramy przestrzennej jest przedstawiona jako:
 
 \begin{lstlisting}
@@ -126,7 +126,7 @@ Proces definiowania elementów konstrukcji zaczyna się wywołaniem odpowiedniej
 
 \subsubsection*{Układy belkowe}
 
-W układach belkowych proces definiowania elementów zaczyna sięwywołaniem komendy \inlinecode{geomTransf(transfType, transfTag)} (definicja skrócona),
+W układach belkowych proces definiowania elementów zaczyna sięwywołaniem komendy \ilc{geomTransf(transfType, transfTag)} (definicja skrócona),
 która służy do definiowania transformacji geometrycznych elementów belek i kolumn, które pozwalają na uwzględnienie wpływu
 deformacji na zachowanie struktury w analizach nieliniowych. Transformacja ta przekształca lokalny układ współrzędnych elementu na globalny układ współrzędnych, co jest kluczowe w przypadku analizy statycznej i dynamicznej struktur.
 Przekazywanymi parametrami są:
@@ -145,7 +145,7 @@ ops.geomTransf('Linear', 1)
 \subsubsection*{Układy prętowe}
 
 W analizach układów prętowych, kluczowym aspektem jest ocena zachowania konstrukcji w zależności od właściwości materiałowych.
-W tym kontekście, komenda  \inlinecode{uniaxialMaterial(matType, matTag, *matArgs)} służy do tworzenia obiektów reprezentujących
+W tym kontekście, komenda  \ilc{uniaxialMaterial(matType, matTag, *matArgs)} służy do tworzenia obiektów reprezentujących
 jednoosiowe zależności między naprężeniem a odkształceniem lub między siłą a odkształceniem.
 Przekazywane parametry to:
 
@@ -163,7 +163,7 @@ ops.uniaxialMaterial('Elastic', 1, E_1)
 
 \subsubsection*{Elementy konstrukcyjne}
 
-Komenda \inlinecode{element(eleType, eleTag, *eleNodes, *eleArgs)} odpowiada za tworzenie elementów konstrukcyjnych, parametrami której są:
+Komenda \ilc{element(eleType, eleTag, *eleNodes, *eleArgs)} odpowiada za tworzenie elementów konstrukcyjnych, parametrami której są:
 
 \begin{itemize}
     \item \textbf{eleType} – typ elementu (wartość tekstowa)
@@ -174,7 +174,7 @@ Komenda \inlinecode{element(eleType, eleTag, *eleNodes, *eleArgs)} odpowiada za 
 
 Ponieważ silnik obliczeniowy \textbf{OpenSeesPy} uwzględnia różne typy elementów, każdemu typowi odpowiada inna lista argumentów.
 
-Dla układów belkowych jako typ elementu przyjęto \inlinecode{'elasticBeamColumn'},dla którego skrócona definicja elementów w układzie dwuwymiarowym ma postać:
+Dla układów belkowych jako typ elementu przyjęto \ilc{'elasticBeamColumn'},dla którego skrócona definicja elementów w układzie dwuwymiarowym ma postać:
 
 \begin{lstlisting}
 element('elasticBeamColumn', eleTag, *eleNodes, Area, Emod, Iz, transfTag)
@@ -191,7 +191,7 @@ Przykład definicji elementu ramy przestrzennej:
 \begin{lstlisting}
 ops.element('elasticBeamColumn', 1, 1, 3, A, E, I_z, 1)
 \end{lstlisting}
-W układach prętowych jako typ elementu przyjmuje się \inlinecode{'truss'}, a skrócona definicja elementu ma postać:
+W układach prętowych jako typ elementu przyjmuje się \ilc{'truss'}, a skrócona definicja elementu ma postać:
 
 \begin{lstlisting}
 element('truss', eleTag, *eleNodes, A, matTag)
@@ -214,23 +214,23 @@ W ramach analizy wrażliwości konstrukcji są rozpatrywane dwa rodzaje obciąż
 \subsubsection*{Obciążenie siłą skupioną}
 
 Definiowanie siły skupionej zaczyna się od wywołania komendy, która tworzy obiekt reprezentujący zależność $\lambda=F(t)$ pomiędzy czasem
-a współczynnikiem obciążenia zastosowanym do jednego ze zdefiniowanych w schemacie obciążeń, z którym ten obiekt jest powiązany – \inlinecode{timeSeries(tsType, tsTag, *tsArgs)}.
+a współczynnikiem obciążenia zastosowanym do jednego ze zdefiniowanych w schemacie obciążeń, z którym ten obiekt jest powiązany – \ilc{timeSeries(tsType, tsTag, *tsArgs)}.
 Przekazywane parametry to:
 
 \begin{itemize}
-    \item \textbf{tsType} – typ szeregu czasowego. Ponieważ siła skupiona jest stała w czasie, przyjęto wartość \inlinecode{'Constant'}
+    \item \textbf{tsType} – typ szeregu czasowego. Ponieważ siła skupiona jest stała w czasie, przyjęto wartość \ilc{'Constant'}
     \item \textbf{tsTag} – unikalny numer szeregu czasowego (liczba całkowita)
     \item \textbf{tsArgs} – lista argumentów – opcjonalna, tak jak dla siły stałej współczynnik obciążenia równa się 1
 \end{itemize}
-Komenda \inlinecode{pattern(patternType, patternTag, *patternArgs)} jest odpowiedzialna za tworzenie szablonu obciążenia.
+Komenda \ilc{pattern(patternType, patternTag, *patternArgs)} jest odpowiedzialna za tworzenie szablonu obciążenia.
 Każdy szablon powinien być powiązany z jednym zdefiniowanym wcześniej szeregiem czasowym. Parametrami przekazywanymi są:
 
 \begin{itemize}
-    \item \textbf{patternType} – typ szablonu obciążenia – dla siły skupionej przyjęto wartość \inlinecode{'Plain'}
+    \item \textbf{patternType} – typ szablonu obciążenia – dla siły skupionej przyjęto wartość \ilc{'Plain'}
     \item \textbf{patternTag} – unikalny numer szablonu obciążenia (liczba całkowita)
     \item \textbf{patternArgs} – lista argumentów – dla siły skupionej wystarczy przekazać numer szeregu czasowego
 \end{itemize}
-Ostatnią komendą, która odpowiada za przypisanie obciążenia do węzła, jest \inlinecode{load(nodeTag, *loadValues)},
+Ostatnią komendą, która odpowiada za przypisanie obciążenia do węzła, jest \ilc{load(nodeTag, *loadValues)},
 której parametrami są:
 
 \begin{itemize}
@@ -247,7 +247,7 @@ ops.load(4, P_x, P_y)
 \subsubsection*{Obciązenie siłą rozłożoną}
 
 Mówiąc o sile rozłożonej, proces definiowania jest znacznie prostszy i mieści się w jednej komendzie
-\inlinecode{eleLoad('-ele', *eleTags, '-type', '-beamUniform', Wy)} (definicja skrócona), której należy przekazać:
+\ilc{eleLoad('-ele', *eleTags, '-type', '-beamUniform', Wy)} (definicja skrócona), której należy przekazać:
 
 \begin{itemize}
     \item \textbf{eleTags} – listę numerów elementów, dla których zostanie przypisane obciążenie (lista liczb całkowitych)
@@ -262,12 +262,12 @@ ops.eleLoad('-ele', 1, '-type', '-beamUniform', q)
 \subsubsection{Parametryzacja modelu}
 
 Proces parametryzacji w analizie konstrukcji zaczyna się od zdefiniowania zmiennej, która reprezentuje procentowe odchylenie
-od wartości nominalnej. W ramach projektu przyjęto odchylenie wynoszące 10 \% – \inlinecode{cov = 0.1}.
+od wartości nominalnej. W ramach projektu przyjęto odchylenie wynoszące 10 \% – \ilc{cov = 0.1}.
 
-Następnie, przy pomocy komendy \inlinecode{ops.analysis('Static')} tworzy się obiekt analityczny odpowiedzialny za przeprowadzenie
+Następnie, przy pomocy komendy \ilc{ops.analysis('Static')} tworzy się obiekt analityczny odpowiedzialny za przeprowadzenie
 analizy statycznej. Komenda ta inicjalizuje analizator, który będzie stosował metody analizy statycznej do ocenienia zachowania konstrukcji w odpowiedzi na przyłożone obciążenia.
 
-Aby uwzględnić losowość parametrów modelu, stosuje się komendę w wersji skróconej \inlinecode{randomVariable(tag, dist, '-mean', mean, '-stdv', stdv)}. Komenda ta tworzy zmienne losowe, które umożliwiają wprowadzenie niepewności w parametrach modelu
+Aby uwzględnić losowość parametrów modelu, stosuje się komendę w wersji skróconej \ilc{randomVariable(tag, dist, '-mean', mean, '-stdv', stdv)}. Komenda ta tworzy zmienne losowe, które umożliwiają wprowadzenie niepewności w parametrach modelu
 poprzez zastosowanie podejścia statystycznego w analizie. Parametry tej komendy są następujące:
 
 \begin{itemize}
@@ -278,7 +278,7 @@ poprzez zastosowanie podejścia statystycznego w analizie. Parametry tej komendy
 \end{itemize}
 
 Parametry w modelu są kluczowe dla przeprowadzania analiz probabilistycznych. Dzięki nim można dynamicznie zmieniać wartości określonych właściwości elementów lub obciążeń.
-Aby zdefiniować parametry modelu, które można później modyfikować w trakcie analizy, stosuje się komendę \inlinecode{parameter(tag, <specific parameter args>)}.
+Aby zdefiniować parametry modelu, które można później modyfikować w trakcie analizy, stosuje się komendę \ilc{parameter(tag, <specific parameter args>)}.
 
 \subsubsection*{Parametr materiałowy}
 
@@ -290,7 +290,7 @@ Parameter używany do kontrolowania właściwości materiałowych lub geometrycz
 \begin{itemize}
     \item \textbf{tag} – unikalny numer paramentru (liczba całkowita)
     \item \textbf{elementTag} – numer modyfikowanego elementu (liczba całkowita)
-    \item \textbf{property} – kontrolowana właściwość elementu (tekst) – \inlinecode{'E'} albo \inlinecode{'Z'}
+    \item \textbf{property} – kontrolowana właściwość elementu (tekst) – \ilc{'E'} albo \ilc{'Z'}
 \end{itemize}
 
 \subsubsection*{Parametr siły skupionej}
@@ -318,11 +318,11 @@ Parametr używany do kontrolowania obciążeń rozłożonych, które działają 
     \item \textbf{tag} – unikalny numer paramentru (liczba całkowita)
     \item \textbf{loadTag} – numer szablonu obciążenia (liczba całkowita)
     \item \textbf{eleTag} – numer obciążonego elementu (liczba całkowita)
-    \item \textbf{direction} – kierunek przyłożenia siły – \inlinecode{'wx'} albo \inlinecode{'wy'}
+    \item \textbf{direction} – kierunek przyłożenia siły – \ilc{'wx'} albo \ilc{'wy'}
 \end{itemize}
 
 Aby rozszerzyć zakres wcześniej stworzonego parametru na wiele elementów/węzłów używa się komendy
-\inlinecode{addToParameter(tag, <specific parameter args>)}. Jest to przydatne, gdyż w analizowanych konstrukcjach
+\ilc{addToParameter(tag, <specific parameter args>)}. Jest to przydatne, gdyż w analizowanych konstrukcjach
 parametry materiałowe kontrolują właściwości więcej niż jednego elementu modelu.
 
 \begin{lstlisting}
@@ -334,13 +334,13 @@ Przekazywane parametry to:
     \item \textbf{eleTag} – numer elementu (liczba całkowita)
     \item \textbf{property} – kontrolowana właściwość elementu (tekst) – jak dla parametru
 \end{itemize}
-Ostatnim krokiem parametryzacji modelu jest ustawienie transformacji prawdopodobieństwa na metodę Natafa \inlinecode{probabilityTransformation('Nataf', '-print', 0)}.
+Ostatnim krokiem parametryzacji modelu jest ustawienie transformacji prawdopodobieństwa na metodę Natafa \ilc{probabilityTransformation('Nataf', '-print', 0)}.
 Owa metoda jest stosowana do przekształcania skorelowanych zmiennych losowych w niezależne zmienne o określonych rozkładach, co ułatwia obliczenia i modelowanie niepewności.
 Wartość zerowa oznacza, iż szczegółowe informacje dotyczące transformacji nie będą wyświetlane w wynikach.
 
 \subsubsection{Przeprowadzenie obliczeń}
 
-Za przeprowadzenie wielokrotnych symulacji analizy konstrukcji z uwzględnieniem losowości parametrów odpowiada funkcja \inlinecode{calculate}. Funkcja ta przyjmuje cztery kluczowe parametry:
+Za przeprowadzenie wielokrotnych symulacji analizy konstrukcji z uwzględnieniem losowości parametrów odpowiada funkcja \ilc{calculate}. Funkcja ta przyjmuje cztery kluczowe parametry:
 
 \begin{itemize}
     \item \textbf{n\_trials} – liczba prób (symulacji) oreślająca, ile razy zostanie przeprowadzona analiza z różnymi losowymi zestawami parametrów.
@@ -369,16 +369,98 @@ def calculate(n_trials, node_tag, dof, u_sims):
 Działanie funkcji można opisać w następujących krokach:
 
 \begin{enumerate}
-    \item Funkcja rozpoczyna od uzyskania liczby zmiennych losowych \inlinecode{nrv} zdefiniowanych w modelu przy użyciu funkcji \inlinecode{ops.getRVTags()}. Ta liczba określa, ile losowych zmiennych zostanie wygenerowanych i zaktualizowanych w każdej symulacji.
-    \item Następnie rozpoczyna się pętla, która wykonuje \inlinecode{n_trials} symulacji. Każda iteracja pętli reprezentuje jedną symulację z nowymi, losowo wygenerowanymi wartościami zmiennych.
+    \item Funkcja rozpoczyna od uzyskania liczby zmiennych losowych \ilc{nrv} zdefiniowanych w modelu przy użyciu funkcji \ilc{ops.getRVTags()}. Ta liczba określa, ile losowych zmiennych zostanie wygenerowanych i zaktualizowanych w każdej symulacji.
+    \item Następnie rozpoczyna się pętla, która wykonuje \ilc{n_trials} symulacji. Każda iteracja pętli reprezentuje jedną symulację z nowymi, losowo wygenerowanymi wartościami zmiennych.
     \begin{enumerate} [left=-12pt]
-        \item \textbf{Resetowanie stanu analizy:} \inlinecode{ops.reset()} resetuje stan analizy, zapewniając, że każda symulacja rozpoczyna się od tych samych warunków początkowych.
-        \item \textbf{Generowanie zmiennych losowych:} za pomocą \inlinecode{u = norm.rvs(size=nrv)} generowana jest lista \inlinecode{u} zawierająca \inlinecode{nrv} niezależnych zmiennych losowych z rozkładu normalnego.
-        \item \textbf{Transformacja zmiennych:} \inlinecode{x = ops.transformUtoX(*u)} przekształca wygenerowane zmienne losowe \inlinecode{u} z przestrzeni standaryzowanej do przestrzeni fizycznej \inlinecode{x} przy użyciu transformacji Natafa.
-        \item \textbf{Aktualizacja parametrów modelu:} iteracja \inlinecode{for index, _ in enumerate(x)} przechodzi przez każdą zmienną \inlinecode{x} i aktualizuje odpowiedni parametr modelu za pomocą \inlinecode{ops.updateParameter(index + 1, x[index])}. Każda zmienna \inlinecode{x} odnosi się do konkretnego parametru modelu (np. moduł sprężystości, obciążenie).
-        \item \textbf{Przeprowadzenie analizy:} \inlinecode{ops.analyze(1)} wykonuje statyczną analizę konstrukcji na podstawie zaktualizowanych parametrów.
-        \item \textbf{Obliczenie przemieszczenia:} \inlinecode{u_sims[i] = ops.nodeDisp(node_tag, dof)} oblicza przemieszczenie w zadanym węźle dla określonego stopnia swobody i zapisuje wynik do listy \inlinecode{u_sims} na odpowiednim indeksie.
+        \item \textbf{Resetowanie stanu analizy:} \ilc{ops.reset()} resetuje stan analizy, zapewniając, że każda symulacja rozpoczyna się od tych samych warunków początkowych.
+        \item \textbf{Generowanie zmiennych losowych:} za pomocą \ilc{u = norm.rvs(size=nrv)} generowana jest lista \ilc{u} zawierająca \ilc{nrv} niezależnych zmiennych losowych z rozkładu normalnego.
+        \item \textbf{Transformacja zmiennych:} \ilc{x = ops.transformUtoX(*u)} przekształca wygenerowane zmienne losowe \ilc{u} z przestrzeni standaryzowanej do przestrzeni fizycznej \ilc{x} przy użyciu transformacji Natafa.
+        \item \textbf{Aktualizacja parametrów modelu:} iteracja \ilc{for index, _ in enumerate(x)} przechodzi przez każdą zmienną \ilc{x} i aktualizuje odpowiedni parametr modelu za pomocą \ilc{ops.updateParameter(index + 1, x[index])}. Każda zmienna \ilc{x} odnosi się do konkretnego parametru modelu (np. moduł sprężystości, obciążenie).
+        \item \textbf{Przeprowadzenie analizy:} \ilc{ops.analyze(1)} wykonuje statyczną analizę konstrukcji na podstawie zaktualizowanych parametrów.
+        \item \textbf{Obliczenie przemieszczenia:} \ilc{u_sims[i] = ops.nodeDisp(node_tag, dof)} oblicza przemieszczenie w zadanym węźle dla określonego stopnia swobody i zapisuje wynik do listy \ilc{u_sims} na odpowiednim indeksie.
     \end{enumerate}
 \end{enumerate}
 
-\subsubsection*{Prezentacja wyników}
+\subsubsection*{Zapisywanie wyników}
+
+Zapis wyników oraz wykresów są możliwe dzięki funkji \ilc{save_results}, która przyjmuje następujące parametry:
+\begin{itemize}
+    \item \textbf{n\_fail} – liczba symulacji, w których kryterium awarii konstrukcji zostało spełnione.
+    \item \textbf{n\_trials} – całkowita liczba preprowadzonych symulacji.
+    \item \textbf{u\_sims} – lista zawierająca wyniki przemieszczeń dla każdej symulacji.
+    \item \textbf{title} – tytuł wykresu przedstawiającego wyniki symulacji przemieszczeń.
+    \item \textbf{structure\_name} – nazwa konstrukcji, używana do nazewnictwa plików wynikowych.
+\end{itemize}
+Działanie funkcji:
+
+\begin{enumerate}
+    \item Obliczenie prawdopodobieństwa awarii na podstawie liczby niepowodzeń oraz całkowitej liczby prób.
+    \item Wyliczenie maksymalnego, minimalnego, średniego przemieszczenia oraz odchylenia standardowego, wariancji oraz współczynnika zmienności przemieszczeń na podstawie wyników symulacji i dalsze zapisanie tych wartości do pliku tekstowego.
+    \item Generowanie i zapis wykresów reprezentującyh:
+    \begin{itemize}
+        \item \textbf{Model konstrukcji.}
+        \item \textbf{Deformacja konstrukcji.}
+        \item \textbf{Wyniki symulacji przemieszczeń.}
+        \item \textbf{Zbieżność wartości średniej przemieszczenia.}
+        \item \textbf{Zbieżność odchylenia standardowego.}
+    \end{itemize}
+\end{enumerate}
+Poniżej przedstawiona jest definicja funkcji:
+
+\begin{lstlisting}
+def save_results(n_fail: int, n_trials: int, u_sims, title: str, structure_name: str):
+    m_cpf = n_fail / n_trials
+
+    u_max = np.max(u_sims)
+    u_min = np.min(u_sims)
+    u_mean = np.mean(u_sims)
+    u_std = np.std(u_sims)
+    u_var = np.var(u_sims)
+    u_cov = u_std/u_mean
+
+    with open(f"{structure_name}_{n_trials}_results.txt", "w") as file:
+       file.write(f'Monte Carlo symulacja dla {structure_name}, pf_MC = {n_fail} / {n_trials} = {m_cpf}\n')
+       file.write(f'u_max: {u_max}\n')
+       file.write(f'u_min: {u_min}\n')
+       file.write(f'u_mean: {u_mean}\n')
+       file.write(f'u_std: {u_std}\n')
+       file.write(f'u_var: {u_var}\n')
+       file.write(f'u_cov: {u_cov}\n')
+
+    plt.figure()
+    opsv.plot_model()
+    plt.title(f'Model konstrukcji: {structure_name}')
+    plt.savefig(f'{structure_name}_model.png', dpi=300)
+
+    plt.figure()
+    opsv.plot_defo()
+    plt.title(f'Deformacja konstrukcji: {structure_name}')
+    plt.savefig(f'{structure_name}_{n_trials}_def.png', dpi=300)
+
+    plt.figure()
+    plt.plot(u_sims)
+    plt.axhline(u_mean, 0, 1, color='b', lw=0.6)
+    plt.title(title)
+    plt.xlabel('liczba symulacji [N]')
+    plt.ylabel('Przemieszczenie [m]')
+    plt.ylim(1.1 * u_min, 0)
+    plt.savefig(f'{structure_name}_{n_trials}_sp.png', dpi=300)
+    u_mean_cum = np.cumsum(u_sims)/np.arange(1, n_trials + 1)
+
+    plt.figure()
+    plt.plot(u_mean_cum)
+    plt.axhline(u_mean, 0, 1, color='r', lw=1.2)
+    plt.title('Zbieżność wartości średniej przemieszczenia')
+    plt.xlabel('Liczba symulacji [N]')
+    plt.ylabel('Wartość średnia przemieszczenia [m]')
+    plt.savefig(f'{structure_name}_{n_trials}_zsp.png', dpi=300)
+
+    u_std_cum = [u_sims[:x].std() for x in range(1, n_trials + 1)]
+    plt.figure()
+    plt.plot(u_std_cum)
+    plt.axhline(u_std, 0, 1, color='r', lw=1.2)
+    plt.title('Zbieżność odchylenia standardowego')
+    plt.xlabel('Liczba symulacji [N]')
+    plt.ylabel('Odchylenie standardowe przemieszczenia [m]')
+    plt.savefig(f'{structure_name}_{n_trials}_zos.png', dpi=300)
+\end{lstlisting}
