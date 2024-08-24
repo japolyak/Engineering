@@ -3,7 +3,7 @@ import openseespy.opensees as ops
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 import opsvis as opsv
-
+import os
 
 def calculate(n_trials, node_tag, dof, u_sims):
     nrv = len(ops.getRVTags())
@@ -31,7 +31,9 @@ def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_nam
     u_var = np.var(u_sims)
     u_cov = u_std/u_mean
 
-    with open(f"{structure_name}_{n_trials}_results.txt", "w") as file:
+    save_dir = os.path.join('..', '..', 'src', 'results')
+
+    with open(os.path.join(save_dir, f"{structure_name}_{n_trials}_results.txt"), "w") as file:
         file.write(f'Monte Carlo symulacja dla {structure_name}, pf_MC = {n_fail} / {n_trials} = {m_cpf}\n')
         file.write(f'u_max: {u_max}\n')
         file.write(f'u_min: {u_min}\n')
@@ -40,15 +42,17 @@ def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_nam
         file.write(f'u_var: {u_var}\n')
         file.write(f'u_cov: {u_cov}\n')
 
+    save_dir = os.path.join('..', '..', 'src', 'images')
+
     plt.figure()
     opsv.plot_model()
     plt.title(f'Model konstrukcji: {structure_name}')
-    plt.savefig(f'{structure_name}_model.png', dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_model.png'), dpi=300)
 
     plt.figure()
     opsv.plot_defo()
     plt.title(f'Deformacja konstrukcji: {structure_name}')
-    plt.savefig(f'{structure_name}_{n_trials}_def.png', dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_def.png'), dpi=300)
 
     plt.figure()
     plt.plot(u_sims)
@@ -57,7 +61,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_nam
     plt.xlabel('liczba symulacji [N]')
     plt.ylabel('Przemieszczenie [m]')
     plt.ylim(1.1 * u_min, 0)
-    plt.savefig(f'{structure_name}_{n_trials}_sp.png', dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_sp.png'), dpi=300)
 
     u_mean_cum = np.cumsum(u_sims)/np.arange(1, n_trials + 1)
     plt.figure()
@@ -66,7 +70,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_nam
     plt.title('Zbieżność wartości średniej przemieszczenia')
     plt.xlabel('Liczba symulacji [N]')
     plt.ylabel('Wartość średnia przemieszczenia [m]')
-    plt.savefig(f'{structure_name}_{n_trials}_zsp.png', dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zsp.png'), dpi=300)
 
     u_std_cum = [u_sims[:x].std() for x in range(1, n_trials + 1)]
     plt.figure()
@@ -75,4 +79,4 @@ def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_nam
     plt.title('Zbieżność odchylenia standardowego')
     plt.xlabel('Liczba symulacji [N]')
     plt.ylabel('Odchylenie standardowe przemieszczenia [m]')
-    plt.savefig(f'{structure_name}_{n_trials}_zos.png', dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zos.png'), dpi=300)
