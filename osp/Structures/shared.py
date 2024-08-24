@@ -44,39 +44,42 @@ def save_results(n_fail: int, n_trials: int, u_sims, u_title: str, structure_nam
 
     save_dir = os.path.join('..', '..', 'src', 'images')
 
-    plt.figure()
+    width_in_inches = 1920 / 300
+    height_in_inches = 1080 / 300
+
+    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     opsv.plot_model()
     plt.title(f'Model konstrukcji: {structure_name}')
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_model.png'), dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_model.png'), dpi=300, bbox_inches='tight')
 
-    plt.figure()
+    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     opsv.plot_defo()
     plt.title(f'Deformacja konstrukcji: {structure_name}')
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_def.png'), dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_def.png'), dpi=300, bbox_inches='tight')
 
-    plt.figure()
+    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     plt.plot(u_sims)
     plt.axhline(u_mean, 0, 1, color='b', lw=0.6)
     plt.title(u_title)
     plt.xlabel('liczba symulacji [N]')
     plt.ylabel('Przemieszczenie [m]')
     plt.ylim(1.1 * u_min, 0)
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_sp.png'), dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_sp.png'), dpi=300, bbox_inches='tight')
 
     u_mean_cum = np.cumsum(u_sims)/np.arange(1, n_trials + 1)
-    plt.figure()
+    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     plt.plot(u_mean_cum)
     plt.axhline(u_mean, 0, 1, color='r', lw=1.2)
     plt.title('Zbieżność wartości średniej przemieszczenia')
     plt.xlabel('Liczba symulacji [N]')
     plt.ylabel('Wartość średnia przemieszczenia [m]')
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zsp.png'), dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zsp.png'), dpi=300, bbox_inches='tight')
 
     u_std_cum = [u_sims[:x].std() for x in range(1, n_trials + 1)]
-    plt.figure()
+    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     plt.plot(u_std_cum)
     plt.axhline(u_std, 0, 1, color='r', lw=1.2)
     plt.title('Zbieżność odchylenia standardowego')
     plt.xlabel('Liczba symulacji [N]')
     plt.ylabel('Odchylenie standardowe przemieszczenia [m]')
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zos.png'), dpi=300)
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zos.png'), dpi=300, bbox_inches='tight')
