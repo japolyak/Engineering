@@ -1,5 +1,6 @@
 \usepackage{styles/pkgs}
 \usepackage{styles/code-snipets}
+\usepackage{enumitem}
 
 \setmainfont{Times New Roman}
 \onehalfspacing
@@ -30,3 +31,5 @@
 
 % Table caption redefinition
 \captionsetup[table]{name=Tabela, labelsep=period}
+% enumeration levels style definition
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
