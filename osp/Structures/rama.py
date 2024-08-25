@@ -16,8 +16,8 @@ A = b * d
 I_z = (b * d ** 3) / 12
 E = 30.0e6
 
-P_1 = 150
-P_2 = -80
+P_1 = 25
+P_2 = -500
 # endregion
 
 # region Węzły
@@ -72,7 +72,7 @@ ops.probabilityTransformation('Nataf', '-print', 0)
 
 # region Obliczenia i wyniki
 nFail = 0
-nTrials = 10000
+nTrials = 1000000
 u_sims = np.zeros(nTrials)
 
 calculate(nTrials, 2, 1, u_sims)
