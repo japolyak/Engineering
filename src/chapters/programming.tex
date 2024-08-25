@@ -37,7 +37,7 @@ import openseespy.opensees as ops
 \end{lstlisting}
 
 \begin{lstlisting}
-# Pliki belka.py, kratownica.py, rama.py, konstrukcja_pretowa.py
+# Pliki belka.py, rama.py, konstrukcja_pretowa.py
 import numpy as np
 from scipy.stats import norm
 from shared import show_results
@@ -348,6 +348,12 @@ Za przeprowadzenie wielokrotnych symulacji analizy konstrukcji z uwzględnieniem
     \item \textbf{dof} – stopień swobody, w którym przemieszczenie w zadanym węźle jest obliczane.
     \item \textbf{u\_sims} – lista, w której przechowywane są wyniki przemieszczeń dla każdej z symulacji.
 \end{itemize}
+
+\begin{lstlisting}
+n_trials = 100000
+u_sims = np.zeros(n_trials) # tworzenie listy zer o rozmiarze n_trials
+calculate(n_trials, 4, 2, u_sims)
+\end{lstlisting}
 Działanie funkcji można opisać w następujących krokach:
 
 \begin{enumerate}
@@ -362,6 +368,7 @@ Działanie funkcji można opisać w następujących krokach:
         \item \textbf{Obliczenie przemieszczenia:} Oblicza się przemieszczenie w zadanym węźle dla określonego stopnia swobody i zapisuje wynik do listy wyników przemieszczeń.
     \end{enumerate}
 \end{enumerate}
+Implementacja funkcji znajduje się w pliku \ilc{shared.py}.
 
 \subsubsection*{Zapisywanie wyników}
 
@@ -373,6 +380,12 @@ Zapis wyników oraz wykresów są możliwe dzięki funkji \ilc{save_results}, kt
     \item \textbf{title} – tytuł wykresu przedstawiającego wyniki symulacji przemieszczeń.
     \item \textbf{structure\_name} – nazwa konstrukcji, używana do nazewnictwa plików wynikowych.
 \end{itemize}
+Przykład użycia funkcji:
+
+\begin{lstlisting}
+nFail = 0
+save_results(n_fail, n_trials, u_sims, 'Belka')
+\end{lstlisting}
 Działanie funkcji:
 
 \begin{enumerate}
@@ -387,3 +400,4 @@ Działanie funkcji:
         \item \textbf{Zbieżność odchylenia standardowego.}
     \end{itemize}
 \end{enumerate}
+Implementacja funkcji znajduje się w pliku \ilc{shared.py}.
