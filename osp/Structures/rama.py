@@ -72,7 +72,7 @@ ops.probabilityTransformation('Nataf', '-print', 0)
 
 # region Obliczenia i wyniki
 nFail = 0
-nTrials = 1000000
+nTrials = 100000
 u_sims = np.zeros(nTrials)
 
 calculate(nTrials, 2, 1, u_sims)

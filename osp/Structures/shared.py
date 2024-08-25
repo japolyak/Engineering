@@ -53,7 +53,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
 
     plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     opsv.plot_defo()
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_def.png'), dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(save_dir, f'{structure_name}_deformation.png'), dpi=300, bbox_inches='tight')
 
     plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     plt.plot(u_sims)
