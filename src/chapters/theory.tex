@@ -3,23 +3,20 @@
 
 \subsection{Analiza wrażliwości}
 
-Analiza wrażliwości to proces oceny, w jaki sposób zmiany w parametrach wejściowych modelu wpływają na wynik analizowanego problemu.
-W kontekście inżynierii konstrukcji, analiza wrażliwości pozwala na zidentyfikowanie, które parametry mają największy wpływ na wybrane kryteria oceny konstrukcji, takie jak przemieszczenia, naprężenia czy ryzyko awarii.
+Analiza wrażliwości jest kluczowym narzędziem w inżynierii konstrukcji, pozwalającym zrozumieć, jak zmiany parametrów wejściowych modelu wpływają na wynik analizowanego problemu.
+W praktyce oznacza to, że można ocenić, które parametry - takie jak właściwości materiałowe, wymiary elementów czy obciążenia - mają największy wpływ na zachowanie się konstrukcji pod obciążeniem.
+Dzięki temu jest możliwa zidentyfikacja potencjalnych słabości konstrukcji, zoptymalizować projekt pod kątem bezpieczeństwa i ekonomii, a także lepiej zarządzać ryzykiem związanym z niepewnościami w danych wejściowych.
 
-Głównym celem analizy wrażliwości jest zrozumienie, jak niepewności w parametrach wejściowych mogą wpłynąć na zachowanie konstrukcji. To z kolei pozwala na:
+Głównym celem analizy wrażliwości jest ilościowe określenie wpływu zmienności parametrów wejściowych na wybrane kryteria oceny konstrukcji, takie jak przemieszczenia, naprężenia czy ryzyko awarii.
+W ten sposób, inżynierzy mogą podejmować świadome decyzje projektowe, uwzględniając nie tylko wartości nominalne parametrów, ale także ich potencjalne odchylenia.
 
-\begin{itemize}
-    \item Optymalizację projektowania: Poprzez identyfikację kluczowych parametrów, które najbardziej wpływają na bezpieczeństwo i funkcjonalność konstrukcji.
-    \item Redukcję ryzyka: Przez zrozumienie wpływu zmienności poszczególnych parametrów można lepiej zarządzać ryzykiem, na przykład przez wzmocnienie elementów najbardziej narażonych na niekorzystne zmiany.
-    \item Zwiększenie efektywności obliczeń: Analiza wrażliwości pozwala na skupienie się na tych parametrach, które mają największy wpływ na wynik, co może uprościć proces projektowania i zmniejszyć koszty.
-\end{itemize}
-
-Istnieje kilka metod stosowanych w analizie wrażliwości, które różnią się podejściem oraz złożonością:
+Istnieje wiele metod stosowanych w analizie wrażliwości, różniących się podejściem i złożonością obliczeniową.
+Do najpopularniejszych należą:
 
 \begin{itemize}
-    \item Metoda różnic skończonych (Finite Difference Method): Polega na wprowadzeniu małych zmian w wartościach parametrów wejściowych i obserwacji, jak wpływają one na wynik. Jest to prosta metoda, ale może być czasochłonna przy dużej liczbie parametrów.
-    \item Metoda Monte Carlo: Stosowana w analizach probabilistycznych, polega na losowym próbkowaniu wartości parametrów wejściowych i analizie wyników. Umożliwia ocenę rozkładu wyników oraz identyfikację najbardziej wpływowych parametrów.
-    \item Metoda współczynnika czułości (Sensitivity Coefficient Method): Oblicza względny wpływ zmiany parametru wejściowego na wynik. Jest to bardziej formalne podejście, które pozwala na dokładniejsze zrozumienie relacji pomiędzy parametrami a wynikami.
+    \item \textbf{Metoda różnic skończonych (Finite Difference Method)}: Polega na wprowadzeniu małych zmian w wartościach parametrów wejściowych i obserwacji, jak wpływają one na wynik. Jest to prosta metoda, ale może być czasochłonna przy dużej liczbie parametrów.
+    \item \textbf{Metoda Monte Carlo}: Stosowana w analizach probabilistycznych, polega na losowym próbkowaniu wartości parametrów wejściowych i analizie wyników. Umożliwia ocenę rozkładu wyników oraz identyfikację najbardziej wpływowych parametrów.
+    \item textbf{Metoda współczynnika czułości (Sensitivity Coefficient Method)}: Oblicza względny wpływ zmiany parametru wejściowego na wynik. Jest to bardziej formalne podejście, które pozwala na dokładniejsze zrozumienie relacji pomiędzy parametrami a wynikami.
     \item Metoda Sobola: Zaawansowana technika, która rozkłada całkowitą wariancję wyników na poszczególne składowe, związane z różnymi parametrami wejściowymi. Pozwala to na ocenę zarówno efektów pojedynczych parametrów, jak i ich interakcji.
 \end{itemize}
 
@@ -199,4 +196,13 @@ W praktyce inżynierskiej rozwiązanie tego równania pozwala na obliczenie prze
 
 \subsection{Narzędzia}
 \subsubsection{Python}
+
+Python to wszechstronny język programowania o otwartym kodzie źródłowym, który cieszy się ogromną popularnością w różnych dziedzinach, w tym w inżynierii i nauce.
+Jego prosta składnia, bogata biblioteka standardowa oraz dostępność licznych bibliotek zewnętrznych sprawiają, że Python jest idealnym narzędziem do implementacji algorytmów analizy wrażliwości, przetwarzania danych oraz wizualizacji wyników.
+W kontekście niniejszej pracy, Python będzie wykorzystywany do automatyzacji procesu analizy, generowania modeli konstrukcji, przeprowadzania symulacji oraz przetwarzania i prezentacji wyników.
+
 \subsubsection{OpenSees}
+
+OpenSees (Open System for Earthquake Engineering Simulation) to zaawansowana platforma programistyczna o otwartym kodzie źródłowym, stworzona specjalnie do symulacji zachowania konstrukcji pod wpływem obciążeń sejsmicznych i innych dynamicznych.
+Oferuje ona szeroki zakres elementów skończonych, modeli materiałowych oraz algorytmów rozwiązywania, co czyni ją doskonałym narzędziem do analizy wrażliwości konstrukcji ramowych.
+Integracja OpenSees z Pythonem pozwala na pełną automatyzację procesu analizy, umożliwiając przeprowadzanie złożonych symulacji oraz analizę wyników w sposób efektywny i elastyczny.
