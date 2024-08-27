@@ -30,114 +30,103 @@ Analiza wrażliwości znajduje szerokie zastosowanie w inżynierii konstrukcji, 
 
 \subsection{Losowość geometrii i właściwości materiałowych}
 
-Losowość w kontekście inżynierii odnosi się do nieuniknionych odchyłek od nominalnych wartości parametrów projektowych, które mogą wynikać z różnych źródeł, takich jak:
+W inżynierii, nie da się uniknąć pewnych odchyłek od idealnych wartości, które są zakładane na etapie projektowania.
+To właśnie ta nieprzewidywalność, która się nazywa losowością, może wynikać z wielu czynników.
+Wahania w procesie produkcji mogą sprawić, że właściwości materiału, takie jak jego sprężystość czy wytrzymałość, będą się różnić w zależności od partii czy nawet drobnych zmian w procesie wytwarzania.
 
-\begin{itemize}
-    \item Wahania w procesie produkcji: Właściwości materiałowe, takie jak moduł sprężystości czy wytrzymałość na rozciąganie, mogą różnić się w zależności od partii materiału lub zmian w procesie produkcji.
-    \item Zmiany w geometrii: Mogą one wynikać z tolerancji produkcyjnych, takich jak odchylenia w grubości, szerokości czy długości elementów konstrukcyjnych.
-    \item Warunki eksploatacyjne: Czynniki zewnętrzne, takie jak korozja, zużycie, zmiany temperatury, mogą wpływać na geometrię i właściwości materiałowe konstrukcji w czasie.
-\end{itemize}
+Do tego dochodzą zmiany w geometrii.
+Nawet przy najlepszych intencjach, rzeczywiste wymiary elementów konstrukcyjnych mogą odbiegać od tych z projektu, choćby ze względu na tolerancje produkcyjne czy drobne błędy montażowe.
+Nie należy też zapominać o warunkach, w jakich konstrukcja będzie pracować przez lata.
+Czynniki zewnętrzne, takie jak korozja, zużycie czy zmiany temperatury, będą stopniowo wpływać na jej geometrię i właściwości materiału.
 
 \subsubsection*{Losowość Geometrii}
 
-Geometria konstrukcji może podlegać losowym odchyleniom z różnych powodów:
+Geometria konstrukcji jest szczególnie podatna na losowe odchylenia.
+Tolerancje produkcyjne, błędy montażowe, a nawet długotrwała eksploatacja prowadząca do deformacji czy pęknięć - wszystko to sprawia, że rzeczywisty kształt konstrukcji może różnić się od tego, co założyliśmy na papierze.
 
-\begin{itemize}
-    \item Tolerancje produkcyjne: Rzeczywiste wymiary elementów konstrukcyjnych mogą różnić się od wartości projektowych w granicach określonych przez normy produkcyjne.
-    \item Błędy montażowe: Odchylenia mogą wystąpić również na etapie montażu, gdzie rzeczywiste położenie i orientacja elementów mogą odbiegać od założeń projektowych.
-    \item Degradacja i zużycie: Zmiany w geometrii mogą również wynikać z długotrwałej eksploatacji, gdzie elementy konstrukcyjne ulegają deformacjom, pęknięciom lub innym formom degradacji.
-\end{itemize}
-
-W kontekście analizy konstrukcji, losowość geometrii może wpływać na:
-
-\begin{itemize}
-\item Rozkład naprężeń i sił wewnętrznych: Odchylenia w geometrii mogą powodować nierównomierny rozkład naprężeń, co może prowadzić do lokalnych koncentracji naprężeń.
-\item Stabilność konstrukcji: Nawet niewielkie odchylenia od projektowanej geometrii mogą znacząco wpłynąć na stabilność konstrukcji, zwłaszcza w przypadku elementów smukłych lub podatnych na wyboczenie.
-\end{itemize}
+Te, pozornie drobne, odchylenia mogą mieć znaczący wpływ na to, jak konstrukcja przenosi obciążenia.
+Nierównomierny rozkład naprężeń, lokalne koncentracje naprężeń, a nawet utrata stabilności, szczególnie w przypadku smukłych elementów - to tylko niektóre z potencjalnych konsekwencji losowości geometrii.
 
 \subsubsection*{Losowość właściwości materiałowych}
 
-Właściwości materiałowe konstrukcji, takie jak moduł sprężystości \textbf{E}, moment bezwładności \textbf{I}, czy wytrzymałość na rozciąganie \sigma mogą podlegać losowym odchyleniom z kilku powodów:
-
-\begin{itemize}
-    \item Niejednorodność materiałów: Materiały inżynierskie, takie jak stal, beton czy drewno, mogą wykazywać naturalną niejednorodność, wynikającą z procesu produkcji lub ze źródeł surowców.
-    \item Zmiany środowiskowe: Właściwości materiałowe mogą zmieniać się w zależności od warunków środowiskowych, takich jak temperatura, wilgotność czy ekspozycja na promieniowanie UV.
-    \item Proces starzenia: Właściwości materiałowe mogą ulegać degradacji w czasie, co jest szczególnie istotne w kontekście długotrwałej eksploatacji konstrukcji.
-\end{itemize}
+Podobnie jest z właściwościami materiałowymi.
+Nawet jeśli na papierze materiał jest idealnie jednorodny, rzeczywistość może wyglądać inaczej.
+Niejednorodność wynikająca z procesu produkcji, zmiany właściwości pod wpływem czynników środowiskowych, czy stopniowa degradacja materiału w czasie - wszystko to sprawia, że parametry takie jak moduł sprężystości, moment bezwładności czy wytrzymałość na rozciąganie mogą się różnić od wartości nominalnych.
 
 \subsubsection*{Wpływ Losowości na analizę konstrukcji}
 
-Uwzględnienie losowości w analizie konstrukcji pozwala na bardziej realistyczne modelowanie i ocenę ich zachowania w rzeczywistych warunkach eksploatacyjnych.
-W praktyce, losowość może wpływać na:
+Pomijanie losowości w analizie konstrukcji stanowi istotne uproszczenie, które może prowadzić do niedoszacowania rzeczywistego ryzyka związanego z eksploatacją obiektu.
+W praktyce, nieuniknione odchylenia od wartości nominalnych parametrów projektowych, wynikające zarówno z procesów produkcyjnych, jak i zmiennych warunków eksploatacyjnych, mogą znacząco wpłynąć na bezpieczeństwo i niezawodność konstrukcji.
+Z tego względu, uwzględnienie losowości w procesie projektowania i analizy jest kluczowe dla zapewnienia odpowiedniego poziomu bezpieczeństwa.
 
-\begin{itemize}
-    \item Bezpieczeństwo i niezawodność konstrukcji: Analiza probabilistyczna uwzględniająca losowość pozwala na oszacowanie ryzyka awarii lub przekroczenia stanów granicznych.
-    \item Optymalizacja projektowania: Uwzględnienie odchyłek może prowadzić do bardziej ekonomicznych i efektywnych projektów, które są lepiej dostosowane do rzeczywistych warunków eksploatacyjnych.
-    \item Zarządzanie ryzykiem: Analiza wrażliwości, której częścią jest badanie wpływu losowości, pozwala na identyfikację krytycznych parametrów i opracowanie strategii zarządzania ryzykiem.
-\end{itemize}
+Analiza probabilistyczna, która uwzględnia losowość parametrów, pozwala na ilościową ocenę ryzyka awarii lub przekroczenia stanów granicznych.
+Dzięki temu możliwe jest projektowanie konstrukcji nie tylko spełniających wymagania wytrzymałościowe, ale przede wszystkim zapewniających odpowiedni poziom bezpieczeństwa, uwzględniający nieprzewidywalne czynniki.
+
+Ponadto, uwzględnienie losowości może prowadzić do optymalizacji projektu pod kątem ekonomicznym i efektywnościowym.
+Zamiast stosowania nadmiernych współczynników bezpieczeństwa, możliwe jest precyzyjne dostosowanie konstrukcji do rzeczywistych warunków eksploatacyjnych, co pozwala na oszczędność materiałów i zmniejszenie kosztów, przy jednoczesnym zachowaniu wymaganego poziomu bezpieczeństwa.
+
+Analiza wrażliwości, będąca integralną częścią badania wpływu losowości, umożliwia identyfikację parametrów krytycznych, których zmienność ma największy wpływ na zachowanie konstrukcji.
+Dzięki temu możliwe jest skoncentrowanie działań kontrolnych i zapobiegawczych na tych newralgicznych obszarach, minimalizując ryzyko i zapewniając długotrwałą i bezpieczną eksploatację obiektu.
 
 \subsection{Metoda Monte Carlo}
 
-Metoda Monte Carlo jest techniką numeryczną wykorzystywaną do analizy i rozwiązywania problemów, które zawierają elementy losowości lub niepewności.
-W kontekście inżynierii, szczególnie przy analizie wrażliwości konstrukcji, metoda Monte Carlo pozwala na ocenę wpływu zmienności parametrów na zachowanie konstrukcji.
-Polega na wielokrotnym przeprowadzaniu symulacji z losowo zmienianymi wartościami wejściowymi i analizowaniu wyników w celu zrozumienia, jak różne czynniki wpływają na wynik końcowy, np. na przemieszczenia lub naprężenia w konstrukcji.
+Metoda Monte Carlo to niezwykle wszechstronne narzędzie numeryczne, pozwalające na badanie i rozwiązywanie problemów, w których niepewność i losowość odgrywają kluczową rolę.
+W inżynierii, szczególnie w analizie wrażliwości konstrukcji, metoda Monte Carlo staje się niezastąpiona, umożliwiając ocenę wpływu zmienności różnych parametrów na zachowanie całej konstrukcji.
 
-\subsubsection*{Jak działa metoda Monte Carlo w analizie wrażliwości konstrukcji?}
+W skrócie, metoda Monte Carlo polega na wielokrotnym przeprowadzaniu symulacji, w których wartości parametrów wejściowych są losowane zgodnie z określonymi rozkładami prawdopodobieństwa.
+Każda taka symulacja daje jeden wynik, a po zebraniu wielu takich wyników możliwe jest przeprowadzenie ich analizy statystycznej, co pozwala zrozumieć, jak różne czynniki wpływają na końcowy rezultat, na przykład na przemieszczenia czy naprężenia w konstrukcji.
+
+Jak działa metoda Monte Carlo w analizie wrażliwości konstrukcji?
+Proces ten można podzielić na kilka kluczowych etapów:
+
 \begin{enumerate}
-\item Określenie parametrów losowych:
-
-\begin{itemize}
-\item W pierwszym kroku identyfikowane są parametry konstrukcji, które mogą podlegać losowości. Mogą to być na przykład moduł sprężystości materiału, geometria elementów, czy wartości sił zewnętrznych. Każdy z tych parametrów jest opisany odpowiednim rozkładem prawdopodobieństwa (np. normalnym, logarytmiczno-normalnym).
-\end{itemize}
-
-\item Generowanie prób losowych:
-
-\begin{itemize}
-\item Dla każdego parametru generowane są losowe wartości zgodnie z określonymi rozkładami prawdopodobieństwa. Na przykład, jeśli moduł sprężystości materiału jest zmienny w przedziale ±10% od wartości nominalnej, to w każdej symulacji metoda Monte Carlo losowo wybiera wartość modułu sprężystości z tego przedziału.
-\end{itemize}
-
-\item Symulacja konstrukcji:
-
-\begin{itemize}
-\item Po wygenerowaniu zestawu losowych parametrów, przeprowadza się symulację konstrukcji, np. za pomocą metody elementów skończonych (MES). Symulacja ta dostarcza informacji o odpowiedzi konstrukcji na zadane obciążenia, takich jak przemieszczenia, naprężenia, czy siły wewnętrzne.
-\end{itemize}
-
-\item Powtórzenie symulacji:
-
-\begin{itemize}
-\item Proces generowania losowych wartości parametrów i symulacji konstrukcji jest powtarzany bardzo wiele razy, np. tysiące lub nawet miliony razy. Każda z tych prób daje jeden wynik dla badanej wielkości, np. przemieszczenia w wybranym węźle.
-\end{itemize}
-
-\item Analiza statystyczna wyników:
-
-\begin{itemize}
-\item Wyniki wszystkich symulacji są następnie analizowane statystycznie. Można w ten sposób uzyskać rozkład przemieszczeń, wartość średnią, odchylenie standardowe, a także prawdopodobieństwo przekroczenia określonego limitu (np. maksymalne dopuszczalne przemieszczenie).
-\end{itemize}
-
+    \item \textbf{Identyfikacja parametrów losowych}: Na początku określane są parametry konstrukcji, które mogą podlegać losowości. Mogą to być właściwości materiału, takie jak moduł sprężystości, wymiary elementów konstrukcyjnych, a nawet wartości obciążeń zewnętrznych. Każdy z tych parametrów jest następnie opisywany za pomocą odpowiedniego rozkładu prawdopodobieństwa, który odzwierciedla jego zmienność.
+    \item \textbf{Generowanie prób losowych}: Dla każdego zidentyfikowanego parametru generowane są losowe wartości zgodnie z jego rozkładem prawdopodobieństwa. Na przykład, jeśli moduł sprężystości materiału może się wahać w pewnym zakresie, to w każdej symulacji losowana jest jego wartość z tego zakresu.
+    \item \textbf{Symulacja konstrukcji}: Mając zestaw losowo wygenerowanych parametrów, przeprowadzana jest symulacja zachowania konstrukcji pod obciążeniem. Można do tego wykorzystać na przykład metodę elementów skończonych (MES). Symulacja ta dostarcza informacji o tym, jak konstrukcja reaguje na zadane obciążenia, czyli jakie są przemieszczenia, naprężenia czy siły wewnętrzne w jej różnych elementach.
+    \item \textbf{Powtórzenie symulacji}: Kroki 2 i 3 są powtarzane wielokrotnie, nawet tysiące czy miliony razy. Każde powtórzenie daje jeden wynik dla badanej wielkości, na przykład przemieszczenia w konkretnym punkcie konstrukcji.
+    \item \textbf{Analiza statystyczna wyników}: Zebrane wyniki są następnie poddawane analizie statystycznej. Dzięki temu można uzyskać nie tylko pojedyncze wartości, ale cały rozkład prawdopodobieństwa dla badanej wielkości. Możliwe jest obliczenie wartości średniej, odchylenia standardowego, a nawet określenie prawdopodobieństwa, że wynik przekroczy pewien krytyczny poziom.
 \end{enumerate}
+
+\newpage
 \subsubsection*{Zastosowanie metody Monte Carlo w analizie wrażliwości konstrukcji}
-Metoda Monte Carlo jest szczególnie użyteczna w analizie wrażliwości konstrukcji, ponieważ umożliwia:
+Metoda Monte Carlo jest szczególnie cenna w analizie wrażliwości konstrukcji, ponieważ umożliwia:
 
 \begin{itemize}
-\item Ocenę wpływu niepewności na wyniki:
+    \item \textbf{Ocenę wpływu niepewności na wyniki}: Możliwa jest obserwacja, jak bardzo zmienność parametrów wpływa na zachowanie konstrukcji. Dzięki temu można określić, jakie są możliwe zakresy przemieszczeń czy naprężeń, a nie tylko ich wartości nominalne.
+    \item \textbf{Identyfikację kluczowych parametrów}: Analiza wyników pozwala wskazać, które parametry mają największy wpływ na zmienność wyników. To pomaga skupić się na tych aspektach projektu, które są najbardziej krytyczne dla bezpieczeństwa i wydajności konstrukcji.
+    \item \textbf{Zarządzanie ryzykiem}: Metoda Monte Carlo umożliwia przewidywanie i minimalizowanie ryzyka awarii konstrukcji. Jeśli wiadomo, które parametry są najbardziej niepewne, można odpowiednio dostosować projekt, zwiększając marginesy bezpieczeństwa lub wprowadzając dodatkowe środki kontroli.
+\end{itemize}
+
+\subsection{Rozkład normalny}
+
+Rozkład normalny, znany również jako rozkład Gaussa, jest jednym z najważniejszych i najczęściej występujących rozkładów prawdopodobieństwa w statystyce i wielu dziedzinach nauki.
+Jego charakterystyczny kształt dzwonu, symetryczny względem średniej, odzwierciedla tendencję wielu zjawisk naturalnych do skupiania się wokół wartości centralnej, przy jednoczesnym zmniejszaniu się prawdopodobieństwa wystąpienia wartości skrajnych.
+
+W kontekście analizy wrażliwości konstrukcji, rozkład normalny znajduje szerokie zastosowanie do modelowania losowości parametrów, zarówno materiałowych, jak i geometrycznych.
+Właściwości materiałów, takie jak moduł sprężystości czy wytrzymałość, a także wymiary elementów konstrukcyjnych, często wykazują naturalną zmienność wokół wartości średniej, którą można dobrze opisać właśnie rozkładem normalnym.
+
+\begin{equation}
+    f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\label{eq:gauss}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Gauss}
+    \caption{Rozkład Gaussa}
+\end{figure}
+
+Matematycznie, rozkład normalny jest opisany przez dwa parametry: średnią (\mu) oraz odchylenie standardowe (\sigma).
+Średnia określa położenie środka rozkładu, a odchylenie standardowe określa jego szerokość, czyli jak bardzo wartości są rozproszone wokół średniej.
+Im większe odchylenie standardowe, tym większa zmienność parametru.
+
+Zastosowanie rozkładu normalnego w analizie wrażliwości konstrukcji przynosi szereg korzyści:
 
 \begin{itemize}
-\item Możemy ocenić, jak bardzo niepewność w parametrach takich jak moduł sprężystości czy obciążenia wpływa na przemieszczenia lub naprężenia w konstrukcji. Na przykład, możemy stwierdzić, że w 95% przypadków przemieszczenie w danym węźle nie przekroczy określonej wartości.
+    \item \textbf{Realistyczne modelowanie}: Pozwala na uwzględnienie naturalnej zmienności parametrów, co prowadzi do bardziej realistycznego odwzorowania rzeczywistych warunków.
+    \item \textbf{Ilościowa ocena niepewności}: Dzięki znajomości średniej i odchylenia standardowego możliwe jest określenie prawdopodobieństwa wystąpienia różnych wartości parametru, co umożliwia ilościową ocenę niepewności.
+    \item \textbf{Integracja z metodą Monte Carlo}: Rozkład normalny jest często wykorzystywany w metodzie Monte Carlo do generowania losowych wartości parametrów wejściowych, co umożliwia przeprowadzenie analizy probabilistycznej i ocenę wpływu zmienności parametrów na zachowanie konstrukcji.
 \end{itemize}
-
-\item Identyfikację kluczowych parametrów:
-
-\begin{itemize}
-\item Analiza wyników pozwala zidentyfikować, które z parametrów mają największy wpływ na zmienność wyników. Może to pomóc w podejmowaniu decyzji dotyczących optymalizacji projektu czy potrzebnych badań materiałowych.
-\end{itemize}
-
-\item Zarządzanie ryzykiem:
-
-\begin{itemize}
-    \item Dzięki metodzie Monte Carlo można przewidzieć i zminimalizować ryzyko awarii konstrukcji, wynikające z losowości parametrów. Na przykład, jeśli określone parametry mają dużą niepewność, można zwiększyć ich marginesy bezpieczeństwa.
-\end{itemize}
-
-\end{itemize}
+W niniejszej pracy, rozkład normalny będzie stosowany do modelowania losowości wybranych parametrów materiałowych i geometrycznych konstrukcji ramowych.
 
 \subsection{Metoda elementów skończonych MES}
 
@@ -194,15 +183,15 @@ Równanie Ku=f opisuje równowagę sił w konstrukcji.
 Oznacza to, że siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
 W praktyce inżynierskiej rozwiązanie tego równania pozwala na obliczenie przemieszczeń w konstrukcji, gdy znane są siły zewnętrzne.
 
-\subsection{Narzędzia}
+\subsection{Narzędzia programistyczne}
 \subsubsection{Python}
 
-Python to wszechstronny język programowania o otwartym kodzie źródłowym, który cieszy się ogromną popularnością w różnych dziedzinach, w tym w inżynierii i nauce.
-Jego prosta składnia, bogata biblioteka standardowa oraz dostępność licznych bibliotek zewnętrznych sprawiają, że Python jest idealnym narzędziem do implementacji algorytmów analizy wrażliwości, przetwarzania danych oraz wizualizacji wyników.
-W kontekście niniejszej pracy, Python będzie wykorzystywany do automatyzacji procesu analizy, generowania modeli konstrukcji, przeprowadzania symulacji oraz przetwarzania i prezentacji wyników.
+Python, jako wszechstronny język programowania o otwartym kodzie źródłowym, cieszy się uznaniem w wielu dziedzinach, w tym w inżynierii i nauce.
+Jego prosta i czytelna składnia, bogata biblioteka standardowa oraz dostępność licznych bibliotek zewnętrznych czynią go idealnym narzędziem do implementacji algorytmów analizy wrażliwości, przetwarzania danych oraz wizualizacji wyników.
+W niniejszej pracy, Python został wykorzystany do automatyzacji procesu analizy, generowania modeli konstrukcji, przeprowadzania symulacji oraz przetwarzania i prezentacji wyników.
 
 \subsubsection{OpenSees}
 
-OpenSees (Open System for Earthquake Engineering Simulation) to zaawansowana platforma programistyczna o otwartym kodzie źródłowym, stworzona specjalnie do symulacji zachowania konstrukcji pod wpływem obciążeń sejsmicznych i innych dynamicznych.
-Oferuje ona szeroki zakres elementów skończonych, modeli materiałowych oraz algorytmów rozwiązywania, co czyni ją doskonałym narzędziem do analizy wrażliwości konstrukcji ramowych.
-Integracja OpenSees z Pythonem pozwala na pełną automatyzację procesu analizy, umożliwiając przeprowadzanie złożonych symulacji oraz analizę wyników w sposób efektywny i elastyczny.
+OpenSees (Open System for Earthquake Engineering Simulation) to zaawansowana platforma programistyczna o otwartym kodzie źródłowym, dedykowana symulacji zachowania konstrukcji pod wpływem obciążeń dynamicznych, w tym sejsmicznych.
+Szeroki zakres dostępnych elementów skończonych, modeli materiałowych oraz algorytmów rozwiązywania sprawia, że OpenSees stanowi doskonałe narzędzie do analizy wrażliwości konstrukcji ramowych.
+Integracja OpenSees z Pythonem umożliwiła płynną automatyzację procesu analizy, pozwalając na efektywne przeprowadzanie złożonych symulacji oraz dogłębną analizę wyników.
