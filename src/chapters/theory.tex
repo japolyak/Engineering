@@ -3,18 +3,200 @@
 
 \subsection{Analiza wrażliwości}
 
-\subsection{Losowość geometrii i właściwości materiałowe}
+Analiza wrażliwości to proces oceny, w jaki sposób zmiany w parametrach wejściowych modelu wpływają na wynik analizowanego problemu.
+W kontekście inżynierii konstrukcji, analiza wrażliwości pozwala na zidentyfikowanie, które parametry mają największy wpływ na wybrane kryteria oceny konstrukcji, takie jak przemieszczenia, naprężenia czy ryzyko awarii.
 
-\subsection{Metoda elementów skończonych}
+Głównym celem analizy wrażliwości jest zrozumienie, jak niepewności w parametrach wejściowych mogą wpłynąć na zachowanie konstrukcji. To z kolei pozwala na:
+
+\begin{itemize}
+    \item Optymalizację projektowania: Poprzez identyfikację kluczowych parametrów, które najbardziej wpływają na bezpieczeństwo i funkcjonalność konstrukcji.
+    \item Redukcję ryzyka: Przez zrozumienie wpływu zmienności poszczególnych parametrów można lepiej zarządzać ryzykiem, na przykład przez wzmocnienie elementów najbardziej narażonych na niekorzystne zmiany.
+    \item Zwiększenie efektywności obliczeń: Analiza wrażliwości pozwala na skupienie się na tych parametrach, które mają największy wpływ na wynik, co może uprościć proces projektowania i zmniejszyć koszty.
+\end{itemize}
+
+Istnieje kilka metod stosowanych w analizie wrażliwości, które różnią się podejściem oraz złożonością:
+
+\begin{itemize}
+    \item Metoda różnic skończonych (Finite Difference Method): Polega na wprowadzeniu małych zmian w wartościach parametrów wejściowych i obserwacji, jak wpływają one na wynik. Jest to prosta metoda, ale może być czasochłonna przy dużej liczbie parametrów.
+    \item Metoda Monte Carlo: Stosowana w analizach probabilistycznych, polega na losowym próbkowaniu wartości parametrów wejściowych i analizie wyników. Umożliwia ocenę rozkładu wyników oraz identyfikację najbardziej wpływowych parametrów.
+    \item Metoda współczynnika czułości (Sensitivity Coefficient Method): Oblicza względny wpływ zmiany parametru wejściowego na wynik. Jest to bardziej formalne podejście, które pozwala na dokładniejsze zrozumienie relacji pomiędzy parametrami a wynikami.
+    \item Metoda Sobola: Zaawansowana technika, która rozkłada całkowitą wariancję wyników na poszczególne składowe, związane z różnymi parametrami wejściowymi. Pozwala to na ocenę zarówno efektów pojedynczych parametrów, jak i ich interakcji.
+\end{itemize}
+
+Analiza wrażliwości znajduje szerokie zastosowanie w inżynierii konstrukcji, szczególnie w kontekście:
+
+\begin{itemize}
+    \item Projektowania mostów i budynków: Gdzie pozwala na ocenę wpływu zmienności materiałowej oraz obciążeń na bezpieczeństwo konstrukcji.
+    \item Analizy sejsmicznej: Gdzie zrozumienie wrażliwości konstrukcji na parametry takie jak masa, sztywność, czy tłumienie jest kluczowe dla oceny ryzyka w przypadku trzęsienia ziemi.
+    \item Optymalizacji projektów: Pozwala na identyfikację najbardziej krytycznych aspektów projektu, które mogą być zoptymalizowane w celu zwiększenia efektywności lub zmniejszenia kosztów.
+\end{itemize}
+
+\subsection{Losowość geometrii i właściwości materiałowych}
+
+Losowość w kontekście inżynierii odnosi się do nieuniknionych odchyłek od nominalnych wartości parametrów projektowych, które mogą wynikać z różnych źródeł, takich jak:
+
+\begin{itemize}
+    \item Wahania w procesie produkcji: Właściwości materiałowe, takie jak moduł sprężystości czy wytrzymałość na rozciąganie, mogą różnić się w zależności od partii materiału lub zmian w procesie produkcji.
+    \item Zmiany w geometrii: Mogą one wynikać z tolerancji produkcyjnych, takich jak odchylenia w grubości, szerokości czy długości elementów konstrukcyjnych.
+    \item Warunki eksploatacyjne: Czynniki zewnętrzne, takie jak korozja, zużycie, zmiany temperatury, mogą wpływać na geometrię i właściwości materiałowe konstrukcji w czasie.
+\end{itemize}
+
+\subsubsection*{Losowość Geometrii}
+
+Geometria konstrukcji może podlegać losowym odchyleniom z różnych powodów:
+
+\begin{itemize}
+    \item Tolerancje produkcyjne: Rzeczywiste wymiary elementów konstrukcyjnych mogą różnić się od wartości projektowych w granicach określonych przez normy produkcyjne.
+    \item Błędy montażowe: Odchylenia mogą wystąpić również na etapie montażu, gdzie rzeczywiste położenie i orientacja elementów mogą odbiegać od założeń projektowych.
+    \item Degradacja i zużycie: Zmiany w geometrii mogą również wynikać z długotrwałej eksploatacji, gdzie elementy konstrukcyjne ulegają deformacjom, pęknięciom lub innym formom degradacji.
+\end{itemize}
+
+W kontekście analizy konstrukcji, losowość geometrii może wpływać na:
+
+\begin{itemize}
+\item Rozkład naprężeń i sił wewnętrznych: Odchylenia w geometrii mogą powodować nierównomierny rozkład naprężeń, co może prowadzić do lokalnych koncentracji naprężeń.
+\item Stabilność konstrukcji: Nawet niewielkie odchylenia od projektowanej geometrii mogą znacząco wpłynąć na stabilność konstrukcji, zwłaszcza w przypadku elementów smukłych lub podatnych na wyboczenie.
+\end{itemize}
+
+\subsubsection*{Losowość właściwości materiałowych}
+
+Właściwości materiałowe konstrukcji, takie jak moduł sprężystości \textbf{E}, moment bezwładności \textbf{I}, czy wytrzymałość na rozciąganie \sigma mogą podlegać losowym odchyleniom z kilku powodów:
+
+\begin{itemize}
+    \item Niejednorodność materiałów: Materiały inżynierskie, takie jak stal, beton czy drewno, mogą wykazywać naturalną niejednorodność, wynikającą z procesu produkcji lub ze źródeł surowców.
+    \item Zmiany środowiskowe: Właściwości materiałowe mogą zmieniać się w zależności od warunków środowiskowych, takich jak temperatura, wilgotność czy ekspozycja na promieniowanie UV.
+    \item Proces starzenia: Właściwości materiałowe mogą ulegać degradacji w czasie, co jest szczególnie istotne w kontekście długotrwałej eksploatacji konstrukcji.
+\end{itemize}
+
+\subsubsection*{Wpływ Losowości na analizę konstrukcji}
+
+Uwzględnienie losowości w analizie konstrukcji pozwala na bardziej realistyczne modelowanie i ocenę ich zachowania w rzeczywistych warunkach eksploatacyjnych.
+W praktyce, losowość może wpływać na:
+
+\begin{itemize}
+    \item Bezpieczeństwo i niezawodność konstrukcji: Analiza probabilistyczna uwzględniająca losowość pozwala na oszacowanie ryzyka awarii lub przekroczenia stanów granicznych.
+    \item Optymalizacja projektowania: Uwzględnienie odchyłek może prowadzić do bardziej ekonomicznych i efektywnych projektów, które są lepiej dostosowane do rzeczywistych warunków eksploatacyjnych.
+    \item Zarządzanie ryzykiem: Analiza wrażliwości, której częścią jest badanie wpływu losowości, pozwala na identyfikację krytycznych parametrów i opracowanie strategii zarządzania ryzykiem.
+\end{itemize}
+
+\subsection{Metoda Monte Carlo}
+
+Metoda Monte Carlo jest techniką numeryczną wykorzystywaną do analizy i rozwiązywania problemów, które zawierają elementy losowości lub niepewności.
+W kontekście inżynierii, szczególnie przy analizie wrażliwości konstrukcji, metoda Monte Carlo pozwala na ocenę wpływu zmienności parametrów na zachowanie konstrukcji.
+Polega na wielokrotnym przeprowadzaniu symulacji z losowo zmienianymi wartościami wejściowymi i analizowaniu wyników w celu zrozumienia, jak różne czynniki wpływają na wynik końcowy, np. na przemieszczenia lub naprężenia w konstrukcji.
+
+\subsubsection*{Jak działa metoda Monte Carlo w analizie wrażliwości konstrukcji?}
+\begin{enumerate}
+\item Określenie parametrów losowych:
+
+\begin{itemize}
+\item W pierwszym kroku identyfikowane są parametry konstrukcji, które mogą podlegać losowości. Mogą to być na przykład moduł sprężystości materiału, geometria elementów, czy wartości sił zewnętrznych. Każdy z tych parametrów jest opisany odpowiednim rozkładem prawdopodobieństwa (np. normalnym, logarytmiczno-normalnym).
+\end{itemize}
+
+\item Generowanie prób losowych:
+
+\begin{itemize}
+\item Dla każdego parametru generowane są losowe wartości zgodnie z określonymi rozkładami prawdopodobieństwa. Na przykład, jeśli moduł sprężystości materiału jest zmienny w przedziale ±10% od wartości nominalnej, to w każdej symulacji metoda Monte Carlo losowo wybiera wartość modułu sprężystości z tego przedziału.
+\end{itemize}
+
+\item Symulacja konstrukcji:
+
+\begin{itemize}
+\item Po wygenerowaniu zestawu losowych parametrów, przeprowadza się symulację konstrukcji, np. za pomocą metody elementów skończonych (MES). Symulacja ta dostarcza informacji o odpowiedzi konstrukcji na zadane obciążenia, takich jak przemieszczenia, naprężenia, czy siły wewnętrzne.
+\end{itemize}
+
+\item Powtórzenie symulacji:
+
+\begin{itemize}
+\item Proces generowania losowych wartości parametrów i symulacji konstrukcji jest powtarzany bardzo wiele razy, np. tysiące lub nawet miliony razy. Każda z tych prób daje jeden wynik dla badanej wielkości, np. przemieszczenia w wybranym węźle.
+\end{itemize}
+
+\item Analiza statystyczna wyników:
+
+\begin{itemize}
+\item Wyniki wszystkich symulacji są następnie analizowane statystycznie. Można w ten sposób uzyskać rozkład przemieszczeń, wartość średnią, odchylenie standardowe, a także prawdopodobieństwo przekroczenia określonego limitu (np. maksymalne dopuszczalne przemieszczenie).
+\end{itemize}
+
+\end{enumerate}
+\subsubsection*{Zastosowanie metody Monte Carlo w analizie wrażliwości konstrukcji}
+Metoda Monte Carlo jest szczególnie użyteczna w analizie wrażliwości konstrukcji, ponieważ umożliwia:
+
+\begin{itemize}
+\item Ocenę wpływu niepewności na wyniki:
+
+\begin{itemize}
+\item Możemy ocenić, jak bardzo niepewność w parametrach takich jak moduł sprężystości czy obciążenia wpływa na przemieszczenia lub naprężenia w konstrukcji. Na przykład, możemy stwierdzić, że w 95% przypadków przemieszczenie w danym węźle nie przekroczy określonej wartości.
+\end{itemize}
+
+\item Identyfikację kluczowych parametrów:
+
+\begin{itemize}
+\item Analiza wyników pozwala zidentyfikować, które z parametrów mają największy wpływ na zmienność wyników. Może to pomóc w podejmowaniu decyzji dotyczących optymalizacji projektu czy potrzebnych badań materiałowych.
+\end{itemize}
+
+\item Zarządzanie ryzykiem:
+
+\begin{itemize}
+    \item Dzięki metodzie Monte Carlo można przewidzieć i zminimalizować ryzyko awarii konstrukcji, wynikające z losowości parametrów. Na przykład, jeśli określone parametry mają dużą niepewność, można zwiększyć ich marginesy bezpieczeństwa.
+\end{itemize}
+
+\end{itemize}
+
+\subsection{Metoda elementów skończonych MES}
+
+Metoda elementów skończonych (MES) jest zaawansowaną techniką obliczeniową stosowaną do analizy i rozwiązywania problemów inżynierskich, w których wymagane jest zbadanie rozkładu naprężeń, przemieszczeń, temperatury czy innych parametrów fizycznych w konstrukcjach i materiałach.
+MES polega na dyskretyzacji ciągłej przestrzeni, takiej jak belka, płyta czy bryła, na mniejsze, skończone elementy.
+Każdy z tych elementów jest połączony z sąsiadującymi węzłami, które stanowią punkty, w których obliczane są wartości szukanych wielkości, takich jak przemieszczenia czy naprężenia.
+
+Podstawą działania metody elementów skończonych jest podział skomplikowanego problemu na wiele prostszych, łatwiejszych do rozwiązania części.
+Cały obiekt inżynierski, na przykład most, jest dzielony na niewielkie, regularne elementy – trójkąty, czworokąty w przypadku problemów płaskich, lub czworościany i sześciany w przypadku problemów przestrzennych.
+Każdy z tych elementów jest opisywany przez funkcje aproksymujące, które przybliżają rozkład szukanych wielkości na całym elemencie na podstawie wartości tych wielkości w węzłach elementu.
+
+Kluczowym etapem w MES jest utworzenie macierzy sztywności, która reprezentuje zależności między obciążeniami działającymi na konstrukcję a przemieszczeniami w węzłach.
+Macierz ta jest następnie używana do rozwiązania układu równań liniowych, który opisuje stan równowagi całej konstrukcji.
+W zależności od liczby elementów oraz ich skomplikowania, układ równań może mieć bardzo dużą liczbę niewiadomych, co wymaga zastosowania odpowiednich algorytmów numerycznych oraz dużej mocy obliczeniowej.
+
+MES jest szczególnie użyteczna w analizie skomplikowanych konstrukcji, dla których rozwiązanie analityczne jest niemożliwe lub bardzo trudne do uzyskania.
+Dzięki MES inżynierowie mogą symulować zachowanie konstrukcji pod różnymi obciążeniami i warunkami brzegowymi, co umożliwia optymalizację projektu przed jego realizacją.
+
+\subsubsection*{Równanie MES w statyce}
+
+Równanie podstawowe w metodzie elementów skończonych (MES) w statyce, znane jako równanie równowagi, jest kluczowym narzędziem do analizy konstrukcji inżynierskich. Równanie to jest wyrażeniem matematycznym, które opisuje równowagę sił działających na konstrukcję w stanie spoczynku, bez uwzględniania wpływu czasu.
+
+W najprostszej formie równanie MES w statyce można zapisać jako:
+
+$Ku=f$
+
+gdzie:
+\begin{itemize}
+    \item \textbf{K} – macierz sztywności,
+    \item \textbf{u} – wektor przemieszczeń,
+    \item \textbf{f} – wektor sił zewnętrznych.
+\end{itemize}
+
+\subsubsection*{Wyjaśnienie poszczególnych składników:}
+\begin{enumerate}
+\item Macierz sztywności K\mathbf{K}K:
+Jest to macierz, która zawiera informacje o właściwościach materiałowych i geometrycznych elementów oraz o ich wzajemnych połączeniach w konstrukcji. Macierz ta jest symetryczna i dodatnio określona, co oznacza, że wszystkie jej elementy są dodatnie lub zero, a jej diagonalne elementy (te na głównej przekątnej) są zawsze dodatnie. Macierz sztywności łączy przemieszczenia w węzłach z odpowiadającymi im siłami reakcji.
+
+
+\item Wektor przemieszczeń u\mathbf{u}u:
+Wektor ten zawiera przemieszczenia w węzłach konstrukcji, które są niewiadomymi w równaniu
+\item Każdy element tego wektora odpowiada przemieszczeniu (lub rotacji) w danym węźle konstrukcji, w określonym kierunku (osi X, Y lub Z).
+
+
+\item Wektor sił zewnętrznych f\mathbf{f}f:
+Jest to wektor, który reprezentuje wszystkie zewnętrzne siły i momenty przyłożone do konstrukcji.
+\item Wektor ten zawiera siły, które dążą do deformacji konstrukcji, takie jak obciążenia stałe, obciążenia użytkowe, siły wiatru, ciężar własny konstrukcji itp.
+
+
+\end{enumerate}
+
+\subsubsection*{Interpretacja równania:}
+Równanie Ku=f opisuje równowagę sił w konstrukcji.
+Oznacza to, że siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
+W praktyce inżynierskiej rozwiązanie tego równania pozwala na obliczenie przemieszczeń w konstrukcji, gdy znane są siły zewnętrzne.
 
 \subsection{Narzędzia}
 \subsubsection{Python}
 \subsubsection{OpenSees}
-\subsubsection{Opsvis}
-
-\subsubsection{Theory of something}
-%\hspace{10mm}
-%So a paragraph set in 12 point should have a first-line indent of 12–48 points. (Recall that there are 72 points to an inch, so this works out to 0.17–0.67″.)
-%\qquad
-I will write about the theory of my work, the tools I used, and the results I obtained. I will also write about the conclusions I drew from my work.
-I will write about the theory of my work, the tools I used, and the results I obtained. I will also write about the conclusions I drew from my work.
