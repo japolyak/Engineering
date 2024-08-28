@@ -4,3 +4,11 @@
 /.idea
 *.pdf
 /out
+*.lot
+*.out
+*.bbl
+*.bcf
+*.blg
+*.xml
+*.lof
+*.toc
