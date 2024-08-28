@@ -1,6 +1,9 @@
 \documentclass[12pt]{report}
 \usepackage{styles/main}
 
+\addbibresource{bibliografies/bibliography.bib}
+\addbibresource{bibliografies/linkography.bib}
+
 \begin{document}
     \input{chapters/title-page}
     \maketitle
@@ -9,7 +12,26 @@
 
     \input{chapters/introduction}
     \input{chapters/theory}
-%    \input{chapters/examples}
+    \input{chapters/examples}
     \input{chapters/summary}
 
+    \begin{refsection}
+        \cite{knuth1984}
+        \addcontentsline{toc}{section}{Bibliografia}
+        \printbibliography[heading=subbibliography,title={Bibliografia}]
+    \end{refsection}
+
+    \begin{refsection}
+        \cite{test2}
+        \addcontentsline{toc}{section}{Źródła internetowe}
+        \printbibliography[heading=subbibliography,title={Źródła internetowe}]
+    \end{refsection}
+
+    \renewcommand{\listfigurename}{Spis rysunków}
+    \listoffigures
+    \addcontentsline{toc}{section}{Spis rysunków}
+
+    \renewcommand{\listtablename}{Spis tabel}
+    \listoftables
+    \addcontentsline{toc}{section}{Spis tabel}
 \end{document}

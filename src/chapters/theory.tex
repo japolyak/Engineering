@@ -142,46 +142,42 @@ Kluczowym etapem w MES jest utworzenie macierzy sztywności, która reprezentuje
 Macierz ta jest następnie używana do rozwiązania układu równań liniowych, który opisuje stan równowagi całej konstrukcji.
 W zależności od liczby elementów oraz ich skomplikowania, układ równań może mieć bardzo dużą liczbę niewiadomych, co wymaga zastosowania odpowiednich algorytmów numerycznych oraz dużej mocy obliczeniowej.
 
-MES jest szczególnie użyteczna w analizie skomplikowanych konstrukcji, dla których rozwiązanie analityczne jest niemożliwe lub bardzo trudne do uzyskania.
-Dzięki MES inżynierowie mogą symulować zachowanie konstrukcji pod różnymi obciążeniami i warunkami brzegowymi, co umożliwia optymalizację projektu przed jego realizacją.
-
 \subsubsection*{Równanie MES w statyce}
 
-Równanie podstawowe w metodzie elementów skończonych (MES) w statyce, znane jako równanie równowagi, jest kluczowym narzędziem do analizy konstrukcji inżynierskich. Równanie to jest wyrażeniem matematycznym, które opisuje równowagę sił działających na konstrukcję w stanie spoczynku, bez uwzględniania wpływu czasu.
+Równanie podstawowe w metodzie elementów skończonych (MES) w statyce, znane jako równanie równowagi, jest kluczowym narzędziem do analizy konstrukcji inżynierskich.
+Jest to wyrażenie matematyczne, opisujące równowagę sił w konstrukcji, gdzie siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
 
-W najprostszej formie równanie MES w statyce można zapisać jako:
-
-$Ku=f$
-
+\begin{equation}
+    Ku = f
+\end{equation}
 gdzie:
+
 \begin{itemize}
-    \item \textbf{K} – macierz sztywności,
-    \item \textbf{u} – wektor przemieszczeń,
-    \item \textbf{f} – wektor sił zewnętrznych.
+    \item \textbf{K} - macierz sztywności globalnej konstrukcji
+    \item \textbf{u} - wektor przemieszczeń węzłowych
+    \item \textbf{f} - wektor sił zewnętrznych działających na konstrukcję
 \end{itemize}
 
-\subsubsection*{Wyjaśnienie poszczególnych składników:}
-\begin{enumerate}
-\item Macierz sztywności K\mathbf{K}K:
-Jest to macierz, która zawiera informacje o właściwościach materiałowych i geometrycznych elementów oraz o ich wzajemnych połączeniach w konstrukcji. Macierz ta jest symetryczna i dodatnio określona, co oznacza, że wszystkie jej elementy są dodatnie lub zero, a jej diagonalne elementy (te na głównej przekątnej) są zawsze dodatnie. Macierz sztywności łączy przemieszczenia w węzłach z odpowiadającymi im siłami reakcji.
+Rozwiązanie tego równania pozwala na obliczenie przemieszczeń węzłowych, co z kolei umożliwia wyznaczenie naprężeń, odkształceń i innych, interesującyh projektanta, parametrów.
+
+\subsubsection*{Macierz sztywności}
+
+Macierz sztywności reprezentuje relację między przemieszczeniami węzłowymi a siłami wewnętrznymi w konstrukcji.
+Każdy element konstrukcji posiada swoją własną macierz sztywności elementu, która jest następnie składana w globalną macierz sztywności konstrukcji.
+
+Macierz sztywności zależy od:
+
+\begin{itemize}
+    \item Właściwości materiałowych – Modułu Younga, współczynnika Poissona.
+    \item Geometrii elementu – długości, przekroju poprzecznego.
+    \item Typu elementu - belka, pręt, powłoka itp.
+\end{itemize}
+
+\subsubsection*{Macierz sztywności elementu kratownicy}
 
 
-\item Wektor przemieszczeń u\mathbf{u}u:
-Wektor ten zawiera przemieszczenia w węzłach konstrukcji, które są niewiadomymi w równaniu
-\item Każdy element tego wektora odpowiada przemieszczeniu (lub rotacji) w danym węźle konstrukcji, w określonym kierunku (osi X, Y lub Z).
 
-
-\item Wektor sił zewnętrznych f\mathbf{f}f:
-Jest to wektor, który reprezentuje wszystkie zewnętrzne siły i momenty przyłożone do konstrukcji.
-\item Wektor ten zawiera siły, które dążą do deformacji konstrukcji, takie jak obciążenia stałe, obciążenia użytkowe, siły wiatru, ciężar własny konstrukcji itp.
-
-
-\end{enumerate}
-
-\subsubsection*{Interpretacja równania:}
-Równanie Ku=f opisuje równowagę sił w konstrukcji.
-Oznacza to, że siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
-W praktyce inżynierskiej rozwiązanie tego równania pozwala na obliczenie przemieszczeń w konstrukcji, gdy znane są siły zewnętrzne.
+\subsubsection*{Macierz sztywności elementu ramy}
 
 \subsection{Narzędzia programistyczne}
 \subsubsection{Python}
