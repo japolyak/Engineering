@@ -11,24 +11,25 @@
 \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
 % BEGIN: Table of contents styling
-\renewcommand*\contentsname{Spis treści}
+\renewcommand\cfttoctitlefont{\hfill\Large\bfseries}
+\renewcommand\cftaftertoctitle{\hfill\mbox{}}
 \setlength{\cftbeforetoctitleskip}{0pt}
 \setlength{\cftaftertoctitleskip}{16pt}
 
 \renewcommand{\cftfigaftersnum}{. }
 \renewcommand{\cftfigindent}{0pt}
-%\setlength{\cftfignumwidth}{16pt}
+\renewcommand\cftloftitlefont{\Large\bfseries} % Sets font size for List of figures
+\setlength{\cftafterloftitleskip}{16pt} % Space after List of figures title
 
 \renewcommand{\cfttabaftersnum}{. }
 \renewcommand{\cfttabindent}{0pt}
-%\setlength{\cfttabnumwidth}{16pt}
+\renewcommand\cftlottitlefont{\Large\bfseries}
+\setlength{\cftafterlottitleskip}{16pt} % Space after List of Tables title
 
 \cftsetindents{section}{0em}{3em}
 \cftsetindents{subsection}{0em}{3em}
 \cftsetindents{subsubsection}{0em}{3em}
 
-\renewcommand\cfttoctitlefont{\hfill\Large\bfseries}
-\renewcommand\cftaftertoctitle{\hfill\mbox{}}
 % END
 
 % prevents Underfull \hbox warnings
