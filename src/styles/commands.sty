@@ -1,0 +1,39 @@
+% inline code
+\newcommand{\ilc}[1]{\colorbox{codegray}{\lstinline|#1|}}
+
+
+\newcommand{\rama}{Rama}
+\newcommand{\belka}{Belka}
+\newcommand{\prentowa}{Konstrukcja prętowa}
+
+\newcommand{\kmodel}[1]{Model konstrukji – #1}
+\newcommand{\kdeformation}[1]{Deformacja konstrukji – #1}
+\newcommand{\zwsp}[2]{Zbieżność wartości średniej przemieszczenia – #1 #2}
+\newcommand{\zos}[2]{Zbieżność odchylenia standardowego – #1 #2}
+
+\newcommand{\przemieszczenie}[3]{#1 – #2 #3}
+
+\newcommand{\opsfigure}[2]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.8]{#1}
+        \caption{#2}
+    \end{figure}
+}
+
+\newcommand{\constructionresults}[3]{
+    \opsfigure{#2_model}{\kmodel{#1}}
+    \opsfigure{#2_deformation}{\kdeformation{#1}}
+
+    \opsfigure{#2_10000_sp}{\przemieszczenie{#3}{#1}{10000}}
+    \opsfigure{#2_10000_zsp}{\zwsp{#1}{10000}}
+    \opsfigure{#2_10000_zos}{\zos{#1}{10000}}
+
+    \opsfigure{#2_100000_sp}{\przemieszczenie{#3}{#1}{100000}}
+    \opsfigure{#2_100000_zsp}{\zwsp{#1}{100000}}
+    \opsfigure{#2_100000_zos}{\zos{#1}{100000}}
+
+    \opsfigure{#2_1000000_sp}{\przemieszczenie{#3}{#1}{1000000}}
+    \opsfigure{#2_1000000_zsp}{\zwsp{#1}{1000000}}
+    \opsfigure{#2_1000000_zos}{\zos{#1}{1000000}}
+}
