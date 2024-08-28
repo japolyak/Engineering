@@ -10,5 +10,5 @@
 *.bcf
 *.blg
 *.xml
-src/.lof
-src/.toc
+*.lof
+*.toc
