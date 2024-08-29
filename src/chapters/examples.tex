@@ -1,18 +1,22 @@
-\section{Programowanie}
-\input{chapters/programming}
-\newpage
 \section{Przykłady}
 
-W ramach analizy konstrukcji losowe wartości wybranych parametrów są wygenerowane w przedziale \pm 10\% od wartości nominalnych.
+W celu zbadania wpływu niepewności parametrów na zachowanie konstrukcji, przeprowadzono serię symulacji Monte Carlo.
+W ramach analizy, losowe wartości wybranych parametrów zostały wygenerowane w przedziale \pm 10\% od ich wartości nominalnych.
 
-Aby zbadać wpływ zmienności tych parametrów na przemieszczenie konstrukcji, przeprowadzono trójstopniową analizę Monte Carlo,
-obejmującą symulacje z 10,000, 100,000 oraz 1,000,000 prób.
+Aby dokładnie przeanalizować proces stabilizacji wyników oraz wpływ liczby prób na dokładność analizy,
+dla każdej konstrukcji przeprowadzono trzy etapy symulacji, obejmujące kolejno 10.000, 100.000 oraz 1.000.000 prób.
+
+Głównym celem tych symulacji jest nie tylko określenie, jak zmiany parametrów wpływają na przemieszczenie konstrukcji,
+ale także zbadanie, jak wyniki symulacji zbiegają się do stabilnych wartości wraz ze wzrostem liczby prób w ramach metody Monte Carlo.
+To pozwoli na ocenę, ile prób jest niezbędnych do uzyskania wiarygodnych i stabilnych wyników analizy wrażliwości.
+
+\subsection{Belka}
+\input{chapters/belka}
+\newpage
 
 \subsection{Rama}
 \input{chapters/rama}
 \newpage
-\subsection{Belka}
-\input{chapters/belka}
-\newpage
+
 \subsection{Konstrukcja prętowa}
 \input{chapters/konstrukcja-pretowa}

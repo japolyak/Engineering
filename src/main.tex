@@ -2,7 +2,7 @@
 \usepackage{styles/main}
 
 \addbibresource{bibliografies/bibliography.bib}
-\addbibresource{bibliografies/websources.bib}
+%\addbibresource{bibliografies/websources.bib}
 
 \begin{document}
     \input{chapters/title-page}
@@ -17,24 +17,34 @@
     \input{chapters/theory}
 
     \newpage
+    \input{chapters/programming}
+
+    \newpage
     \input{chapters/examples}
+
+    \newpage
+    \input{chapters/analyze}
 
     \newpage
     \input{chapters/summary}
 
     \newpage
 
-    \begin{refsection}
-        \nocite{knuth1984}
-        \addcontentsline{toc}{section}{Bibliografia}
-        \printbibliography[heading=subbibliography,title={Bibliografia}]
-    \end{refsection}
+    \nocite{*}
+    \addcontentsline{toc}{section}{Bibliografia}
+    \printbibliography[heading=subbibliography,title={Bibliografia}]
 
-    \begin{refsection}
-        \nocite{opensees, python, openseespy, opsvis, scipy, numpy, matplotlib}
-        \addcontentsline{toc}{section}{Źródła internetowe}
-        \printbibliography[heading=subbibliography,title={Źródła internetowe}]
-    \end{refsection}
+%    \begin{refsection}
+%        \nocite{knuth1984}
+%        \addcontentsline{toc}{section}{Bibliografia}
+%        \printbibliography[heading=subbibliography,title={Bibliografia}]
+%    \end{refsection}
+%
+%    \begin{refsection}
+%        \nocite{opensees, python, openseespy, opsvis, scipy, numpy, matplotlib}
+%        \addcontentsline{toc}{section}{Źródła internetowe}
+%        \printbibliography[heading=subbibliography,title={Źródła internetowe}]
+%    \end{refsection}
 
     \renewcommand{\listfigurename}{Spis rysunków}
     \listoffigures

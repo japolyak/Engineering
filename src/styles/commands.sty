@@ -16,14 +16,16 @@
 \newcommand{\opsfigure}[2]{
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.8]{images/#1}
+        \includegraphics[scale=0.7]{images/#1}
         \caption{#2}
     \end{figure}
 }
 
-\newcommand{\constructionresults}[3]{
+\newcommand{\constructionresults}[4]{
     \opsfigure{#2_model}{\kmodel{#1}}
     \opsfigure{#2_deformation}{\kdeformation{#1}}
+
+    #4
 
     \opsfigure{#2_10000_sp}{\przemieszczenie{#3}{#1}{10000}}
     \opsfigure{#2_10000_zsp}{\zwsp{#1}{10000}}
@@ -56,4 +58,12 @@
         \caption{#4}
         \label{tab:#5}
     \end{table}
+}
+
+\newcommand{\cadmodel}[2]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.3]{images/#1}
+        \caption{#2}
+    \end{figure}
 }
