@@ -41,12 +41,14 @@
 }
 
 
-\newcommand{\resultstable}[5]{
+\newcommand{\resultstable}[6]{
     \begin{table}[H]
         \centering
         \begin{tabular}{|c|c|c|c|c|c|c|}
             \hline
             $Name$ & $uMax$ & $uMin$ & $uMean$ & $uStd$ & $uVar$ & $uCov$ \\
+            \hline
+            – & #6 \\
             \hline
             10000 & #1 \\
             \hline
@@ -65,5 +67,6 @@
         \centering
         \includegraphics[scale=0.3]{images/#1}
         \caption{#2}
+        \label{cadmodel:#2}
     \end{figure}
 }
