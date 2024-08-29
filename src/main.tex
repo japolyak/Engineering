@@ -2,7 +2,7 @@
 \usepackage{styles/main}
 
 \addbibresource{bibliografies/bibliography.bib}
-\addbibresource{bibliografies/linkography.bib}
+\addbibresource{bibliografies/websources.bib}
 
 \begin{document}
     \input{chapters/title-page}
@@ -25,13 +25,13 @@
     \newpage
 
     \begin{refsection}
-        \cite{knuth1984}
+        \nocite{knuth1984}
         \addcontentsline{toc}{section}{Bibliografia}
         \printbibliography[heading=subbibliography,title={Bibliografia}]
     \end{refsection}
 
     \begin{refsection}
-        \cite{test2}
+        \nocite{opensees, python, openseespy, opsvis, scipy, numpy, matplotlib}
         \addcontentsline{toc}{section}{Źródła internetowe}
         \printbibliography[heading=subbibliography,title={Źródła internetowe}]
     \end{refsection}

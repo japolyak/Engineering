@@ -1,9 +1,11 @@
 \usepackage{styles/pkgs}
 \usepackage{styles/code-snipets}
+\usepackage{styles/commands}
 
 \setmainfont{Times New Roman}
 \onehalfspacing
 
+% Numeracja rozdziałów
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 \renewcommand{\thesection}{\arabic{section}.}
@@ -19,17 +21,18 @@
 \renewcommand{\cftfigaftersnum}{. }
 \renewcommand{\cftfigindent}{0pt}
 \renewcommand\cftloftitlefont{\Large\bfseries} % Sets font size for List of figures
-\setlength{\cftafterloftitleskip}{16pt} % Space after List of figures title
+\setlength{\cftbeforeloftitleskip}{24pt} % Space before List of figures title
+\setlength{\cftafterloftitleskip}{12pt} % Space after List of figures title
 
 \renewcommand{\cfttabaftersnum}{. }
 \renewcommand{\cfttabindent}{0pt}
 \renewcommand\cftlottitlefont{\Large\bfseries}
-\setlength{\cftafterlottitleskip}{16pt} % Space after List of Tables title
+\setlength{\cftbeforelottitleskip}{24pt} % Space before List of Tables title
+\setlength{\cftafterlottitleskip}{12pt} % Space after List of Tables title
 
 \cftsetindents{section}{0em}{3em}
 \cftsetindents{subsection}{0em}{3em}
 \cftsetindents{subsubsection}{0em}{3em}
-
 % END
 
 % prevents Underfull \hbox warnings
@@ -37,7 +40,10 @@
 
 % Table caption redefinition
 \captionsetup[table]{name=Tabela, labelsep=period}
+\captionsetup[figure]{name=Rysunek, labelsep=period}
 % enumeration levels style definition
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
-\usepackage{styles/commands}
+\graphicspath{ {./images/} }
+% Removes url: from bibliography
+\DeclareFieldFormat{url}{\url{#1}}
