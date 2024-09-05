@@ -44,8 +44,8 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
 
     save_dir = os.path.join('..', '..', 'src', 'images')
 
-    width_in_inches = 1920 / 300
-    height_in_inches = 1080 / 300
+    width_in_inches = 1920 * 1.35 / 300
+    height_in_inches = 1080 * 1.35 / 300
 
     plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     opsv.plot_model()
@@ -60,7 +60,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
     plt.axhline(u_mean, 0, 1, color='b', lw=0.6)
     plt.xlabel('liczba symulacji N')
     plt.ylabel('Przemieszczenie [m]')
-    plt.ylim(1.1 * u_min, 0)
+    plt.ylim(u_min - 0.1 * u_min, u_max + 0.1 * u_max)
     plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_sp.png'), dpi=300, bbox_inches='tight')
 
     u_mean_cum = np.cumsum(u_sims)/np.arange(1, n_trials + 1)

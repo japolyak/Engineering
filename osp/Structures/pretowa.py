@@ -78,7 +78,7 @@ u_sims = np.zeros(nTrials)
 
 calculate(nTrials, 4, 2, u_sims)
 
-save_results(nFail, nTrials, u_sims, 'Konstrukcja_pretowa')
+save_results(nFail, nTrials, u_sims, 'Kratownica')
 # endregion
 
 exit()
