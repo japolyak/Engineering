@@ -10,6 +10,7 @@
     \tableofcontents
 
     \newpage
+    \addcontentsline{toc}{section}{Wstęp}
     \input{chapters/introduction}
 
     \newpage
@@ -25,7 +26,6 @@
     \input{chapters/summary}
 
     \newpage
-
     \nocite{*}
     \addcontentsline{toc}{section}{Bibliografia}
     \printbibliography[heading=subbibliography,title={Bibliografia}]
@@ -37,4 +37,9 @@
     \renewcommand{\listtablename}{Spis tabel}
     \listoftables
     \addcontentsline{toc}{section}{Spis tabel}
+
+    \renewcommand{\appendixname}{Załączniki}
+
+    \appendix
+    \input{chapters/zalaczniki}
 \end{document}

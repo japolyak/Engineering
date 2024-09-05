@@ -7,15 +7,6 @@ Opracowano modele analizowanych konstrukcji, a następnie, korzystając z silnik
 Skrypty te obejmują definicję środowiska obliczeniowego, modelowanie węzłów, elementów, podpór oraz obciążeń, jak również parametryzację modelu.
 Przeprowadzono symulacje dla każdej konstrukcji, wykorzystując 10.000, 100.000 oraz 1.000.000 prób, a uzyskane wyniki zostały zebrane w tabelach i zilustrowane na wykresach.
 
-Analiza wrażliwości konstrukcji stanowi nieodłączny element procesu projektowania inżynierskiego, niezależnie od skali i złożoności obiektu.
-Choć na rynku dostępne są liczne komercyjne narzędzia do analizy konstrukcji, silnik obliczeniowy OpenSees wyróżnia się jako darmowe rozwiązanie, umożliwiające zarówno doświadczonym inżynierom, jak i początkującym projektantom, przeprowadzanie zaawansowanych analiz.
-Wykorzystanie OpenSees pozwala na znaczną redukcję kosztów oraz czasu poświęconego na projektowanie, przyczyniając się do zwiększenia efektywności procesu projektowego.
-
-Niniejsza praca pokazuje, że analiza wrażliwości z wykorzystaniem metody Monte Carlo oraz silnika OpenSees stanowi skuteczne narzędzie do oceny wpływu losowości parametrów na zachowanie konstrukcji ramowych.
-Uzyskane wyniki mogą być wykorzystane do optymalizacji projektów, zwiększenia ich bezpieczeństwa oraz efektywności, a także do podejmowania świadomych decyzji projektowych w warunkach niepewności.
-
-----------------------------------------------------
-
 Analiza wyników dla belki wskazuje na znaczną zmienność przemieszczeń węzła w zależności od liczby prób.
 Średnia wartość przemieszczenia pozostaje jednak stabilna, szczególnie przy 1.000.000 prób, co sugeruje osiągnięcie stabilności wyników.
 Odchylenie standardowe wzrasta wraz z liczbą prób, co jest naturalnym efektem zwiększenia próbkowania.
@@ -29,3 +20,21 @@ Wynika to z większej wrażliwości tej konstrukcji na zmienność parametrów, 
 Wzrost liczby prób w analizie Monte Carlo prowadzi do stabilizacji wyników, jednak prędkość tej stabilizacji różni się w zależności od typu konstrukcji.
 Konstrukcja prętowa jest najbardziej wrażliwa na zmienność parametrów, natomiast rama wykazuje większą stabilność.
 Dla bardziej złożonych konstrukcji, takich jak konstrukcja prętowa, konieczne jest przeprowadzenie większej liczby prób, podczas gdy dla prostszych konstrukcji, jak rama, mniejsza liczba iteracji jest wystarczająca.
+
+Analiza wrażliwości konstrukcji stanowi nieodłączny element procesu projektowania inżynierskiego, niezależnie od skali i złożoności obiektu.
+Choć na rynku dostępne są liczne komercyjne narzędzia do analizy konstrukcji, silnik obliczeniowy OpenSees wyróżnia się jako darmowe rozwiązanie, umożliwiające zarówno doświadczonym inżynierom, jak i początkującym projektantom, przeprowadzanie zaawansowanych analiz.
+Wykorzystanie OpenSees pozwala na znaczną redukcję kosztów oraz czasu poświęconego na projektowanie, przyczyniając się do zwiększenia efektywności procesu projektowego.
+
+Niniejsza praca pokazuje, że analiza wrażliwości z wykorzystaniem metody Monte Carlo oraz silnika OpenSees stanowi skuteczne narzędzie do oceny wpływu losowości parametrów na zachowanie konstrukcji ramowych.
+Uzyskane wyniki mogą być wykorzystane do optymalizacji projektów, zwiększenia ich bezpieczeństwa oraz efektywności, a także do podejmowania świadomych decyzji projektowych w warunkach niepewności.
+
+
+------------------------------------
+Tak duża rozbieżność pomiędzy wartościami minimalną a maksymalną może wynikać z losowości parametrów wejściowych lub niestabilności konstrukcji w określonych warunkach obciążenia.
+Mimo tak znaczącej asymetrii, średnia wartość przemieszczenia jest bliższa maksymalnej wartości (1.35 mm), co sugeruje, że większa liczba symulacji daje wyniki przemieszczeń bliższe tej maksymalnej wartości.
+Tendencja ta może być spowodowana nieliniową odpowiedzią konstrukcji na obciążenie, gdzie w pewnych przypadkach konstrukcja reaguje bardziej na niekorzystne warunki niż na te optymalne.
+Może to również wynikać z faktu, że symulacje, które prowadzą do większych przemieszczeń, są bardziej prawdopodobne lub częstsze.
+Mimo takiej wielkiej asymetri, średnia wartość przemieszczenia jest bliższa maksymalnej wartości przemeieszczenia, co jest spowodowane
+większą ilość przemieszczeń bliższych wartości maksymalnej.
+
+

@@ -1,9 +1,5 @@
-import numpy as np
 import openseespy.opensees as ops
-import matplotlib.pyplot as plt
-from scipy.stats import norm
-import opsvis as opsv
-import os
+
 
 def calculate(n_trials, node_tag, dof, u_sims):
     nrv = len(ops.getRVTags())
@@ -19,6 +15,13 @@ def calculate(n_trials, node_tag, dof, u_sims):
         ops.analyze(1)
 
         u_sims[i] = ops.nodeDisp(node_tag, dof)
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+import opsvis as opsv
+import os
 
 
 def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):

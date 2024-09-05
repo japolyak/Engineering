@@ -16,30 +16,43 @@
 \newcommand{\opsfigure}[2]{
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.7]{images/#1}
+        \includegraphics[scale=0.75]{images/#1}
         \caption{#2}
+        \label{fig:#1}
     \end{figure}
 }
 
-\newcommand{\constructionresults}[4]{
+\newcommand{\constructionresults}[8]{
+    #5
     \opsfigure{#2_model}{\kmodel{#1}}
     \opsfigure{#2_deformation}{\kdeformation{#1}}
 
     #4
 
+    #6
     \opsfigure{#2_10000_sp}{\przemieszczenie{#3}{#1}{10000}}
     \opsfigure{#2_10000_zsp}{\zwsp{#1}{10000}}
     \opsfigure{#2_10000_zos}{\zos{#1}{10000}}
 
+    #7
     \opsfigure{#2_100000_sp}{\przemieszczenie{#3}{#1}{100000}}
     \opsfigure{#2_100000_zsp}{\zwsp{#1}{100000}}
     \opsfigure{#2_100000_zos}{\zos{#1}{100000}}
 
+    #8
     \opsfigure{#2_1000000_sp}{\przemieszczenie{#3}{#1}{1000000}}
     \opsfigure{#2_1000000_zsp}{\zwsp{#1}{1000000}}
     \opsfigure{#2_1000000_zos}{\zos{#1}{1000000}}
 }
 
+\newcommand{\cadmodel}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=#3]{images/#1}
+        \caption{#2}
+        \label{cadmodel:#1}
+    \end{figure}
+}
 
 \newcommand{\resultstable}[6]{
     \begin{table}[H]
@@ -60,13 +73,4 @@
         \caption{#4}
         \label{tab:#5}
     \end{table}
-}
-
-\newcommand{\cadmodel}[2]{
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.3]{images/#1}
-        \caption{#2}
-        \label{cadmodel:#2}
-    \end{figure}
 }

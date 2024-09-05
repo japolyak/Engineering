@@ -4,12 +4,14 @@ Wszystkie elementy wykonane są z jednorodnego materiału, o jednakowych właśc
 
 Rama jest podparta z lewej strony przegubowo nieprzesuwnie, a z prawej ma wspornik.
 Na lewy górny narożnik (węzeł 2) działają dwie siły skupione: $P_1$ (pozioma, skierowana w prawo) i $P_2$ (pionowa, skierowana w dół).
+Rysunek \ref{cadmodel:Rama-mod} przedstawia model ramy przestrzennej, a w Tabeli \ref{tab:parametry-rama} zebrane są deterministyczne oraz losowane parametry konstrukcji.
 
 Głównym celem analizy jest ocena wpływu tych obciążeń na przemieszczenie narożnika w kierunku poziomym (w osi X).
 
 \cadmodel
 {Rama-mod}
 {Model ramy przestrzennej}
+{0.35}
 
 \begin{table}[H]
     \centering
@@ -27,19 +29,40 @@ Głównym celem analizy jest ocena wpływu tych obciążeń na przemieszczenie n
         \hline
     \end{tabular}
     \caption{Parametry ramy}
-    \label{tab:pars-rama}
+    \label{tab:parametry-rama}
 \end{table}
 
 \constructionresults
 {\rama}
 {Rama}
-{Ugięcie środka belki}
+{Przemieszczenie narożnika}
 {
 \resultstable
 {1.35 & 0.27 & 1.07 & 0.17 & 31.4 & 0.17}
 {1.37 & 0.23 & 1.07 & 0.17 & 30.2 & 0.16}
 {1.4 & 0.24 & 1.07 & 0.17 & 30 & 0.16}
 {Wyniki przemieszczeń symulacji dla ramy}
-{rama-results}
+{Rama-results}
 {[mm] & [mm] & [mm] & [mm] & [nm] & [\%]}
+}
+{
+Rysunek \ref{fig:Rama_model} przedstawia model obliczeniowy konstrukcji ramowej wygenerowany w środowisku symulacyjnym.
+Na Rysunku \ref{fig:Rama_deformation} ukazana jest deformacja ramy przestrzennej pod wpływem siły skupionej, przyłożonej w lewym górnym narożniku.
+W Tabeli \ref{tab:Rama-results} zebrano wartości przemieszczeń dla każdej z 3 serii obliczeń.
+Warto zauważyć, że niezależnie od liczby prób symulacji, uzyskane wyniki przemieszczeń są zbliżone i zgodne z oczekiwaniami.
+Świadczy to o tym, że konstrukcja charakteryzuje się niewielką wrażliwością na losowość parametrów.
+}
+{
+Rysunki \ref{fig:Rama_10000_sp}, \ref{fig:Rama_10000_zsp} oraz \ref{fig:Rama_10000_zos} przedstawiają wyniki przemieszczenia narożnika dla 10.000 symulacji.
+Średnie przemieszczenie wynosi 1.07 mm, a różnica między maksymalną wartością (1.35 mm) a minimalną (0.27 mm) wynosi 1.08 mm.
+Na Rysunkach \ref{fig:Rama_10000_zsp} – \ref{fig:Rama_10000_zos} można zaobserwować, że stabilizacja wyników zaczyna się po około 6.000 symulacji.
+}
+{
+Rysunki \ref{fig:Rama_100000_sp}, \ref{fig:Rama_100000_zsp} oraz \ref{fig:Rama_100000_zos} przedstawiają wyniki dla 100.000 symulacji.
+Średnie przemieszczenie wynosi 1.07 mm, a różnica między maksymalną wartością (1.37 mm) a minimalną (0.23 mm) wynosi 1.14 mm.
+Na Rysunkach \ref{fig:Rama_100000_zsp} – \ref{fig:Rama_100000_zos} stabilizacja wyników jest widoczna już po około 60,000 symulacji, co świadczy o stopniowym zmniejszaniu się zmienności wyników wraz ze wzrostem liczby prób.
+}
+{
+Dla 1.000.000 symulacji, wyniki przedstawione na  Rysunkach \ref{fig:Rama_1000000_sp}, \ref{fig:Rama_1000000_zsp} oraz \ref{fig:Rama_1000000_zos} pokazują, że średnia wartość przemieszczenia nadal wynosi 1.07 mm, przy czym różnica między wartością maksymalną (1.4 mm) a minimalną (0.24 mm) wynosi 1.16 mm.
+Całkowitą stabilizację wyników można zaobserwować po około 100.000 symulacji na Rysunkach \ref{fig:Rama_1000000_zsp} – \ref{fig:Rama_1000000_zos}, co potwierdza, że dalsze zwiększanie liczby prób nie wpływa istotnie na wynik końcowy.
 }
