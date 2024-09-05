@@ -17,16 +17,20 @@ Analiza skupia się na przemieszczeniu węzła 4 w kierunku pionowym (w osi Y).
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
         \hline
-        $L$ & $b$ & $d$ & $A$ & $I_z$ & $E$ & $P$ & $q$ \\
+        Rodzaj parametru & L & b & d & A & $\mathrm{I}_\mathrm{z}$ & E & P & q \\
         \hline
-        \multicolumn{3}{|c|}{$m$} & $m^2$ & $m^4$ & $X$ & $kN$ & $kN/m$ \\
+        – & \multicolumn{3}{|c|}{[m]} & [$\mathrm{m}^\mathrm{2}$] & [$\mathrm{m}^\mathrm{4}$] & [GPa] & [kN] & [kN/m] \\
         \hline
-        3 & 0.3 & 0.6 & 0.18 & $145.8*10^-6$ & $30*10^6$ & -10 & -5 \\
+        Deterministyczny & 3 & 0.3 & 0.6 & 0.18 & – & – & – & – \\
+        \hline
+        Średni & – & – & – & – & 145.8 \cdot $\mathrm{10}^{\mathrm{-6}}$ & 30 & –10 & –5 \\
+        \hline
+        Odchylenie standardowe & – & – & – & – & 14.6 \cdot $\mathrm{10}^{\mathrm{-6}}$ & 3 & 1 & 0.5 \\
         \hline
     \end{tabular}
-    \caption{Parametry belki}
+    \caption{Parametry belki swobodnie podpartej}
     \label{tab:pars-belka}
 \end{table}
 
@@ -36,10 +40,10 @@ Analiza skupia się na przemieszczeniu węzła 4 w kierunku pionowym (w osi Y).
 {Ugięcie na końcu belki}
 {
 \resultstable
-{-277.7 & -64598.1 & -34.56 & 822.92 & 677194.25 & -23.81}
-{-21.1 & -304406.85 & -33.43 & 1216.47 & 1479801.34 & -36.39}
-{-0.02 & -932248.17 & -34.55 & 1686.36 & 2843799.23 & -48.81}
+{-65.5 \cdot $\mathrm{10}^{\mathrm{-8}}$ & -40430 & -36.5 & 674.1 & 454357.3 & -18.46}
+{-48 \cdot $\mathrm{10}^{\mathrm{-8}}$ & -556007 & -45.2 & 2146.4 & 4607043 & -47.6}
+{-2.32 \cdot $\mathrm{10}^{\mathrm{-8}}$ & -832834.6 & -37.9 & 1851.5 & 3428174.8 & -48.88}
 {Wyniki symulacji dla belki}
 {belka-results}
-{$[m] 10^{-8}$ & $[m]$ & $[m]$ & $[m]$ & $[m]$ & $\%$}
+{[m] & [m] & [m] & [m] & [m] & [\%]}
 }

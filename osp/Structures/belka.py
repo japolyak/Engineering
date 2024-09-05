@@ -6,7 +6,6 @@ from shared import save_results, calculate
 ops.wipe()
 ops.model('basic', '-ndm', 2, '-ndf', 3)
 
-# region Liczby losowe
 L = 3.0
 b = 0.3
 d = 2.0 * b
@@ -17,40 +16,28 @@ E = 30.0e6
 
 P = -10.0
 q = -5.0
-# endregion
 
-# region Węzły
 ops.node(1, 0.0, 0.0)
 ops.node(2, L, 0.0)
 ops.node(3, L * 2.0, 0.0)
 ops.node(4, L * 3.0, 0.0)
-# endregion
 
-# region Podpory
 ops.fix(1, 1, 1, 0)
 ops.fix(2, 1, 1, 0)
 ops.fix(3, 0, 1, 0)
-# endregion
 
-# region Elementy
 ops.geomTransf('Linear', 1)
 
 ops.element('elasticBeamColumn', 1, 1, 2, A, E, I_z, 1)
 ops.element('elasticBeamColumn', 2, 2, 3, A, E, I_z, 1)
 ops.element('elasticBeamColumn', 3, 3, 4, A, E, I_z, 1)
-# endregion
 
-# region Siły
-# Siła skupiona w 4 węźle
 ops.timeSeries('Constant', 1)
 ops.pattern('Plain', 1, 1)
 ops.load(4, 0, P, 0)
 
-# Obciążenie rozłożone stałe na 1-ym elemencie
 ops.eleLoad('-ele', 1, '-type', '-beamUniform', q)
-# endregion
 
-# region Parametryzacja
 cov = 0.1
 ops.analysis('Static')
 
@@ -70,9 +57,7 @@ ops.addToParameter(2, 'element', 2, 'E')
 ops.addToParameter(2, 'element', 3, 'E')
 
 ops.probabilityTransformation('Nataf', '-print', 0)
-# endregion
 
-# region Obliczenia i wyniki
 nFail = 0
 nTrials = 1000000
 u_sims = np.zeros(nTrials)
@@ -80,4 +65,3 @@ u_sims = np.zeros(nTrials)
 calculate(nTrials, 4, 2, u_sims)
 
 save_results(nFail, nTrials, u_sims, 'Belka')
-# endregion

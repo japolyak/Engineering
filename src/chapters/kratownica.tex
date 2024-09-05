@@ -1,0 +1,46 @@
+Przedmiotem analizy jest kratownicowa składająca się z trzech elementów prętowych, przy czym każdy z prętów jest wykonany
+z innego materiału, co oznacza, że mają one różne moduły sprężystości \textbf{E} oraz powierzchnie przekroju poprzecznego \textbf{A}.
+
+Każdy z elementów kratownicy jest zamocowany u góry za pomocą przegubu nieprzesuwnego, a w węźle 4 elementy są połączone między sobą przegubowo.
+
+Konstrukcja poddana jest działaniu siły skupionej \textbf{P} przyłożonej w węźle 4, skierowanej skośnie w prawy dół.
+W implementacji siłę \textbf{P} rozłożono na składowe w płaszczyźnie Y oraz X.
+
+Analiza skupia się na ocenie przemieszczenia węzła 4 w kierunku pionowym (w osi Y) pod wpływem działania siły \textbf{P}.
+
+\cadmodel
+{Kratownica-mod}
+{Model kratownicy}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        Rodzaj parametru & a & b & c & $\mathrm{E}_\mathrm{1}$ & $\mathrm{E}_\mathrm{2}$ & $\mathrm{E}_\mathrm{3}$ & $\mathrm{A}_\mathrm{1}$ & $\mathrm{A}_\mathrm{2}$ & $\mathrm{A}_\mathrm{3}$ & $\mathrm{P}_\mathrm{x}$ & $\mathrm{P}_\mathrm{y}$ \\
+        \hline
+        – & \multicolumn{3}{|c|}{[m]} & \multicolumn{3}{|c|}{[GPa]} & \multicolumn{3}{|c|}{[$\mathrm{m}^\mathrm{2}$]} & \multicolumn{2}{|c|}{[kN]} \\
+        \hline
+        Deterministyczny & 3 & 4 & 5 & 30 & 40 & 50 & – & – & – & – & – \\
+        \hline
+        Średni & – & – & – & – & – & – & 0.3 & 0.2 & 0.1 & 15 & –5 \\
+        \hline
+        Odchylenie standardowe & – & – & – & – & – & – & 0.03 & 0.02 & 0.01 & 1.5 & 0.5 \\
+        \hline
+    \end{tabular}
+    \caption{Parametry kratownicy}
+    \label{tab:pars-kp}
+\end{table}
+
+\constructionresults
+{\kratownica}
+{Kratownica}
+{Przesunięcie węzła 4}
+{
+\resultstable
+{8.25 & -0.88 & 38.1 & 0.19 & 35.9 & 4.97}
+{19.5 & -1.88 & 35 & 0.17 & 30.9 & 5.02}
+{16.1 & -6 & 35 & 0.16 & 24.4 & 4.46}
+{Wyniki symulacji dla kratownicy}
+{kp-results}
+{[mm] & [mm] & [μm] & [mm] & [nm] & [\%]}
+}

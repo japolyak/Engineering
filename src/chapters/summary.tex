@@ -1,4 +1,4 @@
-\section{Podsumowanie}
+\section{Podsumowanie i wnioski}
 
 Celem niniejszej pracy inżynierskiej było przeprowadzenie analizy wrażliwości konstrukcji ramowych, uwzględniając losowość geometrii i właściwości materiałowych.
 W ramach pracy szczegółowo omówiono teoretyczne podstawy analizy wrażliwości oraz metody numeryczne, takie jak metoda elementów skończonych (MES) i metoda Monte Carlo, wykorzystane do przeprowadzenia symulacji.
@@ -13,3 +13,19 @@ Wykorzystanie OpenSees pozwala na znaczną redukcję kosztów oraz czasu poświ�
 
 Niniejsza praca pokazuje, że analiza wrażliwości z wykorzystaniem metody Monte Carlo oraz silnika OpenSees stanowi skuteczne narzędzie do oceny wpływu losowości parametrów na zachowanie konstrukcji ramowych.
 Uzyskane wyniki mogą być wykorzystane do optymalizacji projektów, zwiększenia ich bezpieczeństwa oraz efektywności, a także do podejmowania świadomych decyzji projektowych w warunkach niepewności.
+
+----------------------------------------------------
+
+Analiza wyników dla belki wskazuje na znaczną zmienność przemieszczeń węzła w zależności od liczby prób.
+Średnia wartość przemieszczenia pozostaje jednak stabilna, szczególnie przy 1.000.000 prób, co sugeruje osiągnięcie stabilności wyników.
+Odchylenie standardowe wzrasta wraz z liczbą prób, co jest naturalnym efektem zwiększenia próbkowania.
+
+W przypadku ramy przestrzennej, średnia wartość przemieszczenia węzła stabilizuje się już przy 10.000 prób, co sugeruje mniejszą wrażliwość tej konstrukcji na zmienność parametrów.
+Odchylenie standardowe również pozostaje stabilne, co potwierdza niską wrażliwość konstrukcji na losowość parametrów.
+
+Analiza konstrukcji prętowej wykazuje większą zmienność przemieszczeń węzła w porównaniu do pozostałych konstrukcji, a także wyższe odchylenie standardowe.
+Wynika to z większej wrażliwości tej konstrukcji na zmienność parametrów, co wymaga większej liczby prób dla uzyskania stabilnych wyników.
+
+Wzrost liczby prób w analizie Monte Carlo prowadzi do stabilizacji wyników, jednak prędkość tej stabilizacji różni się w zależności od typu konstrukcji.
+Konstrukcja prętowa jest najbardziej wrażliwa na zmienność parametrów, natomiast rama wykazuje większą stabilność.
+Dla bardziej złożonych konstrukcji, takich jak konstrukcja prętowa, konieczne jest przeprowadzenie większej liczby prób, podczas gdy dla prostszych konstrukcji, jak rama, mniejsza liczba iteracji jest wystarczająca.

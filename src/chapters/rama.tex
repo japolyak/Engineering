@@ -13,13 +13,17 @@ Głównym celem analizy jest ocena wpływu tych obciążeń na przemieszczenie n
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
         \hline
-        $L$ & $H$ & $b$ & $d$ & $A$ & $I_z$ & $E$ & $P_1$ & $P_2$ \\
+        Rodzaj parametru & L & H & b & d & A & {$\mathrm{I}_\mathrm{z}$} & E & $\mathrm{P}_\mathrm{1}$ & $\mathrm{P}_\mathrm{2}$ \\
         \hline
-        \multicolumn{4}{|c|}{$m$} & $m^2$ & $m^4$ & $GPa$ & \multicolumn{2}{|c|}{$kN$} \\
+        – & \multicolumn{4}{|c|}{\textnormal{m}} & [$\mathrm{m}^\mathrm{2}$] & [$\mathrm{m}^\mathrm{4}$] & [GPa] & \multicolumn{2}{|c|}{[kN]} \\
         \hline
-        3 & 4 & 0.3 & 0.6 & 0.18 & $145.8*10^-6$ & $30*10^6$ & 25 & -500 \\
+        Deterministyczny & 3 & 4 & 0.3 & 0.6 & 0.18 & – & – & – & – \\
+        \hline
+        Średni & – & – & – & – & – & 145.8 \cdot $\mathrm{10}^{\mathrm{-6}}$& 30 & 25 & –500 \\
+        \hline
+        Odchylenie standardowe & – & – & – & – & – & 14.6 \cdot $\mathrm{10}^{\mathrm{-6}}$ & 30 & 2.5 & 50 \\
         \hline
     \end{tabular}
     \caption{Parametry ramy}
@@ -32,10 +36,10 @@ Głównym celem analizy jest ocena wpływu tych obciążeń na przemieszczenie n
 {Ugięcie środka belki}
 {
 \resultstable
-{1.33 & 0.27 & 1.07 & 0.17 & 2.98 & 0.16}
-{1.36 & 0.26 & 1.07 & 0.17 & 3 & 0.16}
-{1.39 & 0.24 & 1.07 & 0.17 & 3 & 0.16}
+{1.35 & 0.27 & 1.07 & 0.17 & 31.4 & 0.17}
+{1.37 & 0.23 & 1.07 & 0.17 & 30.2 & 0.16}
+{1.4 & 0.24 & 1.07 & 0.17 & 30 & 0.16}
 {Wyniki przemieszczeń symulacji dla ramy}
 {rama-results}
-{$[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-8}$ & $\%$}
+{[mm] & [mm] & [mm] & [mm] & [nm] & [\%]}
 }

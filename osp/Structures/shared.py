@@ -31,7 +31,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
     u_var = np.var(u_sims)
     u_cov = u_std/u_mean
 
-    save_dir = os.path.join('..', '..', 'src', 'results')
+    save_dir = os.path.join('.')
 
     with open(os.path.join(save_dir, f"{structure_name}_{n_trials}_results.txt"), "w") as file:
         file.write(f'Monte Carlo symulacja dla {structure_name}, pf_MC = {n_fail} / {n_trials} = {m_cpf}\n')
@@ -41,8 +41,6 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
         file.write(f'u_std: {u_std}\n')
         file.write(f'u_var: {u_var}\n')
         file.write(f'u_cov: {u_cov}\n')
-
-    save_dir = os.path.join('..', '..', 'src', 'images')
 
     width_in_inches = 1920 * 1.35 / 300
     height_in_inches = 1080 * 1.35 / 300
