@@ -1,12 +1,15 @@
 Rozważana jest rama przestrzenna składająca się z trzech elementów belkowych.
-Wszystkie elementy wykonane są z jednorodnego materiału, o jednakowych właściwości fizyczne oraz geometryczne, takie jak moduł sprężystości
-\textbf{E} moment bezwładności przekroju \textbf{I}  oraz powierzchnia przekroju poprzecznego \textbf{A}, są jednorodne.
+Wszystkie elementy wykonane są z jednorodnego materiału, o jednakowych właściwości fizyczne oraz geometryczne(moduł sprężystości
+\textbf{E}, moment bezwładności przekroju \textbf{I},powierzchnia przekroju poprzecznego \textbf{A}).
 
-Rama jest wsparta na dwóch podporach: po lewej stronie znajduje się podpora przegubowo nieprzesuwna, a po prawej wspornik.
-Konstrukcja doznaje działania sił skupionych $P_1$ (pozioma w prawo) oraz $P_2$ (pionowa w dół) w lewym górnym narożniku (węzeł 2).
+Rama jest podparta z lewej strony przegubowo nieprzesuwnie, a z prawej ma wspornik.
+Na lewy górny narożnik (węzeł 2) działają dwie siły skupione: $P_1$ (pozioma, skierowana w prawo) i $P_2$ (pionowa, skierowana w dół).
 
-Głównym celem analizy jest ocena wpływu tych obciążeń na przemieszczenie środka belki w kierunku poziomym (w osi X).
-W badaniu analizowano, jak losowe zmiany parametrów wpływają na przemieszczenia oraz jak wyniki konwergują przy różnych liczbach prób.
+Głównym celem analizy jest ocena wpływu tych obciążeń na przemieszczenie narożnika w kierunku poziomym (w osi X).
+
+\cadmodel
+{Rama-mod}
+{Model ramy przestrzennej}
 
 \begin{table}[H]
     \centering
@@ -23,11 +26,16 @@ W badaniu analizowano, jak losowe zmiany parametrów wpływają na przemieszczen
     \label{tab:pars-rama}
 \end{table}
 
+\constructionresults
+{\rama}
+{Rama}
+{Ugięcie środka belki}
+{
 \resultstable
-{1 & 2 & 3 & 4 & 5 & 6}
-{1 & 2 & 3 & 4 & 5 & 6}
-{1 & 2 & 3 & 4 & 5 & 6}
-{Wyniki symulacji dla ramy}
+{1.33 & 0.27 & 1.07 & 0.17 & 2.98 & 0.16}
+{1.36 & 0.26 & 1.07 & 0.17 & 3 & 0.16}
+{1.39 & 0.24 & 1.07 & 0.17 & 3 & 0.16}
+{Wyniki przemieszczeń symulacji dla ramy}
 {rama-results}
-
-\constructionresults{\belka}{Belka}{Ugięcie środka belki}
+{$[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-8}$ & $\%$}
+}

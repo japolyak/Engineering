@@ -2,10 +2,15 @@ Przedmiotem analizy jest konstrukcja składająca się z trzech elementów pręt
 z innego materiału, co oznacza, że mają one różne moduły sprężystości \textbf{E} oraz powierzchnie przekroju poprzecznego \textbf{A}.
 
 Każdy z elementów konstrukcji jest zamocowany u góry za pomocą przegubu nieprzesuwnego, a w węźle 4 elementy są połączone między sobą przegubowo.
-Konstrukcja poddana jest działaniu siły skupionej \textbf{P} w węźle 4, skierowanej skośnie w prawy dół.
 
-Analiza tej konstrukcji koncentruje się na ocenie przemieszczenia węzła 4 w kierunku pionowym (w osi Y) w odpowiedzi na działanie siły \textbf{P}.
-Celem tych symulacji jest określenie, jak zmiany w parametrach wpływają na przemieszczenie węzła 4 oraz ocena zbieżności wyników przy różnych liczbach prób.
+Konstrukcja poddana jest działaniu siły skupionej \textbf{P} przyłożonej w węźle 4, skierowanej skośnie w prawy dół.
+W implementacji siłę \textbf{P} rozłożono na składowe w płaszczyźnie Y oraz X.
+
+Analiza skupia się na ocenie przemieszczenia węzła 4 w kierunku pionowym (w osi Y) pod wpływem działania siły \textbf{P}.
+
+\cadmodel
+{Prentowa-mod}
+{Model konstrukcji prętowej}
 
 \begin{table}[H]
     \centering
@@ -22,11 +27,16 @@ Celem tych symulacji jest określenie, jak zmiany w parametrach wpływają na pr
     \label{tab:pars-kp}
 \end{table}
 
+\constructionresults
+{\prentowa}
+{Konstrukcja_pretowa}
+{Przesunięcie węzła 4}
+{
 \resultstable
-{1 & 2 & 3 & 4 & 5 & 6}
-{1 & 2 & 3 & 4 & 5 & 6}
-{1 & 2 & 3 & 4 & 5 & 6}
+{4.24 & -1.16 & 3.34 & 0.15 & 2.11 & 4.35}
+{10.8 & -5.96 & 3.53 & 0.16 & 2.59 & 4.56}
+{32.9 & -5.9 & 3.5 & 0.16 & 2.67 & 4.68}
 {Wyniki symulacji dla konstrukcji prętowej}
 {kp-results}
-
-\constructionresults{\prentowa}{Konstrukcja_pretowa}{Przesunięcie węzła 4}
+{$[m] 10^{-3}$ & $[m] 10^{-3}$ & $[m] 10^{-5}$ & $[m] 10^{-3}$ & $10^{-8}$ & $\%$}
+}

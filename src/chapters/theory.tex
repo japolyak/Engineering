@@ -72,7 +72,7 @@ Dzięki temu możliwe jest skoncentrowanie działań kontrolnych i zapobiegawczy
 Metoda Monte Carlo to niezwykle wszechstronne narzędzie numeryczne, pozwalające na badanie i rozwiązywanie problemów, w których niepewność i losowość odgrywają kluczową rolę.
 W inżynierii, szczególnie w analizie wrażliwości konstrukcji, metoda Monte Carlo staje się niezastąpiona, umożliwiając ocenę wpływu zmienności różnych parametrów na zachowanie całej konstrukcji.
 
-W skrócie, metoda Monte Carlo polega na wielokrotnym przeprowadzaniu symulacji, w których wartości parametrów wejściowych są losowane zgodnie z określonymi rozkładami prawdopodobieństwa.
+W skrócie, metoda Monte Carlo polega na wielokrotnym przeprowadzaniu symulacji, w których wartości parametrów wejściowych są losowane zgodnie z określonymi rozkładami prawdopodobieństwa\cite{montecarlo}.
 Każda taka symulacja daje jeden wynik, a po zebraniu wielu takich wyników możliwe jest przeprowadzenie ich analizy statystycznej, co pozwala zrozumieć, jak różne czynniki wpływają na końcowy rezultat, na przykład na przemieszczenia czy naprężenia w konstrukcji.
 
 Jak działa metoda Monte Carlo w analizie wrażliwości konstrukcji?
@@ -111,12 +111,12 @@ Właściwości materiałów, takie jak moduł sprężystości czy wytrzymałoś�
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{images/Gauss}
-    \caption{Rozkład Gaussa}
+    \caption{Rozkład Gaussa\cite{gauss}}
 \end{figure}
 
 Matematycznie, rozkład normalny jest opisany przez dwa parametry: średnią (\mu) oraz odchylenie standardowe (\sigma).
 Średnia określa położenie środka rozkładu, a odchylenie standardowe określa jego szerokość, czyli jak bardzo wartości są rozproszone wokół średniej.
-Im większe odchylenie standardowe, tym większa zmienność parametru.
+Im większe odchylenie standardowe, tym większa zmienność parametru\cite{gauss}.
 
 Zastosowanie rozkładu normalnego w analizie wrażliwości konstrukcji przynosi szereg korzyści:
 
@@ -131,7 +131,7 @@ W niniejszej pracy, rozkład normalny będzie stosowany do modelowania losowośc
 
 Metoda elementów skończonych (MES) jest zaawansowaną techniką obliczeniową stosowaną do analizy i rozwiązywania problemów inżynierskich, w których wymagane jest zbadanie rozkładu naprężeń, przemieszczeń, temperatury czy innych parametrów fizycznych w konstrukcjach i materiałach.
 MES polega na dyskretyzacji ciągłej przestrzeni, takiej jak belka, płyta czy bryła, na mniejsze, skończone elementy.
-Każdy z tych elementów jest połączony z sąsiadującymi węzłami, które stanowią punkty, w których obliczane są wartości szukanych wielkości, takich jak przemieszczenia czy naprężenia.
+Każdy z tych elementów jest połączony z sąsiadującymi węzłami, które stanowią punkty, w których obliczane są wartości szukanych wielkości, takich jak przemieszczenia czy naprężenia\cite{trzylekcje}.
 
 Podstawą działania metody elementów skończonych jest podział skomplikowanego problemu na wiele prostszych, łatwiejszych do rozwiązania części.
 Cały obiekt inżynierski, na przykład most, jest dzielony na niewielkie, regularne elementy – trójkąty, czworokąty w przypadku problemów płaskich, lub czworościany i sześciany w przypadku problemów przestrzennych.
@@ -141,7 +141,7 @@ Kluczowym etapem w MES jest utworzenie macierzy sztywności, która reprezentuje
 Macierz ta jest następnie używana do rozwiązania układu równań liniowych, który opisuje stan równowagi całej konstrukcji.
 W zależności od liczby elementów oraz ich skomplikowania, układ równań może mieć bardzo dużą liczbę niewiadomych, co wymaga zastosowania odpowiednich algorytmów numerycznych oraz dużej mocy obliczeniowej.
 
-\subsubsection*{Równanie MES w statyce}
+\subsubsection{Równanie MES w statyce}
 
 Równanie podstawowe w metodzie elementów skończonych (MES) w statyce, znane jako równanie równowagi, jest kluczowym narzędziem do analizy konstrukcji inżynierskich.
 Jest to wyrażenie matematyczne, opisujące równowagę sił w konstrukcji, gdzie siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
@@ -159,7 +159,7 @@ gdzie:
 
 Rozwiązanie tego równania pozwala na obliczenie przemieszczeń węzłowych, co z kolei umożliwia wyznaczenie naprężeń, odkształceń i innych, interesującyh projektanta, parametrów.
 
-\subsubsection*{Macierz sztywności}
+\subsubsection{Macierz sztywności}
 
 Macierz sztywności reprezentuje relację między przemieszczeniami węzłowymi a siłami wewnętrznymi w konstrukcji.
 Każdy element konstrukcji posiada swoją własną macierz sztywności elementu, która jest następnie składana w globalną macierz sztywności konstrukcji.
@@ -171,10 +171,6 @@ Macierz sztywności zależy od:
     \item Geometrii elementu – długości, przekroju poprzecznego.
     \item Typu elementu - belka, pręt, powłoka itp.
 \end{itemize}
-
-\subsubsection*{Macierz sztywności elementu kratownicy}
-
-\subsubsection*{Macierz sztywności elementu ramy}
 
 \subsection{Narzędzia programistyczne}
 \subsubsection{Python}

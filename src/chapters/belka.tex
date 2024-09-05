@@ -1,16 +1,19 @@
-rozpatrywana jest belka swobodnie podparta, składająca się z trzech elementów, wykonanych z jednorodnego materiału o jednakowych właściwościach fizycznych i geometrycznych,
-takich jak moduł sprężystości \textbf{E} moment bezwładności przekroju \textbf{I}  oraz powierzchnia przekroju poprzecznego \textbf{A}.
+Rozpatrywana jest belka swobodnie podparta, składająca się z trzech elementów, wykonanych z jednorodnego materiału o jednakowych właściwościach fizycznych i geometrycznych:
+moduł sprężystości \textbf{E}, moment bezwładności przekroju \textbf{I} oraz powierzchnia przekroju poprzecznego \textbf{A}.
+Belka jest podparta na dwóch podporach przegubowo nieprzesuwnych oraz jednej podporze przegubowo przesuwnej.
 
-Belka jest podparta na trzech podporach: dwóch podporach przegubowo nieprzesuwnych i jednej przegubowo przesuwnej.
-Konstrukcja poddana jest działaniu dwóch rodzajów obciążeń:
+Konstrukcję poddano działaniu dwóch rodzajów obciążeń:
 
 \begin{itemize}
-    \item Siła ciągła $q$, równomiernie rozłożona na całej długości pierwszego elementu, skierowana pionowo w dół.
-    \item Siła skupiona $P$ przyłożona na końcu belki (węzeł 4), skierowana pionowo w dół.
+    \item Obciążenia równomiernie rozłożonego $q$ na całej długości pierwszego elementu, skierowanego pionowo w dół.
+    \item Obciążeniea punktowego $P$ przyłożonego na końcu belki (węzeł 4), skierowanego pionowo w dół.
 \end{itemize}
 
-Analiza skupia się na przemieszczeniu węzła 4 w kierunku pionowym (w osi Y). W badaniach analizowano,
-jak te obciążenia wpływają na przemieszczenie węzła oraz jak wyniki konwergują przy różnych liczbach prób.
+Analiza skupia się na przemieszczeniu węzła 4 w kierunku pionowym (w osi Y).
+
+\cadmodel
+{Belka-mod}
+{Model belki swobodnie podpartej}
 
 \begin{table}[H]
     \centering
@@ -27,11 +30,16 @@ jak te obciążenia wpływają na przemieszczenie węzła oraz jak wyniki konwer
     \label{tab:pars-belka}
 \end{table}
 
+\constructionresults
+{\belka}
+{Belka}
+{Ugięcie na końcu belki}
+{
 \resultstable
-{1 & 2 & 3 & 4 & 5 & 6}
-{1 & 2 & 3 & 4 & 5 & 6}
-{1 & 2 & 3 & 4 & 5 & 6}
+{-277.7 & -64598.1 & -34.56 & 822.92 & 677194.25 & -23.81}
+{-21.1 & -304406.85 & -33.43 & 1216.47 & 1479801.34 & -36.39}
+{-0.02 & -932248.17 & -34.55 & 1686.36 & 2843799.23 & -48.81}
 {Wyniki symulacji dla belki}
 {belka-results}
-
-\constructionresults{\belka}{Belka}{Ugięcie na końcu belki}
+{$[m] 10^{-8}$ & $[m]$ & $[m]$ & $[m]$ & $[m]$ & $\%$}
+}
