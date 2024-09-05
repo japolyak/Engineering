@@ -147,14 +147,14 @@ Równanie podstawowe w metodzie elementów skończonych (MES) w statyce, znane j
 Jest to wyrażenie matematyczne, opisujące równowagę sił w konstrukcji, gdzie siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
 
 \begin{equation}
-    Ku = f
+    Kd = r
 \end{equation}
 gdzie:
 
 \begin{itemize}
     \item \textbf{K} - macierz sztywności globalnej konstrukcji
-    \item \textbf{u} - wektor przemieszczeń węzłowych
-    \item \textbf{f} - wektor sił zewnętrznych działających na konstrukcję
+    \item \textbf{d} - wektor przemieszczeń węzłowych
+    \item \textbf{r} - wektor sił zewnętrznych działających na konstrukcję
 \end{itemize}
 
 Rozwiązanie tego równania pozwala na obliczenie przemieszczeń węzłowych, co z kolei umożliwia wyznaczenie naprężeń, odkształceń i innych, interesującyh projektanta, parametrów.
@@ -181,6 +181,130 @@ Dla jednorodnej belka odkształcalnej w płaszczyźnie bez odkształceń osiowyc
     \item Węzłowe siły $F_i$ i $F_j$ odpowiadają węzłowym przemieszczeniom $w_i$ i $w_j$.
     \item Węzłowe momenty $M_i$ i $M_j$ odpowiadają węzłowym obrotom $\theta_i$ i $\theta_j$.
 \end{itemize}
+
+Równanie elementu jest w postaci $Kd = r$, gdzie K jest macierzą sztywności o wymiarach 4×4, a wektor węzłowych przemieszczeń elementu jest w postaci
+
+\begin{equation}
+\label{eq:ddsadadddd}
+\macierz{d} =
+    \begin{bmatrix}
+        w_i & \theta_i & w_j & \theta_j
+    \end{bmatrix}^T
+\end{equation}
+
+Wektor r zawiera węzłowe siły i momenty przyłożone do elementu, tak aby utrzymać stan odkształcenia d.
+Po rozpisaniu otrzymuje się
+
+\begin{equation}
+\label{eq:adadssadsssad}
+\macierz{k} =
+    \frac{EA}{L}
+    \begin{bmatrix}
+        k_{11} & k_{12} & k_{13} & k_{14} \\[1ex]
+        k_{21} & k_{22} & k_{23} & k_{24} \\[1ex]
+        k_{31} & k_{32} & k_{33} & k_{34} \\[1ex]
+        k_{41} & k_{42} & k_{43} & k_{44} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        w_i \\[1ex]
+        \theta_i \\[1ex]
+        w_j \\[1ex]
+        \theta_j \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        F_i \\[1ex]
+        M_i \\[1ex]
+        F_j \\[1ex]
+        F_j \\
+    \end{bmatrix}
+\end{equation}
+
+Aby wyrazić współczynniki sztywności w macierzy k w odniesieniu do geometrii elementu (moment bezwładności przekroju poprzecznego I, długość elementu L) oraz modułu sprężystości E, należy postępować w następujący sposób:
+
+\begin{itemize}
+    \item W celu wyznaczenia współczynników sztywności dla każdej kolumny macierzy k, ustalamy odpowiednie stopnie swobody jako jednostkowe (równe 1), a pozostałe jako 0, po czym obliczamy siły ($F_i, F_j$) i momenty ($M_i, M_j$) niezbędne do uzyskania tego stanu deformacji.
+    \item Pierwsza kolumna macierzy k jest wyznaczana przez aktywację tylko pierwszego stopnia swobody.
+    \item Dla przypadku, gdy $w_i=1$ oraz $\theta_i=w_j=\theta_j=0$ z równania \ref{eq:ddsadadddd} otrzymuje się $k_{11}=F_i, k_{21}=M_i, k_{31}=F_j, k_{41}=M_j$.
+\end{itemize}
+
+Uznając belkę jako belkę wspornikową utwierdzoną z prawej strony i obciążoną z lewej strony i stosując równania teorii belek i statyki orzymuje się
+
+\begin{equation}
+\label{eq:asdadddddd1}
+w=1 \quad \mathrm{węzeł} \quad i \quad  1=\frac{k_{11}L^3}{3EI}-\frac{k_{21}L^2}{2EI}
+\end{equation}
+
+\begin{equation}
+\label{eq:asdadddddd2}
+\theta=0 \quad \mathrm{węzeł} \quad i \quad  0=\frac{k_{11}L^2}{2EI}-\frac{k_{21}L}{EI}
+\end{equation}
+
+\begin{equation}
+\label{eq:asdadddddd3}
+\varSigma F=0 \qquad  0=k_{11}+k_{31}
+\end{equation}
+
+
+\begin{equation}
+\label{eq:asdadddddd4}
+\varSigma M=0  \qquad  0=k_{21}+k_{41}-k_{11}L
+\end{equation}
+
+Rozwiązanie tych równań wynosi:
+
+\begin{equation}
+\label{eq:asdaddasdaaaaadddd}
+k_{11}=-k_{31}=\frac{12EI}{L^3} \quad i \quad k_{21}=k_{41}=\frac{6EI}{L^2}
+\end{equation}
+
+\begin{itemize}
+    \item Współczynniki sztywności w kolumnach 2, 3 i 4 macierzy k wyznaczane poprzez podobny tok postępowania.
+    \item Otrzymana macierz sztywności jest dokładna (nie przybliżona) pod warunkiem, że
+pomija się poprzeczną deformacje na ścinanie, a przemieszczenia są małe.
+    \item Po zdefiniowaniu macierzy sztywności względem parametrów E, I i L można rozwiązać problemy płaskich belek.
+    \item Tworzenie modelu elementów skończonych wymaga przekształcenia obciążenia
+rozłożonego w wektor obciążeń skupionych.
+    \item Ponadto można połączyć macierze sztywności k dla pręta i dla belki, tak aby powstała
+macierz sztywności o wymiarach 6×6, dla elementu ramowego, który posiada dwa
+przemieszczenia translacyjne i jeden obrót na każdym końcu. Takie elementy mogą
+być wykorzystywane do analizy ram płaskich.
+\end{itemize}
+
+Zakłąda się prosty elemenet belkowy o czterech stopniach swobody i że obrót \theta jest mały, tak że
+$\theta\approx dw/dx$. Cztery stopnie swobody określają sześcienne pole przemieszczeń poprzecznych
+
+\begin{equation}
+\label{eq:ddaaaasadadddd}
+\macierz{w} =
+    N\begin{bmatrix}
+        w_1 & \theta_1 & w_2 & \theta_2
+    \end{bmatrix}^T
+\end{equation}
+Pole krzywizn dane jest wzorem $w_{xx}=Bd$, gdzie:
+
+\begin{equation}
+\label{eq:ddaaaasadad}
+\macierz{B} =
+    \frac{d^2}{dx^2}N=
+    \begin{bmatrix}
+        -\frac{6}{L^2}+\frac{12x}{L^3} & -\frac{-4}{L}+\frac{6x}{L^2} & \frac{6}{L^2}-\frac{12x}{L^3} & -\frac{-2}{L}+\frac{6x}{L^2}
+    \end{bmatrix}
+\end{equation}
+Dla stałej sztywności giętnej EI, macierz sztywności elementu podana wzorem  ma następującą postać:
+
+\begin{equation}
+\label{eq:ddaaaasadadz}
+\macierz{k} =
+    \int^L_0 B^T EIBdx=
+    \frac{EI}{L^2}
+    \begin{bmatrix}
+        12 & 6L & -12 & 6l \\[1ex]
+        6L & 4L^2 & -6L & 2L^2 \\[1ex]
+        -12 & -6L & 12 & -6l \\[1ex]
+        6L & 2L^2 & -6L & 4L^2 \\
+    \end{bmatrix}
+\end{equation}
 
 \subsubsection{Element ramowy}
 
@@ -217,7 +341,7 @@ Jeśli element jest jednorodny i leży wzdłuż osi x, wówczas jego macierz szt
         0 & 6L & 4L^2 & 0 & -6L & 2L^2 \\[1ex]
         0 & 0 & 0 & 0 & 0 & 0 \\[1ex]
         0 & -12 & -6L & 0 & 12 & -6L \\[1ex]
-        0 & 6L & 2L^2 & 0 & -6L & 4L^2 \\[1ex]
+        0 & 6L & 2L^2 & 0 & -6L & 4L^2 \\
     \end{bmatrix}
 \end{equation}
 
