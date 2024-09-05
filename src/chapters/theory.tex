@@ -172,6 +172,69 @@ Macierz sztywności zależy od:
     \item Typu elementu - belka, pręt, powłoka itp.
 \end{itemize}
 
+\subsubsection{Element belkowy}
+
+Dla jednorodnej belka odkształcalnej w płaszczyźnie bez odkształceń osiowych posiadającej:
+
+\begin{itemize}
+    \item Cztery węzłowe stopnie swobody: poprzeczne przemieszczenie $w$ i obrót \theta na każdym końcu.
+    \item Węzłowe siły $F_i$ i $F_j$ odpowiadają węzłowym przemieszczeniom $w_i$ i $w_j$.
+    \item Węzłowe momenty $M_i$ i $M_j$ odpowiadają węzłowym obrotom $\theta_i$ i $\theta_j$.
+\end{itemize}
+
+\subsubsection{Element ramowy}
+
+Płaski element ramowy może odkształcić się osiowo (ściskanie lub rozciąganie) i poprzecznie (zginanie).
+Tym samym, aby otrzymać charakterystyczne wektory i macierze płaskiego elementu ramowego możemy połączyć (wykonać superpozycję) elementu prętowego i belkowego.
+Wówczas wektor węzłowych stopni swobody jest w postaci
+
+\begin{equation}
+\label{eq:ddddd}
+\macierz{d} =
+    \begin{bmatrix}
+        u_1 & w_1 & \theta_1 & u_2 & w_2 & \theta_2
+    \end{bmatrix}^T
+\end{equation}
+
+Jeśli element jest jednorodny i leży wzdłuż osi x, wówczas jego macierz sztywności ma postać
+
+\begin{equation}
+\label{eq:adadssssad}
+\macierz{k} =
+    \frac{EA}{L}
+    \begin{bmatrix}
+        1 & 0 & 0 & -1 & 0 & 0 \\[1ex]
+        0 & 0 & 0 & 0 & 0 & 0 \\[1ex]
+        0 & 0 & 0 & 0 & 0 & 0 \\[1ex]
+        -1 & 0 & 0 & 1 & 0 & 0 \\[1ex]
+        0 & 0 & 0 & 0 & 0 & 0 \\[1ex]
+        0 & 0 & 0 & 0 & 0 & 0
+    \end{bmatrix}
+    +\frac{EI}{L^3}
+    \begin{bmatrix}
+        0 & 0 & 0 & 0 & 0 & 0 \\[1ex]
+        0 & 12 & 6L & 0 & -12 & 6L \\[1ex]
+        0 & 6L & 4L^2 & 0 & -6L & 2L^2 \\[1ex]
+        0 & 0 & 0 & 0 & 0 & 0 \\[1ex]
+        0 & -12 & -6L & 0 & 12 & -6L \\[1ex]
+        0 & 6L & 2L^2 & 0 & -6L & 4L^2 \\[1ex]
+    \end{bmatrix}
+\end{equation}
+
+Ostatecznie macierz sztywności elementu ramowego według teorii Bernoulli-Eulera ma postać
+\begin{equation}
+\label{eq:adadad}
+\macierz{k} =
+    \begin{bmatrix}
+        \frac{EA}{L} & 0 & 0 & -\frac{EA}{L} & 0 & 0 \\[1ex]
+        0 & \frac{12EI}{L^3} & \frac{6EI}{L^2} & 0 & -\frac{12EI}{L^3} & \frac{6EI}{L^2} \\[1ex]
+        0 & \frac{6EI}{L^2} & \frac{4EI}{L} & 0 & -\frac{6EI}{L^2} & \frac{2EI}{L} \\[1ex]
+        -\frac{EA}{L} & 0 & 0 & \frac{EA}{L} & 0 & 0 \\[1ex]
+        0 & -\frac{12EI}{L^3} & -\frac{6EI}{L^2} & 0 & \frac{12EI}{L^3} & -\frac{6EI}{L^{2}} \\[1ex]
+        0 & \frac{6EI}{L^2} & \frac{2EI}{L} & 0 & -\frac{6EI}{L^2} & \frac{4EI}{L}
+    \end{bmatrix}
+\end{equation}
+
 \subsection{Narzędzia programistyczne}
 \subsubsection{Python}
 

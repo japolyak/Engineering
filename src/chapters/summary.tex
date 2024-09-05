@@ -7,19 +7,22 @@ Opracowano modele analizowanych konstrukcji, a następnie, korzystając z silnik
 Skrypty te obejmują definicję środowiska obliczeniowego, modelowanie węzłów, elementów, podpór oraz obciążeń, jak również parametryzację modelu.
 Przeprowadzono symulacje dla każdej konstrukcji, wykorzystując 10.000, 100.000 oraz 1.000.000 prób, a uzyskane wyniki zostały zebrane w tabelach i zilustrowane na wykresach.
 
-Analiza wyników dla belki wskazuje na znaczną zmienność przemieszczeń węzła w zależności od liczby prób.
-Średnia wartość przemieszczenia pozostaje jednak stabilna, szczególnie przy 1.000.000 prób, co sugeruje osiągnięcie stabilności wyników.
-Odchylenie standardowe wzrasta wraz z liczbą prób, co jest naturalnym efektem zwiększenia próbkowania.
+Analiza wyników dla belki wskazuje na dużą zmienność przemieszczeń przy różnych liczbach prób, ale średnia wartość przemieszczenia stabilizuje się przy większej liczbie symulacji, zwłaszcza po 1.000.000 prób.
+Wzrost odchylenia standardowego wraz z liczbą prób jest naturalny, ale stabilizacja średniej wartości oznacza osiągnięcie wiarygodnych wyników.
 
-W przypadku ramy przestrzennej, średnia wartość przemieszczenia węzła stabilizuje się już przy 10.000 prób, co sugeruje mniejszą wrażliwość tej konstrukcji na zmienność parametrów.
-Odchylenie standardowe również pozostaje stabilne, co potwierdza niską wrażliwość konstrukcji na losowość parametrów.
+Wyniki dla ramy przestrzennej pokazują mniejszą zmienność przemieszczeń niż w przypadku innych konstrukcji.
+Stabilizacja średniej wartości przemieszczenia następuje już po około 10.000 prób, co świadczy o jej niskiej wrażliwości na zmienność parametrów.
+Odchylenie standardowe także szybko stabilizuje się.
 
-Analiza konstrukcji prętowej wykazuje większą zmienność przemieszczeń węzła w porównaniu do pozostałych konstrukcji, a także wyższe odchylenie standardowe.
-Wynika to z większej wrażliwości tej konstrukcji na zmienność parametrów, co wymaga większej liczby prób dla uzyskania stabilnych wyników.
+Kratownica wykazuje największą zmienność przemieszczeń, a stabilizacja wyników jest trudniejsza i wymaga większej liczby prób.
+Duże różnice w przemieszczeniach i wysokie odchylenie standardowe wskazują na wysoką wrażliwość tej konstrukcji na zmienność parametrów i lokalne zmiany w modelu symulacyjnym.
 
-Wzrost liczby prób w analizie Monte Carlo prowadzi do stabilizacji wyników, jednak prędkość tej stabilizacji różni się w zależności od typu konstrukcji.
-Konstrukcja prętowa jest najbardziej wrażliwa na zmienność parametrów, natomiast rama wykazuje większą stabilność.
-Dla bardziej złożonych konstrukcji, takich jak konstrukcja prętowa, konieczne jest przeprowadzenie większej liczby prób, podczas gdy dla prostszych konstrukcji, jak rama, mniejsza liczba iteracji jest wystarczająca.
+Stabilizacja wyników w metodzie Monte Carlo zależy od rodzaju konstrukcji.
+Kratownica, jako konstrukcja bardziej wrażliwa na zmienność parametrów, wymaga większej liczby prób, podczas gdy rama przestrzenna szybko osiąga stabilizację.
+Belka również stabilizuje wyniki, ale dopiero przy większej liczbie prób.
+
+Złożone konstrukcje, jak kratownica, potrzebują więcej prób, aby uzyskać stabilne wyniki, podczas gdy prostsze konstrukcje, jak rama, osiągają stabilizację przy mniejszej liczbie symulacji.
+Warto te różnice uwzględnić w planowaniu symulacji, aby efektywnie wykorzystać zasoby obliczeniowe i zapewnić dokładność wyników.
 
 Analiza wrażliwości konstrukcji stanowi nieodłączny element procesu projektowania inżynierskiego, niezależnie od skali i złożoności obiektu.
 Choć na rynku dostępne są liczne komercyjne narzędzia do analizy konstrukcji, silnik obliczeniowy OpenSees wyróżnia się jako darmowe rozwiązanie, umożliwiające zarówno doświadczonym inżynierom, jak i początkującym projektantom, przeprowadzanie zaawansowanych analiz.
@@ -27,14 +30,3 @@ Wykorzystanie OpenSees pozwala na znaczną redukcję kosztów oraz czasu poświ�
 
 Niniejsza praca pokazuje, że analiza wrażliwości z wykorzystaniem metody Monte Carlo oraz silnika OpenSees stanowi skuteczne narzędzie do oceny wpływu losowości parametrów na zachowanie konstrukcji ramowych.
 Uzyskane wyniki mogą być wykorzystane do optymalizacji projektów, zwiększenia ich bezpieczeństwa oraz efektywności, a także do podejmowania świadomych decyzji projektowych w warunkach niepewności.
-
-
-------------------------------------
-Tak duża rozbieżność pomiędzy wartościami minimalną a maksymalną może wynikać z losowości parametrów wejściowych lub niestabilności konstrukcji w określonych warunkach obciążenia.
-Mimo tak znaczącej asymetrii, średnia wartość przemieszczenia jest bliższa maksymalnej wartości (1.35 mm), co sugeruje, że większa liczba symulacji daje wyniki przemieszczeń bliższe tej maksymalnej wartości.
-Tendencja ta może być spowodowana nieliniową odpowiedzią konstrukcji na obciążenie, gdzie w pewnych przypadkach konstrukcja reaguje bardziej na niekorzystne warunki niż na te optymalne.
-Może to również wynikać z faktu, że symulacje, które prowadzą do większych przemieszczeń, są bardziej prawdopodobne lub częstsze.
-Mimo takiej wielkiej asymetri, średnia wartość przemieszczenia jest bliższa maksymalnej wartości przemeieszczenia, co jest spowodowane
-większą ilość przemieszczeń bliższych wartości maksymalnej.
-
-
