@@ -125,7 +125,7 @@ Zastosowanie rozkładu normalnego w analizie wrażliwości konstrukcji przynosi 
     \item \textbf{Ilościowa ocena niepewności}: Dzięki znajomości średniej i odchylenia standardowego możliwe jest określenie prawdopodobieństwa wystąpienia różnych wartości parametru, co umożliwia ilościową ocenę niepewności.
     \item \textbf{Integracja z metodą Monte Carlo}: Rozkład normalny jest często wykorzystywany w metodzie Monte Carlo do generowania losowych wartości parametrów wejściowych, co umożliwia przeprowadzenie analizy probabilistycznej i ocenę wpływu zmienności parametrów na zachowanie konstrukcji.
 \end{itemize}
-W niniejszej pracy, rozkład normalny będzie stosowany do modelowania losowości wybranych parametrów materiałowych i geometrycznych konstrukcji ramowych.
+W niniejszej pracy, rozkład normalny będzie stosowany do modelowania losowości wybranych parametrów materiałowych i geometrycznych konstrukcji prętowych.
 
 \subsection{Metoda elementów skończonych MES}
 
@@ -147,14 +147,15 @@ Równanie podstawowe w metodzie elementów skończonych (MES) w statyce, znane j
 Jest to wyrażenie matematyczne, opisujące równowagę sił w konstrukcji, gdzie siły wewnętrzne (reprezentowane przez macierz sztywności i przemieszczenia) równoważą siły zewnętrzne.
 
 \begin{equation}
-    Kd = r
+\label{eq:mes}
+    \bm{Kd} = \overline{\bm{r}}
 \end{equation}
 gdzie:
 
 \begin{itemize}
-    \item \textbf{K} - macierz sztywności globalnej konstrukcji
-    \item \textbf{d} - wektor przemieszczeń węzłowych
-    \item \textbf{r} - wektor sił zewnętrznych działających na konstrukcję
+    \item $\bm{K}$ - macierz sztywności globalnej konstrukcji
+    \item $\bm{d}$ - wektor przemieszczeń węzłowych
+    \item $\overline{\bm{r}}$ - wektor sił zewnętrznych działających na konstrukcję
 \end{itemize}
 
 Rozwiązanie tego równania pozwala na obliczenie przemieszczeń węzłowych, co z kolei umożliwia wyznaczenie naprężeń, odkształceń i innych, interesującyh projektanta, parametrów.
@@ -174,7 +175,7 @@ Macierz sztywności zależy od:
 
 \subsubsection{Element belkowy}
 
-Dla jednorodnej belka odkształcalnej w płaszczyźnie bez odkształceń osiowych posiadającej:
+Dla jednorodnej belki odkształcalnej w płaszczyźnie bez odkształceń osiowych posiadającej:
 
 \begin{itemize}
     \item Cztery węzłowe stopnie swobody: poprzeczne przemieszczenie $w$ i obrót \theta na każdym końcu.
@@ -182,7 +183,7 @@ Dla jednorodnej belka odkształcalnej w płaszczyźnie bez odkształceń osiowyc
     \item Węzłowe momenty $M_i$ i $M_j$ odpowiadają węzłowym obrotom $\theta_i$ i $\theta_j$.
 \end{itemize}
 
-Równanie elementu jest w postaci $Kd = r$, gdzie K jest macierzą sztywności o wymiarach 4×4, a wektor węzłowych przemieszczeń elementu jest w postaci
+W równaniu \ref{eq:mes}, gdzie K jest macierzą sztywności o wymiarach 4×4, a wektor węzłowych przemieszczeń elementu jest w postaci
 
 \begin{equation}
 \label{eq:ddsadadddd}
@@ -192,7 +193,7 @@ Równanie elementu jest w postaci $Kd = r$, gdzie K jest macierzą sztywności o
     \end{bmatrix}^T
 \end{equation}
 
-Wektor r zawiera węzłowe siły i momenty przyłożone do elementu, tak aby utrzymać stan odkształcenia d.
+Wektor $\overline{\bm{r}}$ zawiera węzłowe siły i momenty przyłożone do elementu, tak aby utrzymać stan odkształcenia d.
 Po rozpisaniu otrzymuje się
 
 \begin{equation}
@@ -220,11 +221,11 @@ Po rozpisaniu otrzymuje się
     \end{bmatrix}
 \end{equation}
 
-Aby wyrazić współczynniki sztywności w macierzy k w odniesieniu do geometrii elementu (moment bezwładności przekroju poprzecznego I, długość elementu L) oraz modułu sprężystości E, należy postępować w następujący sposób:
+Aby wyrazić współczynniki sztywności w macierzy $\bm{k}$ w odniesieniu do geometrii elementu (moment bezwładności przekroju poprzecznego I, długość elementu L) oraz modułu sprężystości E, należy postępować w następujący sposób:
 
 \begin{itemize}
-    \item W celu wyznaczenia współczynników sztywności dla każdej kolumny macierzy k, ustalamy odpowiednie stopnie swobody jako jednostkowe (równe 1), a pozostałe jako 0, po czym obliczamy siły ($F_i, F_j$) i momenty ($M_i, M_j$) niezbędne do uzyskania tego stanu deformacji.
-    \item Pierwsza kolumna macierzy k jest wyznaczana przez aktywację tylko pierwszego stopnia swobody.
+    \item W celu wyznaczenia współczynników sztywności dla każdej kolumny macierzy $\bm{k}$, ustalamy odpowiednie stopnie swobody jako jednostkowe (równe 1), a pozostałe jako 0, po czym obliczamy siły ($F_i, F_j$) i momenty ($M_i, M_j$) niezbędne do uzyskania tego stanu deformacji.
+    \item Pierwsza kolumna macierzy $\bm{k}$ jest wyznaczana przez aktywację tylko pierwszego stopnia swobody.
     \item Dla przypadku, gdy $w_i=1$ oraz $\theta_i=w_j=\theta_j=0$ z równania \ref{eq:ddsadadddd} otrzymuje się $k_{11}=F_i, k_{21}=M_i, k_{31}=F_j, k_{41}=M_j$.
 \end{itemize}
 
@@ -259,20 +260,21 @@ k_{11}=-k_{31}=\frac{12EI}{L^3} \quad i \quad k_{21}=k_{41}=\frac{6EI}{L^2}
 \end{equation}
 
 \begin{itemize}
-    \item Współczynniki sztywności w kolumnach 2, 3 i 4 macierzy k wyznaczane poprzez podobny tok postępowania.
+    \item Współczynniki sztywności w kolumnach 2, 3 i 4 macierzy $\bm{k}$ wyznaczane poprzez podobny tok postępowania.
     \item Otrzymana macierz sztywności jest dokładna (nie przybliżona) pod warunkiem, że
 pomija się poprzeczną deformacje na ścinanie, a przemieszczenia są małe.
     \item Po zdefiniowaniu macierzy sztywności względem parametrów E, I i L można rozwiązać problemy płaskich belek.
     \item Tworzenie modelu elementów skończonych wymaga przekształcenia obciążenia
 rozłożonego w wektor obciążeń skupionych.
-    \item Ponadto można połączyć macierze sztywności k dla pręta i dla belki, tak aby powstała
+    \item Ponadto można połączyć macierze sztywności $\bm{k}$ dla pręta i dla belki, tak aby powstała
 macierz sztywności o wymiarach 6×6, dla elementu ramowego, który posiada dwa
 przemieszczenia translacyjne i jeden obrót na każdym końcu. Takie elementy mogą
 być wykorzystywane do analizy ram płaskich.
 \end{itemize}
 
-Zakłąda się prosty elemenet belkowy o czterech stopniach swobody i że obrót \theta jest mały, tak że
-$\theta\approx dw/dx$. Cztery stopnie swobody określają sześcienne pole przemieszczeń poprzecznych
+Zakłąda się prosty elemenet belkowy o czterech stopniach swobody i że obrót \theta  jest mały, tak że
+$\theta\approx dw/dx$.
+Cztery stopnie swobody określają sześcienne pole przemieszczeń poprzecznych
 
 \begin{equation}
 \label{eq:ddaaaasadadddd}
@@ -369,5 +371,5 @@ W niniejszej pracy, Python został wykorzystany do automatyzacji procesu analizy
 \subsubsection{OpenSees}
 
 OpenSees (Open System for Earthquake Engineering Simulation) to zaawansowana platforma programistyczna o otwartym kodzie źródłowym, dedykowana symulacji zachowania konstrukcji pod wpływem obciążeń dynamicznych, w tym sejsmicznych\cite{opensees}.
-Szeroki zakres dostępnych elementów skończonych, modeli materiałowych oraz algorytmów rozwiązywania sprawia, że OpenSees stanowi doskonałe narzędzie do analizy wrażliwości konstrukcji ramowych.
+Szeroki zakres dostępnych elementów skończonych, modeli materiałowych oraz algorytmów rozwiązywania sprawia, że OpenSees stanowi doskonałe narzędzie do analizy wrażliwości konstrukcji pr.
 Integracja OpenSees z Pythonem umożliwiła płynną automatyzację procesu analizy, pozwalając na efektywne przeprowadzanie złożonych symulacji oraz dogłębną analizę wyników.
