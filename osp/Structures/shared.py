@@ -40,7 +40,7 @@ def save_figure(values, mean, y_label: str, file_name: str, from_opsv: bool = Fa
     plt.savefig(os.path.join(save_dir, f'{file_name}.png'), dpi=dpi, bbox_inches='tight')
 
 
-def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str, u_units: str, units_converter: int = 1):
+def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str, u_units: str, units_converter: float = 1.0):
     import numpy as np
     import os
 

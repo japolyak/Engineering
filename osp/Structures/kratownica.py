@@ -64,4 +64,4 @@ u_sims = np.zeros(n_trials)
 
 calculate(n_trials, 4, 2, u_sims)
 
-save_results(n_fail, n_trials, u_sims, 'Kratownica')
+save_results(n_fail, n_trials, u_sims, 'Kratownica', 'mm', 0.001)

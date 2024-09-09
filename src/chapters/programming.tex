@@ -31,15 +31,7 @@ Korzystając z wiersza poleceń i komendy \ilc{pip install <module name>} zainst
 Po udanej instalacji przy pomocy komendy \textbf{import} zaimportowano moduły do każdego pliku:
 
 \begin{lstlisting}
-# Plik shared.py
-import numpy as np
-import opsvis as opsv
-import matplotlib.pyplot as plt
-import openseespy.opensees as ops
-\end{lstlisting}
-
-\begin{lstlisting}
-# Pliki belka.py, rama.py, konstrukcja_pretowa.py
+# Pliki belka.py, rama.py, kratownica.py
 import numpy as np
 from scipy.stats import norm
 from shared import show_results
@@ -381,12 +373,14 @@ Zapis wyników oraz wykresów są możliwe dzięki funkji \ilc{save_results}, kt
     \item \textbf{u\_sims} – lista zawierająca wyniki przemieszczeń dla każdej symulacji.
     \item \textbf{title} – tytuł wykresu przedstawiającego wyniki symulacji przemieszczeń.
     \item \textbf{structure\_name} – nazwa konstrukcji, używana do nazewnictwa plików wynikowych.
+    \item \textbf{u\_units} – jednostka przemieszczenia.
+    \item \textbf{units\_converter} – opcjonalna wartość służąca do przeliczenia jedonstek przemieszczenia.
 \end{itemize}
 Przykład użycia funkcji:
 
 \begin{lstlisting}
-nFail = 0
-save_results(n_fail, n_trials, u_sims, 'Belka')
+n_fail = 0
+save_results(n_fail, n_trials, u_sims, 'Rama', 'm')
 \end{lstlisting}
 Działanie funkcji:
 
