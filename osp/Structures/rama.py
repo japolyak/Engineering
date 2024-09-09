@@ -58,10 +58,10 @@ ops.parameter(8, 'element', 3, 'E')
 
 ops.probabilityTransformation('Nataf', '-print', 0)
 
-nFail = 0
-nTrials = 1000000
-u_sims = np.zeros(nTrials)
+n_fail = 0
+n_trials = 1000000
+u_sims = np.zeros(n_trials)
 
-calculate(nTrials, 2, 1, u_sims)
+calculate(n_trials, 2, 1, u_sims)
 
-save_results(nFail, nTrials, u_sims, 'Rama')
+save_results(n_fail, n_trials, u_sims, 'Rama')

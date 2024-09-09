@@ -5,9 +5,12 @@ Belka jest podparta na dwóch podporach przegubowo nieprzesuwnych oraz jednej po
 Konstrukcję poddano działaniu dwóch rodzajów obciążeń:
 
 \begin{itemize}
-    \item Obciążenia równomiernie rozłożonego $q$ na całej długości pierwszego elementu, skierowanego pionowo w dół.
-    \item Obciążeniea punktowego $P$ przyłożonego na końcu belki (węzeł 4), skierowanego pionowo w dół.
+    \item Obciążenia równomiernie rozłożonego q na całej długości pierwszego elementu, skierowanego pionowo w dół.
+    \item Obciążeniea punktowego P przyłożonego na końcu belki (węzeł 4), skierowanego pionowo w dół.
 \end{itemize}
+
+Na Rysunku \ref{cadmodel:Belka-mod} jest przedstawiony model belki swobodnie podpartej, a Tabela \ref{tab:parametry-belka} zawiera deterministyczne oraz losowane parametry.
+Implementacja obliczeń jest zawarta w załączniku \ref{appendix:belka}.
 
 Analiza skupia się na przemieszczeniu węzła 4 w kierunku pionowym (w osi Y).
 
@@ -32,23 +35,45 @@ Analiza skupia się na przemieszczeniu węzła 4 w kierunku pionowym (w osi Y).
         \hline
     \end{tabular}
     \caption{Parametry belki swobodnie podpartej}
-    \label{tab:pars-belka}
+    \label{tab:parametry-belka}
 \end{table}
 
+\newpage
 \constructionresults
 {\belka}
 {Belka}
 {Ugięcie na końcu belki}
 {
 \resultstable
-{-65.5 \cdot $\mathrm{10}^{\mathrm{-8}}$ & -40430 & -36.5 & 674.1 & 454357.3 & -18.46}
-{-48 \cdot $\mathrm{10}^{\mathrm{-8}}$ & -556007 & -45.2 & 2146.4 & 4607043 & -47.6}
-{-2.32 \cdot $\mathrm{10}^{\mathrm{-8}}$ & -832834.6 & -37.9 & 1851.5 & 3428174.8 & -48.88}
+{-0.66 & -40.43 & -0.037 & 0.67 & 0.45 & -18.46}
+{-0.48 & -556 & -0.045 & 2.15 & 4.61 & -47.6}
+{-0.02 & -832.8 & -0.038 & 1.85 & 3.43 & -48.88}
 {Wyniki symulacji dla belki}
-{belka-results}
-{[m] & [m] & [m] & [m] & [m] & [\%]}
+{Belka-results}
+{[μm] & [mm] & [mm] & [mm] & [$\mathrm{mm}^\mathrm{2}$] & [\%]}
 }
-{1}
-{1}
-{1}
-{1}
+{
+Rysunek \ref{fig:Belka_model} przedstawia model obliczeniowy belki swobodnie podpartej wygenerowany w środowisku symulacyjnym.
+Na Rysunku \ref{fig:Belka_deformation} ukazano deformację belki pod wpływem siły skupionej pionowej.
+Tabela \ref{tab:Kratownica-results} zawiera wartości przemieszczeń uzyskane w 3 seriach obliczeń.
+
+Warto zauważyć, że wraz ze wzrostem liczby prób symulacyjnych, różnica między maksymalnym a minimalnym przemieszczeniem wzrasta, mimo że dla każdej serii pomiarów jest ona zbyt wielka.
+}
+{
+Rysunki \ref{fig:Belka_10000_sp}, \ref{fig:Belka_10000_zsp} oraz \ref{fig:Belka_10000_zos} prezentują wyniki przemieszczenia węzła 4 dla 10.000 symulacji.
+Średnie przemieszczenie wynosi 0.037 mm, a różnica między maksymalną wartością (-0.66 μm) a minimalną (-40.43 mm) wynosi prawie tyle samo co wartość minimalna.
+Na Rysunku \ref{fig:Belka_10000_sp} widoczne są przemieszczenia znacząco odbiegające od średniej, co może świadczyć o występowaniu zaburzeń.
+Z kolei na Rysunkach \ref{fig:Belka_10000_zsp} – \ref{fig:Belka_10000_zos} widać, że do stabilizacji wyników jeszcze nie doszło.
+}
+{
+Wyniki dla 100.000 symulacji przedstawiono na Rysunkach \ref{fig:Belka_100000_sp}, \ref{fig:Belka_100000_zsp} oraz \ref{fig:Belka_100000_zos}.
+Średnie przemieszczenie zwiększyło się do 0.045 mm, a różnica między wartością maksymalną (-0.48 μm) a minimalną (-556 mm) nadal jest zbyt wielka.
+Na Rysunku \ref{fig:Belka_100000_sp} nadal obserwowane są przemieszczenia, które mogą być uznane za zaburzenia.
+Stabilizacje średniej wartości przemieszczenia oraz odchylenia standardowego (Rysunek \ref{fig:Belka_100000_zsp} – \ref{fig:Belka_100000_zos}) nie są jezcze widoczne.
+}
+{
+Dla 1.000.000 symulacji, wyniki na  Rysunkach \ref{fig:Belka_1000000_sp}, \ref{fig:Belka_1000000_zsp} oraz \ref{fig:Belka_1000000_zos} świadczą, że średnie przemieszczenie wynosi 0.038 mm, a różnica między wartością maksymalną (-0.02 μm) a minimalną (-828.8 mm) jescze bardziej wzrosła.
+Na Rysunku \ref{fig:Belka_1000000_sp} wciąż widoczne są wartości przemieszczeń, które mogą być traktowane jako zaburzenia.
+Całkowitą stabilizację średniej wartości przemieszczenia można zaobserwować po około 800.000 symulacji (Rysunek \ref{fig:Belka_1000000_zsp}),
+natomiast stabilizacja odchylenia standardowego niby następuje dopiero po około 1.00.000 prób (Rysunek \ref{fig:Belka_1000000_zos}).
+}

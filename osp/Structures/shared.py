@@ -59,8 +59,8 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
     plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
     plt.plot(u_sims)
     plt.axhline(u_mean, 0, 1, color='b', lw=0.6)
-    plt.xlabel('liczba symulacji N')
-    plt.ylabel('Przemieszczenie [m]')
+    plt.xlabel('Liczba symulacji N')
+    plt.ylabel('Przemieszczenie [mm]')
     plt.ylim(u_min - 0.1 * u_min, u_max + 0.1 * u_max)
     plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_sp.png'), dpi=300, bbox_inches='tight')
 
@@ -69,7 +69,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
     plt.plot(u_mean_cum)
     plt.axhline(u_mean, 0, 1, color='r', lw=1.2)
     plt.xlabel('Liczba symulacji N')
-    plt.ylabel('Wartość średnia przemieszczenia [m]')
+    plt.ylabel('Wartość średnia przemieszczenia [mm]')
     plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zsp.png'), dpi=300, bbox_inches='tight')
 
     u_std_cum = [u_sims[:x].std() for x in range(1, n_trials + 1)]
@@ -77,5 +77,5 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
     plt.plot(u_std_cum)
     plt.axhline(u_std, 0, 1, color='r', lw=1.2)
     plt.xlabel('Liczba symulacji N')
-    plt.ylabel('Odchylenie standardowe przemieszczenia [m]')
+    plt.ylabel('Odchylenie standardowe przemieszczenia [mm]')
     plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zos.png'), dpi=300, bbox_inches='tight')
