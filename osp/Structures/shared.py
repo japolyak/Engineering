@@ -17,7 +17,7 @@ def calculate(n_trials, node_tag, dof, u_sims):
         u_sims[i] = ops.nodeDisp(node_tag, dof)
 
 
-def save_figure(values, mean, y_label: str, file_name: str, from_opsv: bool = False):
+def save_figure(values, mean, y_label: str, file_name: str, from_opsv: bool = False, opsv_fig: str = 'mod'):
     import matplotlib.pyplot as plt
     import opsvis as opsv
     import os
@@ -30,7 +30,10 @@ def save_figure(values, mean, y_label: str, file_name: str, from_opsv: bool = Fa
     plt.figure(figsize=(width_in_inches, height_in_inches), dpi=dpi)
 
     if from_opsv:
-        opsv.plot_model()
+        if opsv_fig == 'mod':
+            opsv.plot_model()
+        else:
+            opsv.plot_defo()
     else:
         plt.plot(values)
         plt.axhline(mean, 0, 1, color='r', lw=1.2)
@@ -70,7 +73,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str, u_unit
 
     save_figure([], None, '', f'{structure_name}_model', True)
 
-    save_figure([], None, '', f'{structure_name}_deformation', True)
+    save_figure([], None, '', f'{structure_name}_deformation', True, 'defo')
 
     save_figure(u_sims, u_mean, f'Przemieszczenie [{u_units}]', f'{structure_name}_{n_trials}_sp')
 
