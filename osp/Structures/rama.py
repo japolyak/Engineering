@@ -64,4 +64,4 @@ u_sims = np.zeros(n_trials)
 
 calculate(n_trials, 2, 1, u_sims)
 
-save_results(n_fail, n_trials, u_sims, 'Rama')
+save_results(n_fail, n_trials, u_sims, 'Rama', 'm')

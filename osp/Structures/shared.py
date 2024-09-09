@@ -1,7 +1,7 @@
-import openseespy.opensees as ops
-
-
 def calculate(n_trials, node_tag, dof, u_sims):
+    import openseespy.opensees as ops
+    from scipy.stats import norm
+
     nrv = len(ops.getRVTags())
 
     for i in range(n_trials):
@@ -17,16 +17,34 @@ def calculate(n_trials, node_tag, dof, u_sims):
         u_sims[i] = ops.nodeDisp(node_tag, dof)
 
 
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import norm
-import opsvis as opsv
-import os
+def save_figure(values, mean, y_label: str, file_name: str, from_opsv: bool = False):
+    import matplotlib.pyplot as plt
+    import opsvis as opsv
+    import os
+
+    dpi = 300
+    save_dir = os.path.join('.')
+    width_in_inches = 1920 * 1.35 / dpi
+    height_in_inches = 1080 * 1.35 / dpi
+
+    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=dpi)
+
+    if from_opsv:
+        opsv.plot_model()
+    else:
+        plt.plot(values)
+        plt.axhline(mean, 0, 1, color='r', lw=1.2)
+        plt.xlabel('Liczba symulacji N')
+        plt.ylabel(y_label)
+
+    plt.savefig(os.path.join(save_dir, f'{file_name}.png'), dpi=dpi, bbox_inches='tight')
 
 
-def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
+def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str, u_units: str, units_converter: int = 1):
+    import numpy as np
+    import os
+
     m_cpf = n_fail / n_trials
-
     u_max = np.max(u_sims)
     u_min = np.min(u_sims)
     u_mean = np.mean(u_sims)
@@ -45,37 +63,14 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str):
         file.write(f'u_var: {u_var}\n')
         file.write(f'u_cov: {u_cov}\n')
 
-    width_in_inches = 1920 * 1.35 / 300
-    height_in_inches = 1080 * 1.35 / 300
+    save_figure([], None, '', f'{structure_name}_model', True)
 
-    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
-    opsv.plot_model()
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_model.png'), dpi=300, bbox_inches='tight')
+    save_figure([], None, '', f'{structure_name}_deformation', True)
 
-    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
-    opsv.plot_defo()
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_deformation.png'), dpi=300, bbox_inches='tight')
-
-    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
-    plt.plot(u_sims)
-    plt.axhline(u_mean, 0, 1, color='b', lw=0.6)
-    plt.xlabel('Liczba symulacji N')
-    plt.ylabel('Przemieszczenie [mm]')
-    plt.ylim(u_min - 0.1 * u_min, u_max + 0.1 * u_max)
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_sp.png'), dpi=300, bbox_inches='tight')
+    save_figure(u_sims, u_mean, f'Przemieszczenie [{u_units}]', f'{structure_name}_{n_trials}_sp')
 
     u_mean_cum = np.cumsum(u_sims)/np.arange(1, n_trials + 1)
-    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
-    plt.plot(u_mean_cum)
-    plt.axhline(u_mean, 0, 1, color='r', lw=1.2)
-    plt.xlabel('Liczba symulacji N')
-    plt.ylabel('Wartość średnia przemieszczenia [mm]')
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zsp.png'), dpi=300, bbox_inches='tight')
+    save_figure(u_mean_cum, u_mean, f'Wartość średnia przemieszczenia [{u_units}]', f'{structure_name}_{n_trials}_zsp')
 
     u_std_cum = [u_sims[:x].std() for x in range(1, n_trials + 1)]
-    plt.figure(figsize=(width_in_inches, height_in_inches), dpi=300)
-    plt.plot(u_std_cum)
-    plt.axhline(u_std, 0, 1, color='r', lw=1.2)
-    plt.xlabel('Liczba symulacji N')
-    plt.ylabel('Odchylenie standardowe przemieszczenia [mm]')
-    plt.savefig(os.path.join(save_dir, f'{structure_name}_{n_trials}_zos.png'), dpi=300, bbox_inches='tight')
+    save_figure(u_std_cum, u_std, f'Odchylenie standardowe przemieszczenia [{u_units}]', f'{structure_name}_{n_trials}_zos')
