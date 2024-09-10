@@ -66,10 +66,9 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str, u_unit
         file.write(f'u_var: {u_var}\n')
         file.write(f'u_cov: {u_cov}\n')
 
-    if units_converter > 1:
-        u_sims = u_sims / units_converter
-        u_mean = u_mean / units_converter
-        u_std = u_std / units_converter
+    u_sims = u_sims / units_converter
+    u_mean = u_mean / units_converter
+    u_std = u_std / units_converter
 
     save_figure([], None, '', f'{structure_name}_model', True)
 
