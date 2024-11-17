@@ -23,7 +23,7 @@ def save_figure(values, mean, y_label: str, file_name: str, from_opsv: bool = Fa
     import os
 
     dpi = 300
-    save_dir = os.path.join('.')
+    save_dir = os.path.join('')
     width_in_inches = 1920 * 1.35 / dpi
     height_in_inches = 1080 * 1.35 / dpi
 
@@ -55,7 +55,7 @@ def save_results(n_fail: int, n_trials: int, u_sims, structure_name: str, u_unit
     u_var = np.var(u_sims)
     u_cov = u_std/u_mean
 
-    save_dir = os.path.join('.')
+    save_dir = os.path.join('')
 
     with open(os.path.join(save_dir, f"{structure_name}_{n_trials}_results.txt"), "w") as file:
         file.write(f'Monte Carlo symulacja dla {structure_name}, pf_MC = {n_fail} / {n_trials} = {m_cpf}\n')
